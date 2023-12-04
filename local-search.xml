@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>Hello-World</title>
+    <title>Hello World</title>
     <link href="/2023/12/04/hello-world/"/>
     <url>/2023/12/04/hello-world/</url>
     
-    <content type="html"><![CDATA[<p><img src="/icon.webp" alt="任我行"></p><p>记录一下，博客第一天。</p><p>以后要多多创作！</p>]]></content>
+    <content type="html"><![CDATA[<img src="/2023/12/04/hello-world/icon.webp" class="" title="任我行"><p>记录一下，博客第一天。</p><p>以后要多多创作！</p>]]></content>
     
     
     <categories>
