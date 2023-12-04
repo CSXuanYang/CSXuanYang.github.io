@@ -8,7 +8,7 @@
     <link href="/2023/12/04/hello-world/"/>
     <url>/2023/12/04/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>！<a href="icon.webp">任我行</a></p><p>记录一下，博客第一天。</p><p>以后要多多创作！</p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/icon.webp" alt="任我行"></p><p>记录一下，博客第一天。</p><p>以后要多多创作！</p>]]></content>
     
     
     <categories>
