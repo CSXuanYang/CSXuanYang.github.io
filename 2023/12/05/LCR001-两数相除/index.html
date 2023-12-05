@@ -16,23 +16,22 @@
   <meta name="author" content="Xuan Yang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录一下，博客第一天。 以后要多多创作！">
+    <meta name="description" content="剑指offer（专项突破版）1.1 整数的基础知识 题目链接：LCR001-两数相除 书上的讲解很清晰，不过好像漏掉了a&#x3D;-2147483648 b&#x3D;1的情况。不知道还有没有其他方法进一步优化，留作以后更新。 12345678910111213141516171819202122232425262728293031323334353637class Solution &#123;public:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2023/12/04/hello-world/index.html">
+<meta property="og:title" content="LCR001.两数相除">
+<meta property="og:url" content="http://example.com/2023/12/05/LCR001-%E4%B8%A4%E6%95%B0%E7%9B%B8%E9%99%A4/index.html">
 <meta property="og:site_name" content="任我行">
-<meta property="og:description" content="记录一下，博客第一天。 以后要多多创作！">
+<meta property="og:description" content="剑指offer（专项突破版）1.1 整数的基础知识 题目链接：LCR001-两数相除 书上的讲解很清晰，不过好像漏掉了a&#x3D;-2147483648 b&#x3D;1的情况。不知道还有没有其他方法进一步优化，留作以后更新。 12345678910111213141516171819202122232425262728293031323334353637class Solution &#123;public:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/12/04/hello-world/nku.jpg">
-<meta property="article:published_time" content="2023-12-04T12:03:06.000Z">
-<meta property="article:modified_time" content="2023-12-04T12:34:57.790Z">
+<meta property="article:published_time" content="2023-12-05T11:43:02.000Z">
+<meta property="article:modified_time" content="2023-12-05T12:06:53.218Z">
 <meta property="article:author" content="Xuan Yang">
+<meta property="article:tag" content="剑指Offer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/12/04/hello-world/nku.jpg">
   
   
   
-  <title>Hello World - 任我行</title>
+  <title>LCR001.两数相除 - 任我行</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -227,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="LCR001.两数相除"></span>
           
         </div>
 
@@ -238,8 +237,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-04 20:03" pubdate>
-          2023年12月4日 晚上
+        <time datetime="2023-12-05 19:43" pubdate>
+          2023年12月5日 晚上
         </time>
       </span>
     
@@ -250,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19 字
+          641 字
         
       </span>
     
@@ -261,7 +260,7 @@
         
         
         
-          1 分钟
+          6 分钟
         
       </span>
     
@@ -298,16 +297,15 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">LCR001.两数相除</h1>
             
             
               <div class="markdown-body">
                 
-                <img src="/2023/12/04/hello-world/nku.jpg" srcset="/img/loading.gif" lazyload class="" title="nku">
-
-<p>记录一下，博客第一天。</p>
-<p>以后要多多创作！</p>
-
+                <p>剑指offer（专项突破版）1.1 整数的基础知识</p>
+<p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/xoh6Oh/description/">LCR001-两数相除</a></p>
+<p>书上的讲解很清晰，不过好像漏掉了<code>a=-2147483648 b=1</code>的情况。不知道还有没有其他方法进一步优化，留作以后更新。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> divide(<span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b) &#123;<br>        <span class="hljs-comment">//判断边界</span><br>        <span class="hljs-keyword">if</span>(a == <span class="hljs-number">0x80000000</span> &amp;&amp; b == <span class="hljs-number">-1</span>)<br>            <span class="hljs-keyword">return</span> INT_MAX;<br>        <span class="hljs-keyword">if</span>(b == <span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">return</span> a;<br>        <span class="hljs-comment">//判断结果符号、都变成负数</span><br>        <span class="hljs-built_in">int</span> flag = <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">0</span>)&#123;<br>            flag--;<br>            a = -a;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(b &gt; <span class="hljs-number">0</span>)&#123;<br>            flag--;<br>            b = -b;<br>        &#125;<br>        <span class="hljs-comment">//两层循环</span><br>        <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(a &lt;= b)&#123;<br>            <span class="hljs-comment">//暂存除数</span><br>            <span class="hljs-built_in">int</span> divisor = b;<br>            <span class="hljs-built_in">int</span> quotient = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(divisor &gt;= <span class="hljs-number">0xc0000000</span> &amp;&amp; a &lt;= divisor + divisor)&#123;<br>                quotient += quotient;<br>                divisor += divisor;<br>            &#125;<br>            <span class="hljs-comment">//此时被除数刚刚大于除数</span><br>            res += quotient;<br>            a -= divisor;<br>        &#125;<br>        <span class="hljs-comment">//判断结果符号</span><br>        <span class="hljs-keyword">return</span> flag==<span class="hljs-number">1</span> ? -res : res;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -325,8 +323,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%9A%8F%E6%89%8B%E8%AE%B0/" class="category-chain-item">随手记</a>
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E6%95%B4%E6%95%B0/" class="category-chain-item">整数</a>
+  
+  
+
   
 
       </span>
@@ -337,6 +342,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%91%E6%8C%87Offer/" class="print-no-link">#剑指Offer</a>
+      
+    </div>
+  
 </div>
 
 
@@ -345,8 +357,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2023/12/04/hello-world/</div>
+      <div>LCR001.两数相除</div>
+      <div>http://example.com/2023/12/05/LCR001-两数相除/</div>
     </div>
     <div class="license-meta">
       
@@ -358,7 +370,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月4日</div>
+          <div>2023年12月5日</div>
         </div>
       
       
@@ -390,15 +402,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/05/LCR001-%E4%B8%A4%E6%95%B0%E7%9B%B8%E9%99%A4/" title="LCR001.两数相除">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LCR001.两数相除</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/12/04/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
