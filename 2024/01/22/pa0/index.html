@@ -16,22 +16,26 @@
   <meta name="author" content="Xuan Yang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="剑指offer（专项突破版）1.1 整数的基础知识题目链接：LCR001-两数相除书上的讲解很清晰，不过好像漏掉了a&#x3D;-2147483648 b&#x3D;1的情况。不知道还有没有其他方法进一步优化，留作以后更新。 12345678910111213141516171819202122232425262728293031323334353637class Solution &#123;public:">
+    <meta name="description" content="PA0实验记录12345678910111213bash -c &#x27;echo &quot;deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; jammy main restricted universe multiverse&quot; &gt; &#x2F;etc&#x2F;apt&#x2F;sources.list&#x27;&#x2F;* 解释这条命令是在 Bash shell 中执行一个命令：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LCR001.两数相除">
-<meta property="og:url" content="http://example.com/2023/12/05/LCR001-%E4%B8%A4%E6%95%B0%E7%9B%B8%E9%99%A4/index.html">
+<meta property="og:title" content="pa0">
+<meta property="og:url" content="http://example.com/2024/01/22/pa0/index.html">
 <meta property="og:site_name" content="任我行">
-<meta property="og:description" content="剑指offer（专项突破版）1.1 整数的基础知识题目链接：LCR001-两数相除书上的讲解很清晰，不过好像漏掉了a&#x3D;-2147483648 b&#x3D;1的情况。不知道还有没有其他方法进一步优化，留作以后更新。 12345678910111213141516171819202122232425262728293031323334353637class Solution &#123;public:">
+<meta property="og:description" content="PA0实验记录12345678910111213bash -c &#x27;echo &quot;deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; jammy main restricted universe multiverse&quot; &gt; &#x2F;etc&#x2F;apt&#x2F;sources.list&#x27;&#x2F;* 解释这条命令是在 Bash shell 中执行一个命令：">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-05T11:43:02.000Z">
-<meta property="article:modified_time" content="2023-12-05T12:23:14.265Z">
+<meta property="og:image" content="http://example.com/2024/01/22/pa0/2024-01-22-11-05-26.png">
+<meta property="og:image" content="http://example.com/2024/01/22/pa0/2024-01-22-11-57-35.png">
+<meta property="og:image" content="http://example.com/2024/01/22/pa0/2024-01-30-18-30-38.png">
+<meta property="article:published_time" content="2024-01-22T02:02:56.000Z">
+<meta property="article:modified_time" content="2024-02-25T01:30:51.215Z">
 <meta property="article:author" content="Xuan Yang">
-<meta property="article:tag" content="剑指Offer">
+<meta property="article:tag" content="PA">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/01/22/pa0/2024-01-22-11-05-26.png">
   
   
   
-  <title>LCR001.两数相除 - 任我行</title>
+  <title>pa0 - 任我行</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="LCR001.两数相除"></span>
+            <span id="subtitle" data-typed-text="pa0"></span>
           
         </div>
 
@@ -237,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-05 19:43" pubdate>
-          2023年12月5日 晚上
+        <time datetime="2024-01-22 10:02" pubdate>
+          2024年1月22日 上午
         </time>
       </span>
     
@@ -249,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          641 字
+          1.4k 字
         
       </span>
     
@@ -260,7 +264,7 @@
         
         
         
-          6 分钟
+          12 分钟
         
       </span>
     
@@ -297,13 +301,34 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">LCR001.两数相除</h1>
+            <h1 id="seo-header">pa0</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="剑指offer（专项突破版）1-1-整数的基础知识"><a href="#剑指offer（专项突破版）1-1-整数的基础知识" class="headerlink" title="剑指offer（专项突破版）1.1 整数的基础知识"></a>剑指offer（专项突破版）1.1 整数的基础知识</h2><h3 id="题目链接：LCR001-两数相除"><a href="#题目链接：LCR001-两数相除" class="headerlink" title="题目链接：LCR001-两数相除"></a>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/xoh6Oh/description/">LCR001-两数相除</a></h3><p>书上的讲解很清晰，不过好像漏掉了<code>a=-2147483648 b=1</code>的情况。不知道还有没有其他方法进一步优化，留作以后更新。</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> divide(<span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b) &#123;<br>        <span class="hljs-comment">//判断边界</span><br>        <span class="hljs-keyword">if</span>(a == <span class="hljs-number">0x80000000</span> &amp;&amp; b == <span class="hljs-number">-1</span>)<br>            <span class="hljs-keyword">return</span> INT_MAX;<br>        <span class="hljs-keyword">if</span>(b == <span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">return</span> a;<br>        <span class="hljs-comment">//判断结果符号、都变成负数</span><br>        <span class="hljs-built_in">int</span> flag = <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span>(a &gt; <span class="hljs-number">0</span>)&#123;<br>            flag--;<br>            a = -a;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(b &gt; <span class="hljs-number">0</span>)&#123;<br>            flag--;<br>            b = -b;<br>        &#125;<br>        <span class="hljs-comment">//两层循环</span><br>        <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(a &lt;= b)&#123;<br>            <span class="hljs-comment">//暂存除数</span><br>            <span class="hljs-built_in">int</span> divisor = b;<br>            <span class="hljs-built_in">int</span> quotient = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(divisor &gt;= <span class="hljs-number">0xc0000000</span> &amp;&amp; a &lt;= divisor + divisor)&#123;<br>                quotient += quotient;<br>                divisor += divisor;<br>            &#125;<br>            <span class="hljs-comment">//此时被除数刚刚大于除数</span><br>            res += quotient;<br>            a -= divisor;<br>        &#125;<br>        <span class="hljs-comment">//判断结果符号</span><br>        <span class="hljs-keyword">return</span> flag==<span class="hljs-number">1</span> ? -res : res;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+                <h2 id="PA0实验记录"><a href="#PA0实验记录" class="headerlink" title="PA0实验记录"></a>PA0实验记录</h2><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">bash -c &#x27;<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse&quot;</span> &gt; <span class="hljs-string">/etc/apt/sources.list</span>&#x27;<br><br>/* 解释<br>这条命令是在 Bash shell 中执行一个命令：<br>    bash: 启动 Bash shell，一个常见的 Unix/Linux shell。<br>    -c: 选项表示后面跟随着要执行的命令。<br>    &#x27;<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse&quot;</span> &gt; <span class="hljs-string">/etc/apt/sources.list</span>&#x27;: 这是要执行的命令。解释如下：<br>    <span class="hljs-keyword">echo</span>: 输出指定的文本。<br>    <span class="hljs-string">&quot;deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse&quot;</span>: 这是要输出的文本，通常是用于配置 APT <span class="hljs-params">(Advanced Package Tool)</span> 软件包管理器的源列表。这特定的源指向阿里云的 Ubuntu 软件包镜像。<br>        &gt; <span class="hljs-string">/etc/apt/sources.list</span>: 将上述输出的文本写入文件 <span class="hljs-string">/etc/apt/sources.list</span>，这是 APT 的主要源列表文件。<br><br>总的来说，这条命令的目的是将特定的 Ubuntu 软件包源地址添加到系统的 APT 源列表中，以便在安装或更新软件包时使用该源。<br>*/<br></code></pre></td></tr></table></figure>
+<p><code>sudo bash -c &#39;echo &quot;deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse&quot; &gt; /etc/apt/sources.list&#39;</code></p>
+<img src="/2024/01/22/pa0/2024-01-22-11-05-26.png" srcset="/img/loading.gif" lazyload class="">
+
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-comment">// 粘贴图片时遇到问题，需要先按照xclip</span><br>sudo apt-<span class="hljs-keyword">get</span> upgrade<br>sudo apt install xclip<br></code></pre></td></tr></table></figure>
+
+<p>无法安装libreadline-dev</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Wishengine/p/17446121.html">解决方案</a></p>
+<img src="/2024/01/22/pa0/2024-01-22-11-57-35.png" srcset="/img/loading.gif" lazyload class="">
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36393978/article/details/128659642">参考方案</a></p>
+<h2 id="选做题"><a href="#选做题" class="headerlink" title="选做题"></a>选做题</h2><ol>
+<li>上述各个命令除了cd之外都能找到它们的manpage, 这是为什么? 如果你思考后仍然感到困惑, 试着到互联网上寻找答案.<blockquote>
+<p>在典型的 Unix&#x2F;Linux 系统中，cd 命令是一个内置命令（built-in command），而不是一个外部的可执行文件。因此，它没有对应的 man 页面。</p>
+<p>其他命令如 ls、cp、mv、rm 等通常是外部的可执行文件，它们存在于系统的可执行文件路径中（通常是 &#x2F;bin、&#x2F;usr&#x2F;bin 等目录）。因此，这些命令有对应的 man 页面，可以通过 man 命令查看。</p>
+<p>在 Unix&#x2F;Linux 中，内置命令是由 shell 直接处理的，而不是通过调用外部的可执行文件。这使得内置命令更加高效，因为不需要启动新的进程。相反，外部命令需要创建新的进程来执行。</p>
+<p>要查看 cd 命令的文档，您可以使用 help cd 或 man bash（查看 Bash shell 的手册），因为 cd 是 Bash shell 的内置命令。这将提供与 cd 相关的信息。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/fakejvruo/article/details/123951266">https://blog.csdn.net/fakejvruo/article/details/123951266</a></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="GDB"><a href="#GDB" class="headerlink" title="GDB"></a>GDB</h2><img src="/2024/01/22/pa0/2024-01-30-18-30-38.png" srcset="/img/loading.gif" lazyload class="">
+
+<p>tmux如何使终端滚动？如何实现滚动条？</p>
+
                 
               </div>
             
@@ -321,15 +346,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
+  <a href="/categories/PA%E5%AE%9E%E9%AA%8C/" class="category-chain-item">PA实验</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E6%95%B4%E6%95%B0/" class="category-chain-item">整数</a>
-  
-  
-
   
 
       </span>
@@ -343,7 +361,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%89%91%E6%8C%87Offer/" class="print-no-link">#剑指Offer</a>
+        <a href="/tags/PA/" class="print-no-link">#PA</a>
       
     </div>
   
@@ -355,8 +373,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>LCR001.两数相除</div>
-      <div>http://example.com/2023/12/05/LCR001-两数相除/</div>
+      <div>pa0</div>
+      <div>http://example.com/2024/01/22/pa0/</div>
     </div>
     <div class="license-meta">
       
@@ -368,7 +386,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月5日</div>
+          <div>2024年1月22日</div>
         </div>
       
       
@@ -400,9 +418,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/22/pa0/" title="pa0">
+                      <a href="/2024/03/01/LCR002-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C/" title="LCR002.二进制求和">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pa0</span>
+                        <span class="hidden-mobile">LCR002.二进制求和</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -410,8 +428,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/04/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2023/12/05/LCR001-%E4%B8%A4%E6%95%B0%E7%9B%B8%E9%99%A4/" title="LCR001.两数相除">
+                        <span class="hidden-mobile">LCR001.两数相除</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
