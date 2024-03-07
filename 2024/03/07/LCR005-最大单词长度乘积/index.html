@@ -16,25 +16,25 @@
   <meta name="author" content="Xuan Yang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="剑指offer（专项突破版）1.2 二进制题目链接：LCR004-只出现一次的数字方法1分析：直接的想法是定义一个map，统计其次数。这里使用unordered_map。 123456789101112131415161718class Solution &#123;public:    int singleNumber(vector&lt;int&gt;&amp; nums) &#123;">
+    <meta name="description" content="剑指offer（专项突破版）1.2 二进制题目链接：LCR005-最大单词长度乘积方法1：用哈希表记录字符串中出现的字符分析：蛮力。对每一个字符串，存储一个记录每个字符的哈希表；对每个字符串对，比较其哈希表。 123456789101112131415161718192021222324252627282930313233343536class Solution &#123;public:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LCR004.只出现一次的数字">
-<meta property="og:url" content="http://example.com/2024/03/05/LCR004-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/index.html">
+<meta property="og:title" content="LCR005.最大单词长度乘积">
+<meta property="og:url" content="http://example.com/2024/03/07/LCR005-%E6%9C%80%E5%A4%A7%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6%E4%B9%98%E7%A7%AF/index.html">
 <meta property="og:site_name" content="任我行">
-<meta property="og:description" content="剑指offer（专项突破版）1.2 二进制题目链接：LCR004-只出现一次的数字方法1分析：直接的想法是定义一个map，统计其次数。这里使用unordered_map。 123456789101112131415161718class Solution &#123;public:    int singleNumber(vector&lt;int&gt;&amp; nums) &#123;">
+<meta property="og:description" content="剑指offer（专项突破版）1.2 二进制题目链接：LCR005-最大单词长度乘积方法1：用哈希表记录字符串中出现的字符分析：蛮力。对每一个字符串，存储一个记录每个字符的哈希表；对每个字符串对，比较其哈希表。 123456789101112131415161718192021222324252627282930313233343536class Solution &#123;public:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/03/05/LCR004-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/image.png">
-<meta property="og:image" content="http://example.com/2024/03/05/LCR004-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/image-1.png">
-<meta property="article:published_time" content="2024-03-05T11:29:39.000Z">
-<meta property="article:modified_time" content="2024-03-05T12:23:42.746Z">
+<meta property="og:image" content="http://example.com/2024/03/07/LCR005-%E6%9C%80%E5%A4%A7%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6%E4%B9%98%E7%A7%AF/image.png">
+<meta property="og:image" content="http://example.com/2024/03/07/LCR005-%E6%9C%80%E5%A4%A7%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6%E4%B9%98%E7%A7%AF/image-1.png">
+<meta property="article:published_time" content="2024-03-07T10:56:50.000Z">
+<meta property="article:modified_time" content="2024-03-07T11:58:26.978Z">
 <meta property="article:author" content="Xuan Yang">
 <meta property="article:tag" content="剑指Offer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2024/03/05/LCR004-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/image.png">
+<meta name="twitter:image" content="http://example.com/2024/03/07/LCR005-%E6%9C%80%E5%A4%A7%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6%E4%B9%98%E7%A7%AF/image.png">
   
   
   
-  <title>LCR004.只出现一次的数字 - 任我行</title>
+  <title>LCR005.最大单词长度乘积 - 任我行</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="LCR004.只出现一次的数字"></span>
+            <span id="subtitle" data-typed-text="LCR005.最大单词长度乘积"></span>
           
         </div>
 
@@ -240,8 +240,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-05 19:29" pubdate>
-          2024年3月5日 晚上
+        <time datetime="2024-03-07 18:56" pubdate>
+          2024年3月7日 晚上
         </time>
       </span>
     
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          2.4k 字
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          14 分钟
+          20 分钟
         
       </span>
     
@@ -300,30 +300,33 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">LCR004.只出现一次的数字</h1>
+            <h1 id="seo-header">LCR005.最大单词长度乘积</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="剑指offer（专项突破版）1-2-二进制"><a href="#剑指offer（专项突破版）1-2-二进制" class="headerlink" title="剑指offer（专项突破版）1.2 二进制"></a>剑指offer（专项突破版）1.2 二进制</h2><h3 id="题目链接：LCR004-只出现一次的数字"><a href="#题目链接：LCR004-只出现一次的数字" class="headerlink" title="题目链接：LCR004-只出现一次的数字"></a>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/WGki4K/description/">LCR004-只出现一次的数字</a></h3><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><p>分析：直接的想法是定义一个map，统计其次数。这里使用unordered_map。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">singleNumber</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-comment">//定义一个unordered_map，记录出现的数字及其次数</span><br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; dict;<br>        <span class="hljs-comment">//遍历</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++)&#123;<br>            dict[nums[i]]++;<br>        &#125;<br>        <span class="hljs-comment">//结果</span><br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;::iterator iter;<br>        <span class="hljs-keyword">for</span>(iter=dict.<span class="hljs-built_in">begin</span>();iter!=dict.<span class="hljs-built_in">end</span>();iter++)&#123;<br>            <span class="hljs-keyword">if</span>(iter-&gt;second == <span class="hljs-number">1</span>)<br>                <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> iter-&gt;first;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<p><strong>时间复杂度分析：</strong> 首先，遍历整个输入数组nums并在unordered_map中记录每个数字及其出现的次数。这个过程的时间复杂度为O(n)，其中n是数组nums的大小。接下来，遍历unordered_map以找到出现次数为1的数字。由于unordered_map中最多包含n个不同的数字，因此这个遍历过程的时间复杂度为O(n)。<br>综上所述，这个算法的总时间复杂度是O(n)。</p>
-<p><strong>结果：</strong></p>
-<p><img src="/2024/03/05/LCR004-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/image.png" srcset="/img/loading.gif" lazyload alt="方法1结果"></p>
-<h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><blockquote>
-<p>这个题目有一个简化版的类似的题目“输入数组中除一个数字只出现一次之外其他数字都出现两次，请找出只出现一次的数字”。任何一个数字异或它自己的结果都是0。如果将数组中所有数字进行异或运算，那么最终的结果就是那个只出现一次的数字。</p>
-<p>在这个题目中只有一个数字出现了一次，其他数字出现了3次。相同的3个数字异或的结果是数字本身，但是将数组中所有数字进行异或运算并不能消除出现3次的数字。因此，需要想其他办法。</p>
-<p>一个整数是由32个0或1组成的。我们可以将数组中所有数字的同一位置的数位相加。如果将出现3次的数字单独拿出来，那么这些出现了3次的数字的任意第i个数位之和都能被3整除。因此，如果数组中所有数字的第i个数位相加之和能被3整除，那么只出现一次的数字的第i个数位一定是0；如果数组中所有数字的第i个数位相加之和被3除余1，那么只出现一次的数字的第i个数位一定是1。这样只出现一次的任意第i个数位可以由数组中所有数字的第i个数位之和推算出来。当我们知道一个整数任意一位是0还是1之后，就可以知道它的数值。</p>
+                <h2 id="剑指offer（专项突破版）1-2-二进制"><a href="#剑指offer（专项突破版）1-2-二进制" class="headerlink" title="剑指offer（专项突破版）1.2 二进制"></a>剑指offer（专项突破版）1.2 二进制</h2><h3 id="题目链接：LCR005-最大单词长度乘积"><a href="#题目链接：LCR005-最大单词长度乘积" class="headerlink" title="题目链接：LCR005-最大单词长度乘积"></a>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/aseY1I/description/">LCR005-最大单词长度乘积</a></h3><h3 id="方法1：用哈希表记录字符串中出现的字符"><a href="#方法1：用哈希表记录字符串中出现的字符" class="headerlink" title="方法1：用哈希表记录字符串中出现的字符"></a>方法1：用哈希表记录字符串中出现的字符</h3><p>分析：蛮力。对每一个字符串，存储一个记录每个字符的哈希表；对每个字符串对，比较其哈希表。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> maxProduct(vector&lt;<span class="hljs-built_in">string</span>&gt;&amp; words) &#123;<br>        <span class="hljs-comment">// 定义哈希表</span><br>        <span class="hljs-built_in">bool</span> table[<span class="hljs-number">1000</span>][<span class="hljs-number">26</span>] = &#123;<span class="hljs-literal">false</span>&#125;;<br>        <span class="hljs-comment">// 记录每个字符串包含字符的情况</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; words.size();i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>;j &lt; words[i].length();j++)&#123;<br>                <span class="hljs-built_in">string</span> word = words[i];<br>                <span class="hljs-built_in">int</span> index = word[j] - <span class="hljs-string">&#x27;a&#x27;</span>;<br>                table[i][index] = <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//记录最大值</span><br>        <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 每一对字符串的情况</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; words.size()<span class="hljs-number">-1</span>;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j = i+<span class="hljs-number">1</span>;j &lt; words.size();j++)&#123;<br>                <span class="hljs-built_in">int</span> k;<br>                <span class="hljs-keyword">for</span>(k = <span class="hljs-number">0</span>;k &lt; <span class="hljs-number">26</span>;k++)&#123;<br>                    <span class="hljs-keyword">if</span>(table[i][k] &amp;&amp; table[j][k])&#123;<br>                        <span class="hljs-keyword">break</span>;<br>                    &#125;<br>                &#125;<br>                <span class="hljs-comment">// 找到不包含相同字符的两个字符串</span><br>                <span class="hljs-keyword">if</span>(k == <span class="hljs-number">26</span>)&#123;<br>                    <span class="hljs-built_in">int</span> temp = words[i].length()*words[j].length();<br>                    <span class="hljs-keyword">if</span>(temp &gt; res)&#123;<br>                        res = temp;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><strong>时间复杂度分析：</strong> 第1步，初始化每个字符串对应的哈希表。如果数组words的长度为n，平均每个字符串的长度为k，那么初始化哈希表的时间复杂度是O（n<sub>k</sub>）。第2步，根据哈希表判断每对字符串是否包含相同的字符。总共有O（n<sub>2</sub>）对字符串，判断每对字符串是否包含相同的字符需要的时间为O（1），因此这一步的时间复杂度是O（n<sub>2</sub>）。于是这种解法的总体时间复杂度是O（n<sub>k</sub>+n<sub>2</sub>）。</p>
+<p><strong>结果：</strong> </p>
+<p><img src="/2024/03/07/LCR005-%E6%9C%80%E5%A4%A7%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6%E4%B9%98%E7%A7%AF/image.png" srcset="/img/loading.gif" lazyload alt="方法1结果"></p>
+<h3 id="方法2：用整数的二进制数位记录字符串中出现的字符"><a href="#方法2：用整数的二进制数位记录字符串中出现的字符" class="headerlink" title="方法2：用整数的二进制数位记录字符串中出现的字符"></a>方法2：用整数的二进制数位记录字符串中出现的字符</h3><blockquote>
+<p>分析：可以用一个int型整数记录某个字符串中出现的字符。如果字符串中包含’a’，那么整数最右边的数位为1；如果字符串中包含’b’，那么整数的倒数第2位为1，其余以此类推。这样做的好处是能更快地判断两个字符串是否包含相同的字符。如果两个字符串中包含相同的字符，那么它们对应的整数相同的某个数位都为1，两个整数的与运算将不会等于0。如果两个字符串没有相同的字符，那么它们对应的整数的与运算的结果等于0。</p>
 </blockquote>
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> singleNumber(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-comment">//记录每位和的数组，题目规定在int范围内</span><br>        <span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span>[<span class="hljs-number">32</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>        <span class="hljs-comment">//累加</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.size();i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>;j &lt; <span class="hljs-number">32</span>;j++)&#123;<br>                <span class="hljs-keyword">sum</span>[j] += (nums[i] &gt;&gt; (<span class="hljs-number">31</span>-j)) &amp; <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//结果</span><br>        <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">32</span>;i++)&#123;<br>            res = (res &lt;&lt; <span class="hljs-number">1</span>) + <span class="hljs-keyword">sum</span>[i] % <span class="hljs-number">3</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<p><strong>结果：</strong></p>
-<p><img src="/2024/03/05/LCR004-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/image-1.png" srcset="/img/loading.gif" lazyload alt="方法2结果"></p>
-<h3 id="举一反三"><a href="#举一反三" class="headerlink" title="举一反三"></a>举一反三</h3><blockquote>
-<p>题目：输入一个整数数组，数组中只有一个数字出现m次，其他数字都出现n次。请找出那个唯一出现m次的数字。假设m不能被n整除。</p>
-<p>分析：解决面试题4的方法可以用来解决同类型的问题。如果数组中所有数字的第i个数位相加之和能被n整除，那么出现m次的数字的第i个数位一定是0；否则出现m次的数字的第i个数位一定是1。</p>
-</blockquote>
-<h3 id="补充内容"><a href="#补充内容" class="headerlink" title="补充内容"></a>补充内容</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jingyi130705008/article/details/82633778">map与unordered_map</a></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> maxProduct(vector&lt;<span class="hljs-built_in">string</span>&gt;&amp; words) &#123;<br>        <span class="hljs-comment">// 定义哈希表</span><br>        <span class="hljs-built_in">int</span> table[<span class="hljs-number">1000</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>        <span class="hljs-comment">// 记录每个字符串包含字符的情况</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; words.size();i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j = <span class="hljs-number">0</span>;j &lt; words[i].length();j++)&#123;<br>                <span class="hljs-built_in">string</span> word = words[i];<br>                <span class="hljs-built_in">int</span> index = word[j] - <span class="hljs-string">&#x27;a&#x27;</span>;<br>                table[i] |= <span class="hljs-number">1</span> &lt;&lt; index;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//记录最大值</span><br>        <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 每一对字符串的情况</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; words.size()<span class="hljs-number">-1</span>;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j = i+<span class="hljs-number">1</span>;j &lt; words.size();j++)&#123;<br>                <span class="hljs-comment">// 位运算判断两个字符串是否包含相同字符</span><br>                <span class="hljs-keyword">if</span>((table[i] &amp; table[j]) == <span class="hljs-number">0</span>)&#123;<br>                    <span class="hljs-built_in">int</span> temp = words[i].length()*words[j].length();<br>                    <span class="hljs-keyword">if</span>(temp &gt; res)&#123;<br>                        res = temp;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><strong>时间复杂度分析：</strong> 如果数组words的长度为n，平均每个字符串的长度为k，那么这种解法的时间复杂度是O（nk+n2），空间复杂度是O（n）。虽然两种解法的时间复杂度和空间复杂度是同一个量级的，但前面的解法在判断两个字符串是否包含相同的字符时，可能需要26次布尔运算，而新的解法只需要1次位运算，因此新的解法的时间效率更高。</p>
+<p><strong>结果：</strong> </p>
+<p><img src="/2024/03/07/LCR005-%E6%9C%80%E5%A4%A7%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6%E4%B9%98%E7%A7%AF/image-1.png" srcset="/img/loading.gif" lazyload alt="方法2结果"></p>
+<h3 id="补充内容"><a href="#补充内容" class="headerlink" title="补充内容"></a>补充内容</h3><ol>
+<li>C++数组静态大小的数组不能使用变量来初始化，因为数组的大小必须在编译时就确定。即，这道题定义table时，如果写成<code>bool table[1words.size()][26] = &#123;false&#125;;</code>会报错。</li>
+<li>“|&#x3D;”运算符：“a |&#x3D; b”表示“a等于a与b的或”。</li>
+<li>在C++中，位运算符的优先级高于相等运算符。在<code>if((table[i] &amp; table[j]) == 0)</code>中如果去掉<code>(table[i] &amp; table[j])</code>的括号，会先进行<code>table[j]) == 0</code>的运算，导致结果错误。</li>
+<li>定义变量长度数组可以用vector。<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/yjunyu/article/details/77728410">vector的几种初始化及赋值方式</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_36053757/article/details/71053706">C++——二维vector初始化大小方法</a></li>
+</ul>
+</li>
+</ol>
 
                 
               </div>
@@ -376,8 +379,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>LCR004.只出现一次的数字</div>
-      <div>http://example.com/2024/03/05/LCR004-只出现一次的数字/</div>
+      <div>LCR005.最大单词长度乘积</div>
+      <div>http://example.com/2024/03/07/LCR005-最大单词长度乘积/</div>
     </div>
     <div class="license-meta">
       
@@ -389,7 +392,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月5日</div>
+          <div>2024年3月7日</div>
         </div>
       
       
@@ -421,18 +424,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/07/LCR005-%E6%9C%80%E5%A4%A7%E5%8D%95%E8%AF%8D%E9%95%BF%E5%BA%A6%E4%B9%98%E7%A7%AF/" title="LCR005.最大单词长度乘积">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LCR005.最大单词长度乘积</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/04/LCR003-%E6%AF%94%E7%89%B9%E4%BD%8D%E8%AE%A1%E6%95%B0/" title="LCR003.比特位计数">
-                        <span class="hidden-mobile">LCR003.比特位计数</span>
+                      <a href="/2024/03/05/LCR004-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/" title="LCR004.只出现一次的数字">
+                        <span class="hidden-mobile">LCR004.只出现一次的数字</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
