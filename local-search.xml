@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>LCR041-LCR042队列的应用</title>
+    <link href="/2024/05/04/LCR041/"/>
+    <url>/2024/05/04/LCR041/</url>
+    
+    <content type="html"><![CDATA[<h1 id="剑指offer（专项突破版）7-2-队列的应用"><a href="#剑指offer（专项突破版）7-2-队列的应用" class="headerlink" title="剑指offer（专项突破版）7.2 队列的应用"></a>剑指offer（专项突破版）7.2 队列的应用</h1><h2 id="LCR041-滑动窗口的平均值"><a href="#LCR041-滑动窗口的平均值" class="headerlink" title="LCR041.滑动窗口的平均值"></a><a href="https://leetcode.cn/problems/qIsx9U/submissions/529128259/">LCR041.滑动窗口的平均值</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>题目给出的例子中的删除规则是把最早添加进来的数字删除，因此这是一种“先入先出”的顺序，由此想到应该采用队列这种数据结构来表示滑动窗口。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MovingAverage</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">/** Initialize your data structure here. */</span><br>    <span class="hljs-type">int</span> capacity = <span class="hljs-number">0</span>;<br>    queue&lt;<span class="hljs-type">int</span>&gt; que;<br>    <span class="hljs-type">double</span> sum = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-built_in">MovingAverage</span>(<span class="hljs-type">int</span> size) &#123;<br>        capacity = size;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">next</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span> </span>&#123;<br>        que.<span class="hljs-built_in">push</span>(val);<br>        sum += val;<br>        <span class="hljs-keyword">if</span>(que.<span class="hljs-built_in">size</span>() &gt; capacity)&#123;<br>            sum -= que.<span class="hljs-built_in">front</span>();<br>            que.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum / que.<span class="hljs-built_in">size</span>();<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your MovingAverage object will be instantiated and called as such:</span><br><span class="hljs-comment"> * MovingAverage* obj = new MovingAverage(size);</span><br><span class="hljs-comment"> * double param_1 = obj-&gt;next(val);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure><ul><li>时间复杂度：对于每次插入元素操作都只需要常数时间，O(1)。</li><li>空间复杂度：O(n)。</li></ul><p><img src="/2024/05/04/LCR041/image.png" alt="LCR041结果"></p><h2 id="LCR042-最近的请求次数"><a href="#LCR042-最近的请求次数" class="headerlink" title="LCR042.最近的请求次数"></a><a href="https://leetcode.cn/problems/H8086Q/description/">LCR042.最近的请求次数</a></h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>每次调用ping，先检查t-3000是否小于等于队头，如果大于队头则说明已不在3000秒内，就不断把队头移出，直到小于等于队头，入队，并返回队列的长度。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">RecentCounter</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    queue&lt;<span class="hljs-type">int</span>&gt; que;<br>    <span class="hljs-built_in">RecentCounter</span>() &#123;<br><br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ping</span><span class="hljs-params">(<span class="hljs-type">int</span> t)</span> </span>&#123;<br>        <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>() &amp;&amp; t<span class="hljs-number">-3000</span> &gt; que.<span class="hljs-built_in">front</span>())&#123;<br>            que.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        que.<span class="hljs-built_in">push</span>(t);<br>        <span class="hljs-keyword">return</span> que.<span class="hljs-built_in">size</span>();<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your RecentCounter object will be instantiated and called as such:</span><br><span class="hljs-comment"> * RecentCounter* obj = new RecentCounter();</span><br><span class="hljs-comment"> * int param_1 = obj-&gt;ping(t);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure><p>假设计数器时间窗口的大小是w毫秒，其中记录的时间是递增的，那么时间窗口中记录的时间的数目是O（w），因此空间复杂度是O（w）。每当收到一个新的请求ping时，由于可能需要删除O（w）个已经滑出时间窗口的请求，因此时间复杂度也是O（w）。但是由于这个题目中时间窗口的大小为3000毫秒，w是一个常数，因此也可以认为时间复杂度和空间复杂度都是O（1）。</p><p><img src="/2024/05/04/LCR041/image-1.png" alt="LCR042结果"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法笔记</category>
+      
+      <category>队列</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>剑指Offer</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>KuiperInfer (自制深度学习推理框架)学习记录</title>
     <link href="/2024/04/30/InferenceFramework/"/>
     <url>/2024/04/30/InferenceFramework/</url>
