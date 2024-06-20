@@ -27,8 +27,9 @@
 <meta property="og:image" content="http://example.com/2024/06/06/LCR079/image-1.png">
 <meta property="og:image" content="http://example.com/2024/06/06/LCR079/image-2.png">
 <meta property="og:image" content="http://example.com/2024/06/06/LCR079/image-3.png">
+<meta property="og:image" content="http://example.com/2024/06/06/LCR079/image-4.png">
 <meta property="article:published_time" content="2024-06-06T01:53:26.000Z">
-<meta property="article:modified_time" content="2024-06-09T02:02:43.771Z">
+<meta property="article:modified_time" content="2024-06-20T07:54:29.151Z">
 <meta property="article:author" content="Xuan Yang">
 <meta property="article:tag" content="剑指Offer">
 <meta name="twitter:card" content="summary_large_image">
@@ -254,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.9k 字
+          7.2k 字
         
       </span>
     
@@ -265,7 +266,7 @@
         
         
         
-          41 分钟
+          61 分钟
         
       </span>
     
@@ -350,6 +351,25 @@
 <li>空间复杂度：$O(n)$</li>
 </ul>
 <p><img src="/2024/06/06/LCR079/image-3.png" srcset="/img/loading.gif" lazyload alt="LCR082结果"></p>
+<h2 id="LCR083-全排列"><a href="#LCR083-全排列" class="headerlink" title="LCR083.全排列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/VvJkup/">LCR083.全排列</a></h2><h3 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h3><p>排列和组合不同，排列与元素的顺序相关，交换数字能够得到不同的排列。生成全排列的过程，就是交换输入集合中元素的顺序以得到不同的排列。</p>
+<p>下面以输入集合[1，2，3]为例分析生成全排列的过程。先考虑排列的第1个数字。数字1可以是排列的第1个数字；同样，数字2、3也可以是排列的第1个数字。因此，当生成排列的第1个数字时会面临3个选项，即可以分别选择1、2或3。选择某个数字作为排列的第1个数字之后接下来生成排列的第2个数字。假设选择数字3成为排列的第1个数字，那么生成第2个数字时就面临两个选项，即数字1或2都有可能成为排列的第2个数字。接下来生成排列的第3个数字。由于已经选择了两个数字作为排列的前两个数字，因此到第3个数字时只剩下1个数字，此时也就只有1个选项。</p>
+<p>如果输入的集合中有n个元素，那么生成一个全排列需要n步。当生成排列的第1个数字时会面临n个选项，即n个数字都有可能成为排列的第1个数字。生成排列的第1个数字之后接下来生成第2个数字，此时面临n-1个选项，即剩下的n-1个数字都有可能成为第2个数字。然后以此类推，直到生成最后一个数字，此时只剩下1个数字，也就只有1个选项。看起来解决这个问题可以分成n步，而且每一步都面临若干选项，这是典型的适用回溯法的场景。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">permute</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; res;<br>        <span class="hljs-built_in">helper</span>(nums, <span class="hljs-number">0</span>, res);<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">helper</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> index, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; res)</span></span>&#123;<br>        <span class="hljs-comment">// 一次全排列</span><br>        <span class="hljs-keyword">if</span>(index == nums.<span class="hljs-built_in">size</span>())&#123;<br>            res.<span class="hljs-built_in">push_back</span>(nums);<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-comment">// 从当前index开始，依次将每个元素放在index位置，然后递归处理其余元素的排列</span><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = index; j &lt; nums.<span class="hljs-built_in">size</span>(); j++)&#123;<br>                <span class="hljs-built_in">swap</span>(nums[index], nums[j]);<br>                <span class="hljs-built_in">helper</span>(nums, index+<span class="hljs-number">1</span>, res);<br>                <span class="hljs-built_in">swap</span>(nums[index], nums[j]);<br>            &#125;<br>        &#125;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：假设数组nums的长度为n，当index等于0时递归函数helper中的for循环执行n次，当index等于1时for循环执行n-1次，以此类推，当index等于n-1时，for循环执行1次。每一层递归的<code>for</code>循环总次数为<code>n * (n-1) * ... * 1</code>因此，全排列的时间复杂度是O（n！）。</li>
+<li>空间复杂度：用于存储所有排列结果的二维向量。其空间复杂度是O(n×n!)，因为有n!个排列，每个排列有长度为 n 的数组。</li>
+</ul>
+<p><img src="/2024/06/06/LCR079/image-4.png" srcset="/img/loading.gif" lazyload alt="LCR083结果"></p>
+<h2 id="LCR084-全排列II"><a href="#LCR084-全排列II" class="headerlink" title="LCR084.全排列II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/7p8L0Z/description/">LCR084.全排列II</a></h2><h3 id="分析-5"><a href="#分析-5" class="headerlink" title="分析"></a>分析</h3><p>和上一题的区别是，nums中可能包含重复的元素，但返回得结果不能有两个一样的排列。用unordered_set保存已经访问过的数字，后面如果再遇到，可以直接不处理。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">permuteUnique</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; res;<br>        <span class="hljs-built_in">helper</span>(nums, <span class="hljs-number">0</span> , res);<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">helper</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> index, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; res)</span></span>&#123;<br>        <span class="hljs-comment">// 一次全排列</span><br>        <span class="hljs-keyword">if</span>(index == nums.<span class="hljs-built_in">size</span>())&#123;<br>            res.<span class="hljs-built_in">push_back</span>(nums);<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-comment">// 定义一个unordered_set来记录当前位置已经使用过的元素</span><br>            unordered_set&lt;<span class="hljs-type">int</span>&gt; set; <br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = index; j &lt; nums.<span class="hljs-built_in">size</span>(); j++)&#123;<br>                <span class="hljs-keyword">if</span>(set.<span class="hljs-built_in">find</span>(nums[j]) == set.<span class="hljs-built_in">end</span>())&#123; <span class="hljs-comment">// 如果set中不包含nums[j]，则可以交换并递归处理</span><br>                    set.<span class="hljs-built_in">insert</span>(nums[j]);<br>                    <span class="hljs-built_in">swap</span>(nums[index], nums[j]); <br>                    <span class="hljs-built_in">helper</span>(nums, index+<span class="hljs-number">1</span>, res);<br>                    <span class="hljs-built_in">swap</span>(nums[index], nums[j]);<br>                &#125;<br>            &#125;           <br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n*n!)</li>
+<li>空间复杂度：O(n*n!)</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>从一个包含m个元素的集合中挑选出n个元素（0≤n≤m）形成一个子集。一个子集又可以称为一个组合。如果两个子集（组合）的元素完全相同只是顺序不同，那么它们可以看作同一个子集（组合）。</p>
+<p>从一个包含m个元素的集合中挑选出n个元素（0≤n≤m）并按照某种顺序形成一个排列。m等于n的排列又称为全排列。如果两个排列的元素完全相同只是顺序不同，那么它们就是两个不同的排列。也就是说，排列与元素的顺序相关，这一点与组合不同。</p>
 
                 
               </div>
