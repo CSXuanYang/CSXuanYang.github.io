@@ -16,15 +16,15 @@
   <meta name="author" content="Xuan Yang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="KuiperInfer (自制深度学习推理框架)学习记录 本系列文章是对KuiperInfer (自制深度学习推理框架)项目学习的记录。  第一节课第二节课-张量(Tensor)的设计与实现 [!TIP] 思考题 请你在此暂停阅读，写出你自己对张量类设计的思考，需要有那些数据成员和方法（比如一个张量需要被创建，且能够支持形状的获取），并在课程结束后对比自己的设计和本文的设计，看看区别在哪。  答：">
+    <meta name="description" content="KuiperInfer (自制深度学习推理框架)学习记录 本系列文章是对KuiperInfer (自制深度学习推理框架)项目学习的记录。  第一节课启动docker： 1234sudo systemctl enable dockersudo systemctl start dockersudo chmod 777 &#x2F;var&#x2F;run&#x2F;docker.socksudo systemctl restart">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KuiperInfer (自制深度学习推理框架)学习记录">
 <meta property="og:url" content="http://example.com/2024/04/30/InferenceFramework/index.html">
 <meta property="og:site_name" content="任我行">
-<meta property="og:description" content="KuiperInfer (自制深度学习推理框架)学习记录 本系列文章是对KuiperInfer (自制深度学习推理框架)项目学习的记录。  第一节课第二节课-张量(Tensor)的设计与实现 [!TIP] 思考题 请你在此暂停阅读，写出你自己对张量类设计的思考，需要有那些数据成员和方法（比如一个张量需要被创建，且能够支持形状的获取），并在课程结束后对比自己的设计和本文的设计，看看区别在哪。  答：">
+<meta property="og:description" content="KuiperInfer (自制深度学习推理框架)学习记录 本系列文章是对KuiperInfer (自制深度学习推理框架)项目学习的记录。  第一节课启动docker： 1234sudo systemctl enable dockersudo systemctl start dockersudo chmod 777 &#x2F;var&#x2F;run&#x2F;docker.socksudo systemctl restart">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-30T10:10:40.000Z">
-<meta property="article:modified_time" content="2024-07-03T12:20:07.588Z">
+<meta property="article:modified_time" content="2024-07-04T15:48:38.276Z">
 <meta property="article:author" content="Xuan Yang">
 <meta property="article:tag" content="自制深度学习推理框架">
 <meta name="twitter:card" content="summary_large_image">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          3.2k 字
         
       </span>
     
@@ -260,7 +260,7 @@
         
         
         
-          26 分钟
+          27 分钟
         
       </span>
     
@@ -305,7 +305,10 @@
                 <h1 id="KuiperInfer-自制深度学习推理框架-学习记录"><a href="#KuiperInfer-自制深度学习推理框架-学习记录" class="headerlink" title="KuiperInfer (自制深度学习推理框架)学习记录"></a>KuiperInfer (自制深度学习推理框架)学习记录</h1><blockquote>
 <p>本系列文章是对<a target="_blank" rel="noopener" href="https://github.com/zjhellofss/KuiperInfer">KuiperInfer (自制深度学习推理框架)</a>项目学习的记录。</p>
 </blockquote>
-<h2 id="第一节课"><a href="#第一节课" class="headerlink" title="第一节课"></a>第一节课</h2><h2 id="第二节课-张量-Tensor-的设计与实现"><a href="#第二节课-张量-Tensor-的设计与实现" class="headerlink" title="第二节课-张量(Tensor)的设计与实现"></a>第二节课-张量(Tensor)的设计与实现</h2><blockquote>
+<h2 id="第一节课"><a href="#第一节课" class="headerlink" title="第一节课"></a>第一节课</h2><p>启动docker：</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nsis">sudo <span class="hljs-params">system</span>ctl enable docker<br>sudo <span class="hljs-params">system</span>ctl start docker<br>sudo chmod <span class="hljs-number">777</span> /<span class="hljs-keyword">var</span>/run/docker.sock<br>sudo <span class="hljs-params">system</span>ctl restart docker<br></code></pre></td></tr></table></figure>
+
+<h2 id="第二节课-张量-Tensor-的设计与实现"><a href="#第二节课-张量-Tensor-的设计与实现" class="headerlink" title="第二节课-张量(Tensor)的设计与实现"></a>第二节课-张量(Tensor)的设计与实现</h2><blockquote>
 <p>[!TIP] 思考题</p>
 <p>请你在此暂停阅读，写出你自己对张量类设计的思考，需要有那些数据成员和方法（比如一个张量需要被创建，且能够支持形状的获取），并在课程结束后对比自己的设计和本文的设计，看看区别在哪。</p>
 </blockquote>
