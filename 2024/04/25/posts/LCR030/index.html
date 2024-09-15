@@ -304,7 +304,7 @@
             
               <div class="markdown-body">
                 
-                <link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer（专项突破版）5-2-哈希表的设计"><a href="#剑指offer（专项突破版）5-2-哈希表的设计" class="headerlink" title="剑指offer（专项突破版）5.2 哈希表的设计"></a>剑指offer（专项突破版）5.2 哈希表的设计</h1><p>设计哈希表的前提是待存入的元素需要一个能计算自己哈希值的函数。在Java中所有类型都继承了类型Object，每个Object的实例都可以通过定义函数hashCode来计算哈希值。哈希表根据每个元素的哈希值把它存储到合适的位置。</p>
+                <h1 id="剑指offer（专项突破版）5-2-哈希表的设计"><a href="#剑指offer（专项突破版）5-2-哈希表的设计" class="headerlink" title="剑指offer（专项突破版）5.2 哈希表的设计"></a>剑指offer（专项突破版）5.2 哈希表的设计</h1><p>设计哈希表的前提是待存入的元素需要一个能计算自己哈希值的函数。在Java中所有类型都继承了类型Object，每个Object的实例都可以通过定义函数hashCode来计算哈希值。哈希表根据每个元素的哈希值把它存储到合适的位置。</p>
 <p>哈希表最重要的特点就是高效，只需要O（1）的时间就可以把一个元素存入或读出。在常用的基础数据结构中，数组满足这个要求。只要知道数组中的下标，就可以用O（1）的时间存入或读出一个元素。因此，可以考虑基于数组实现哈希表。</p>
 <p>设计哈希表有3个要点。为了快速确定一个元素在哈希表中的位置，可以使用一个数组，元素的位置为它的哈希值除以数组长度的余数。由于多个哈希值不同的元素可能会被存入同一位置，数组的每个位置都对应一个链表，因此存入同一位置的多个元素都被添加到同一链表中。为了确保链表不会太长，就需要计算哈希表中元素的数目与数组长度的比值。当这个比值超过某个阈值时，就对数组进行扩容并把哈希表中的所有元素重新分配位置。</p>
 <h2 id="LCR030-插入、删除和随机访问都是O（1）的容器"><a href="#LCR030-插入、删除和随机访问都是O（1）的容器" class="headerlink" title="LCR030.插入、删除和随机访问都是O（1）的容器"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/FortPu/description/">LCR030.插入、删除和随机访问都是O（1）的容器</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
