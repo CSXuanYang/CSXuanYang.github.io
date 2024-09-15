@@ -307,7 +307,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="剑指offer（专项突破版）3-2-双指针"><a href="#剑指offer（专项突破版）3-2-双指针" class="headerlink" title="剑指offer（专项突破版）3.2 双指针"></a>剑指offer（专项突破版）3.2 双指针</h1><h2 id="LCR014-字符串的排列"><a href="#LCR014-字符串的排列" class="headerlink" title="LCR014.字符串的排列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/MPnaiL/description/">LCR014.字符串的排列</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+                <link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer（专项突破版）3-2-双指针"><a href="#剑指offer（专项突破版）3-2-双指针" class="headerlink" title="剑指offer（专项突破版）3.2 双指针"></a>剑指offer（专项突破版）3.2 双指针</h1><h2 id="LCR014-字符串的排列"><a href="#LCR014-字符串的排列" class="headerlink" title="LCR014.字符串的排列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/MPnaiL/description/">LCR014.字符串的排列</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
 <li>变位词：组成各个单词的字母及每个字母出现的次数完全相同，只是字母排列的顺序不同。例如，”pots”、”stop”和”tops”就是一组变位词。</li>
 <li>蛮力法：把字符串s1的字母所有排列组合找到，然后看s2中有没有这些子串。所有排列组合是n!，时间复杂度为O(n!)。</li>
 <li>双指针法：用哈希表存储s1字符串字母的次数。然后用双指针，左指针i初始化指向s2开始，右指针j指向n-i+1，即字符串s1的长度。然后不断向右移动左指针和右指针，出现的字母要在哈希表中-1。</li>
