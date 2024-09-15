@@ -245,7 +245,7 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 42 篇文章</p>
+  <p class="h4">共计 43 篇文章</p>
   <hr>
   
   
@@ -364,6 +364,24 @@
   
   
 </div>
+
+<div id="global-player"></div>
+<script>
+const ap = new APlayer({
+    container: document.getElementById('global-player'),
+    fixed: true, // 固定在页面底部
+    autoplay: true, // 自动播放
+    audio: [
+        {
+            name: 'Stay Alive',
+            artist: 'José González',
+            url: 'https://i.y.qq.com/v8/playsong.html?songid=5101868#webchat_redirect', // 音乐文件地址
+            cover: 'https://y.qq.com/n/ryqq/albumDetail/004KpmeA4Kch7o', // 封面图片地址
+        }
+    ]
+});
+</script>
+
 
   </footer>
 
