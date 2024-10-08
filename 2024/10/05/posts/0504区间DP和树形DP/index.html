@@ -23,11 +23,13 @@
 <meta property="og:site_name" content="任我行">
 <meta property="og:description" content="05.04 区间DP和树形DP 区间动态规划：线性 DP 的一种，简称为「区间 DP」。以「区间长度」划分阶段，以两个坐标（区间的左、右端点）作为状态的维度。一个状态通常由被它包含且比它更小的区间状态转移而来。 区间 DP 的主要思想就是：先在小区间内得到最优解，再利用小区间的最优解合并，从而得到大区间的最优解，最终得到整个区间的最优解。 根据小区间向大区间转移情况的不同，常见的区间 DP 问题可">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/10/05/posts/0504%E5%8C%BA%E9%97%B4DP%E5%92%8C%E6%A0%91%E5%BD%A2DP/image.png">
 <meta property="article:published_time" content="2024-10-05T05:01:06.000Z">
-<meta property="article:modified_time" content="2024-10-07T03:24:23.423Z">
+<meta property="article:modified_time" content="2024-10-08T03:39:01.242Z">
 <meta property="article:author" content="Xuan Yang">
 <meta property="article:tag" content="leetcode-notes">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/10/05/posts/0504%E5%8C%BA%E9%97%B4DP%E5%92%8C%E6%A0%91%E5%BD%A2DP/image.png">
   
   
   
@@ -249,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.4k 字
+          12k 字
         
       </span>
     
@@ -260,7 +262,7 @@
         
         
         
-          71 分钟
+          101 分钟
         
       </span>
     
@@ -436,7 +438,67 @@
 <li>空间复杂度：$O(n^2)$</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/leetcode-notes/blob/main/docs/ch05/05.04/05.04.04-Interval-DP-List.md">区间DP剩余题目</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/leetcode-notes/blob/main/docs/ch05/05.04/05.04.05-Tree-DP.md">树形DP</a></p>
+<p><img src="/2024/10/05/posts/0504%E5%8C%BA%E9%97%B4DP%E5%92%8C%E6%A0%91%E5%BD%A2DP/image.png" srcset="/img/loading.gif" lazyload alt="树形DP"></p>
+<p>固定根的树形 DP 问题，如果是二叉树，树通常是以根节点的形式给出。我们可以直接从指定根节点出发进行深度优先搜索。如果是多叉树，树是以一张n个节点、n - 1条边的无向图形式给出的，并且事先给出指定根节点的编号。这种情况下，我们要先用邻接表存储下这n个点和n-1条边，然后从指定根节点出发进行深度优先搜索，并注意标记节点是否已经被访问过，以避免在遍历中沿着反向边回到父节点。</p>
+<h2 id="二叉树中的最大路径和"><a href="#二叉树中的最大路径和" class="headerlink" title="二叉树中的最大路径和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/description/">二叉树中的最大路径和</a></h2><h3 id="分析-6"><a href="#分析-6" class="headerlink" title="分析"></a>分析</h3><p>该二叉树的最大路径和 &#x3D; max(左子树中最大贡献值 + 右子树中最大贡献值 + 当前节点值，所有子树中最大路径和)。这道题在学递归算法的时候做过，再做一遍加深印象。</p>
+<h2 id="相邻字符不同的最长路径"><a href="#相邻字符不同的最长路径" class="headerlink" title="相邻字符不同的最长路径"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-path-with-different-adjacent-characters/">相邻字符不同的最长路径</a></h2><h3 id="分析-7"><a href="#分析-7" class="headerlink" title="分析"></a>分析</h3><p>最长路径长度 &#x3D; max(某子树中的最长路径长度 + 另一子树中的最长路径长度 + 1，某个子树中的最长路径长度)。</p>
+<ol>
+<li>先计算出从相邻节点v出发的最长路径长度vLen。</li>
+<li>更新维护全局最长路径长度为<code>res = max(res, uLen + vLen + 1)</code></li>
+<li>更新维护当前节点最长路径长度<code>uLen = max(uLen, vLen + 1)</code></li>
+</ol>
+<p>因为题目限定了「相邻节点字符不同」，所以在更新全局最长路径长度和当前节点u的最长路径长度时，我们需要判断一下节点<br>u与相邻节点v的字符是否相同，只有在字符不同的条件下，才能够更新维护。</p>
+<p>题目要求的是树的直径（树的最长路径长度）中的节点个数,节点个数&#x3D;路径长度+1.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestPath</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; parent, string s)</span> </span>&#123;<br>        <span class="hljs-comment">// 根据 parent 数组，建立有向图</span><br>        <span class="hljs-type">int</span> n = parent.<span class="hljs-built_in">size</span>();<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">graph</span>(n);<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++)&#123;<br>            graph[parent[i]].<span class="hljs-built_in">push_back</span>(i);<br>        &#125;<br>        <span class="hljs-comment">// 递归</span><br>        <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>, graph, s);<br>        <span class="hljs-keyword">return</span> res + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> u, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; graph, string&amp; s)</span></span>&#123;<br>        <span class="hljs-type">int</span> uLen = <span class="hljs-number">0</span>;   <span class="hljs-comment">//u 节点的最大路径长度</span><br>        <span class="hljs-comment">// 遍历 u 节点的相邻节点</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> v : graph[u])&#123;<br>            <span class="hljs-type">int</span> vLen = <span class="hljs-built_in">dfs</span>(v, graph, s);   <span class="hljs-comment">// 相邻节点的最大路径长度</span><br>            <span class="hljs-comment">// 如果相邻字符不同，更新结果和当前节点最大路径长度</span><br>            <span class="hljs-keyword">if</span>(s[u] != s[v])&#123;<br>                res = <span class="hljs-built_in">max</span>(res, uLen + vLen + <span class="hljs-number">1</span>);<br>                uLen = <span class="hljs-built_in">max</span>(uLen, vLen + <span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> uLen;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：$O(n)$</li>
+<li>空间复杂度：$O(n)$</li>
+</ul>
+<blockquote>
+<p>[!NOTE]<br>在函数参数中传值和传引用有很大的区别，在这道题中，如果dfs函数按值传递，即<code>dfs(string s)</code>会超出内存限制，这是因为每次递归调用时都要复制字符串。而传引用，即<code>dfs(string&amp; s)</code>可以节省大量内存，特别是当字符串比较长时。</p>
+</blockquote>
+<p>「两次扫描与换根法」:</p>
+<ol>
+<li>第一次扫描时，任选一个节点为根，在「有固定根的树」上执行一次树形 DP，预处理树的一些相关信息。</li>
+<li>第二次扫描时，从刚才的根节点出发，对整棵树再执行一次深度优先搜索，同时携带根节点的一些信息提供给子节点进行推导，计算出「换根」之后的解。</li>
+</ol>
+<h2 id="最小高度树"><a href="#最小高度树" class="headerlink" title="最小高度树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-height-trees/">最小高度树</a></h2><h3 id="分析-8"><a href="#分析-8" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>图的构建：用邻接表graph存储每个节点的邻居节点。</li>
+<li>自底向上DFS，计算每个节点向下的最长路径：<ul>
+<li>dfs函数实现了一次深度优先搜索（DFS），用于从叶子节点开始向上收集信息，即从子节点往父节点传递最长路径信息。</li>
+<li>定义两个数组down1和down2，分别记录从每个节点出发向下走的最长路径和次长路径。</li>
+<li>通过比较每个子节点的高度（即down1[v] + 1），更新当前节点的down1和down2，即节点向下走的最长路径和次长路径。同时，用p[u]记录下这个最长路径是由哪个子节点传上来的。</li>
+</ul>
+</li>
+<li>自顶向下DFS，计算每个节点向上的最长路径：<ul>
+<li>完成自底向上的DFS后，接着要计算每个节点向上的最长路径，即如果该节点作为根节点，其向父节点方向可以走多远。定义一个数组up来记录这一信息。</li>
+<li>reroot函数实现自顶向下的动态规划。对于每个节点u的每个子节点v：<ul>
+<li>如果v是当前节点u的最长路径的子节点（即p[u] &#x3D;&#x3D; v），则up[v]从u向上走的最长路径要结合down2[u]（次长路径）来计算。</li>
+<li>如果v不是最长路径的子节点，up[v]从u向上走的路径可以结合down1[u]（最长路径）来计算。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>计算每个节点的最大高度：</li>
+</ol>
+<ul>
+<li>对于每个节点，树的高度就是它的最大高度，也就是它向下的最长路径down1[i]和向上的最长路径up[i]的最大值。</li>
+<li>找到所有节点中具有最小高度的那些节点。</li>
+</ul>
+<ol start="5">
+<li>最后，将所有具有最小高度的节点放入结果数组中并返回。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">findMinHeightTrees</span><span class="hljs-params">(<span class="hljs-type">int</span> n, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;<br>        <span class="hljs-comment">// 邻接表构建图</span><br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">graph</span>(n);<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; edge : edges)&#123;<br>            <span class="hljs-type">int</span> u = edge[<span class="hljs-number">0</span>];<br>            <span class="hljs-type">int</span> v = edge[<span class="hljs-number">1</span>];<br>            graph[u].<span class="hljs-built_in">push_back</span>(v);<br>            graph[v].<span class="hljs-built_in">push_back</span>(u);<br>        &#125;<br>        <span class="hljs-comment">// down1 用于记录向下走的最长路径 </span><br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">down1</span><span class="hljs-params">(n)</span></span>;<br>        <span class="hljs-comment">// down2 用于记录向下走的次长路径 </span><br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">down2</span><span class="hljs-params">(n)</span></span>;<br>        <span class="hljs-comment">// p[u]记录下这个最长路径是由哪个子节点传上来的</span><br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">p</span><span class="hljs-params">(n)</span></span>;<br><br>        <span class="hljs-comment">// 自底向上记录最长路径、次长路径</span><br>        function&lt;<span class="hljs-type">void</span>(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)&gt; dfs = [&amp;](<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> fa)&#123;<br>            <span class="hljs-comment">// 遍历所有邻接节点</span><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> v : graph[u])&#123;<br>                <span class="hljs-keyword">if</span>(v == fa)&#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-comment">// 自底向上统计信息</span><br>                <span class="hljs-built_in">dfs</span>(v, u);<br>                <span class="hljs-type">int</span> height = down1[v] + <span class="hljs-number">1</span>;  <span class="hljs-comment">// 当前节点经过v的最长路径</span><br>                <span class="hljs-comment">// 更新</span><br>                <span class="hljs-keyword">if</span>(height &gt; down1[u])&#123;<br>                    down2[u] = down1[u];<br>                    down1[u] = height;<br>                    p[u] = v;<br>                &#125;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(height &gt; down2[u])&#123;<br>                    down2[u] = height;<br>                &#125;<br>            &#125;<br>        &#125;;<br>        <br>        <span class="hljs-comment">// 进行换根动态规划，自顶向下统计向上走的最长路径</span><br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">up</span><span class="hljs-params">(n)</span></span>;<br>        function&lt;<span class="hljs-type">void</span>(<span class="hljs-type">int</span>,<span class="hljs-type">int</span>)&gt; reroot = [&amp;](<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> fa)&#123;<br>            <span class="hljs-comment">// 遍历u的所有邻接节点</span><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> v : graph[u])&#123;<br>                <span class="hljs-keyword">if</span>(v == fa)&#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-comment">// 如果u的向下最长路径经过v</span><br>                <span class="hljs-keyword">if</span>(p[u] == v)&#123;<br>                    up[v] = <span class="hljs-built_in">max</span>(up[u], down2[u]) + <span class="hljs-number">1</span>;<br>                &#125;<br>                <span class="hljs-keyword">else</span>&#123;<br>                    up[v] = <span class="hljs-built_in">max</span>(up[u], down1[u]) + <span class="hljs-number">1</span>;<br>                &#125;<br>                <span class="hljs-comment">// 自顶向下统计信息</span><br>                <span class="hljs-built_in">reroot</span>(v, u);<br>            &#125;<br>        &#125;;<br>        <span class="hljs-comment">// 自底向上统计信息</span><br>        <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>);<br>        <span class="hljs-comment">// 自顶向下统计信息</span><br>        <span class="hljs-built_in">reroot</span>(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>);<br>        <span class="hljs-comment">// 找到所有树中的最小高度</span><br>        <span class="hljs-type">int</span> minHeight = INT_MAX;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            minHeight = <span class="hljs-built_in">min</span>(minHeight, <span class="hljs-built_in">max</span>(down1[i], up[i]));<br>        &#125;<br>        <span class="hljs-comment">// 将所有最小高度根加入数组</span><br>        vector&lt;<span class="hljs-type">int</span>&gt; res;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            <span class="hljs-type">int</span> h = <span class="hljs-built_in">max</span>(down1[i], up[i]);<br>            <span class="hljs-keyword">if</span>(h == minHeight)&#123;<br>                res.<span class="hljs-built_in">push_back</span>(i);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;  <br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：$O(n)$</li>
+<li>空间复杂度：$O(n)$</li>
+</ul>
+<blockquote>
+<p>[!WARNING]<br>这道题按照给的步骤思路写出来了，但是不是特别懂，以后再看看。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/datawhalechina/leetcode-notes/blob/main/docs/ch05/05.04/05.04.06-Exercises.md">练习题目</a></p>
 
                 
               </div>
