@@ -24,7 +24,7 @@
 <meta property="og:description" content="06.04 第 038 ~ 050 题（第 13 ~ 16 天）两数相加分析1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950&#x2F;** * Definition for singly-linked list. * struct ListNode &#123; *">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-28T00:49:29.000Z">
-<meta property="article:modified_time" content="2024-10-30T03:34:46.502Z">
+<meta property="article:modified_time" content="2024-10-31T02:25:09.143Z">
 <meta property="article:author" content="Xuan Yang">
 <meta property="article:tag" content="leetcode-notes">
 <meta name="twitter:card" content="summary_large_image">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          13k 字
         
       </span>
     
@@ -260,7 +260,7 @@
         
         
         
-          90 分钟
+          110 分钟
         
       </span>
     
@@ -438,6 +438,40 @@
 <li>时间复杂度：入栈操作的时间复杂度为O(n)。出栈、取栈顶元素、判断栈是否为空的时间复杂度为O(1)。</li>
 <li>空间复杂度：O(n)</li>
 </ul>
+<h2 id="三数之和"><a href="#三数之和" class="headerlink" title="三数之和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/description/">三数之和</a></h2><h3 id="对撞指针"><a href="#对撞指针" class="headerlink" title="对撞指针"></a>对撞指针</h3><p>先进行排序。固定一个元素x，然后将left指针指向它的下一个元素y，right指向末尾，三数相加大于target则向左移动right，否则向右移动left，直至两指针相撞，然后移动x，再进行对撞。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">threeSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-comment">// 排序</span><br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>        <span class="hljs-comment">// 循环遍历</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n<span class="hljs-number">-2</span>; i++)&#123;<br>            <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i - <span class="hljs-number">1</span>]) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-comment">// 此时两数之和的目标</span><br>            <span class="hljs-type">int</span> target = <span class="hljs-number">0</span> - nums[i];<br>            <span class="hljs-comment">// 定义对撞指针</span><br>            <span class="hljs-type">int</span> left = i + <span class="hljs-number">1</span>, right = n - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(left &lt; right)&#123;<br>                <span class="hljs-type">int</span> sum = nums[left] + nums[right];<br>                <span class="hljs-keyword">if</span>(sum == target)&#123;<br>                    ans.<span class="hljs-built_in">push_back</span>(&#123;nums[i], nums[left], nums[right]&#125;);<br>                    <span class="hljs-comment">// 跳过重复的left和right值</span><br>                    <span class="hljs-keyword">for</span>(left += <span class="hljs-number">1</span>; left &lt; right &amp;&amp; nums[left] == nums[left<span class="hljs-number">-1</span>]; left++);<br>                    <span class="hljs-keyword">for</span>(right -=<span class="hljs-number">1</span>; right &gt; left &amp;&amp; nums[right] == nums[right+<span class="hljs-number">1</span>]; right--);<br>                &#125;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(sum &gt; target)&#123;<br>                    right--;<br>                &#125;<span class="hljs-keyword">else</span>&#123;<br>                    left++;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：$O(n^2)$</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h2 id="缺失的第一个正数"><a href="#缺失的第一个正数" class="headerlink" title="缺失的第一个正数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/first-missing-positive/">缺失的第一个正数</a></h2><h3 id="分析-7"><a href="#分析-7" class="headerlink" title="分析"></a>分析</h3><p>将当前数组视为哈希表。一个长度为 n 的数组，对应存储的元素值应该为 [1, n + 1] 之间，其中还包含一个缺失的元素。</p>
+<ol>
+<li>遍历一遍数组，将当前元素放到其对应位置上（比如元素值为 1 的元素放到数组第 0 个位置上、元素值为 2 的元素放到数组第 1 个位置上，等等）。实际上这样操作后，比n大的元素不会被操作，或者说，当数组中存在一个比n大的元素时，必然有至少一个值小于等于n，它一定会被找到。</li>
+<li>然后再次遍历一遍数组。遇到第一个元素值不等于下标 + 1 的元素，就是答案要求的缺失的第一个正数。</li>
+<li>如果遍历完没有在数组中找到缺失的第一个正数，则缺失的第一个正数是 n + 1。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">firstMissingPositive</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-comment">// 第一次遍历</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            <span class="hljs-comment">// 只考虑1~n之间的数</span><br>            <span class="hljs-keyword">while</span>(nums[i] &gt;= <span class="hljs-number">1</span> &amp;&amp; nums[i] &lt;= n &amp;&amp; nums[i] != nums[nums[i]<span class="hljs-number">-1</span>])&#123;<br>                <span class="hljs-type">int</span> index1 = i;<br>                <span class="hljs-type">int</span> index2 = nums[index1] - <span class="hljs-number">1</span>;<br>                <span class="hljs-built_in">swap</span>(nums[index1], nums[index2]);<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 第二次遍历</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            <span class="hljs-keyword">if</span>(nums[i] != i + <span class="hljs-number">1</span>)&#123;<br>                <span class="hljs-keyword">return</span> i + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> n + <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h2 id="最长连续序列"><a href="#最长连续序列" class="headerlink" title="最长连续序列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-consecutive-sequence/">最长连续序列</a></h2><h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><ol>
+<li>先将数组存储到集合中进行去重，用变量curLen和ans记录当前序列和最长序列的长度。</li>
+<li>遍历集合，判断当前元素num的num-1是否在集合中，如果不在集合中，说明num是序列的起始，如果在集合中，直接跳过。</li>
+<li>对于起始元素num，判断num+1,num+2,…是否在集合中，并更新序列长度，最后更新ans。</li>
+<li>返回ans。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestConsecutive</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        unordered_set&lt;<span class="hljs-type">int</span>&gt; set;<br>        <span class="hljs-comment">// 存入集合，去重</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            set.<span class="hljs-built_in">insert</span>(nums[i]);<br>        &#125;<br>        <span class="hljs-comment">// 维护长度变量</span><br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 遍历集合</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">const</span> <span class="hljs-type">int</span>&amp; num : set)&#123;<br>            <span class="hljs-comment">// 确定序列起始</span><br>            <span class="hljs-keyword">if</span>(set.<span class="hljs-built_in">count</span>(num<span class="hljs-number">-1</span>) == <span class="hljs-number">0</span>)&#123;<br>                <span class="hljs-type">int</span> curNum = num + <span class="hljs-number">1</span>;<br>                <span class="hljs-type">int</span> curLen = <span class="hljs-number">1</span>;<br>                <span class="hljs-comment">// 枚举</span><br>                <span class="hljs-keyword">while</span>(set.<span class="hljs-built_in">count</span>(curNum) != <span class="hljs-number">0</span>)&#123;<br>                    curLen++;<br>                    curNum++;<br>                &#125;<br>                ans = <span class="hljs-built_in">max</span>(ans, curLen);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(n)</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>主要涉及栈、队列、哈希表等内容，注意单调栈的部分，之后需要更多的练习。</p>
+<p><a target="_blank" rel="noopener" href="https://algo.itcharge.cn/03.Stack/02.Monotone-Stack/01.Monotone-Stack/#_3-%E5%8D%95%E8%B0%83%E6%A0%88%E6%A8%A1%E6%9D%BF">单调栈</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VN411J7S7/?spm_id_from=333.337.search-card.all.click&vd_source=57ec244afa109ba4ee6346389a5f32f7">单调栈视频讲解</a></p>
 
                 
               </div>
