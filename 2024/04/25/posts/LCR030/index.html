@@ -1,0 +1,779 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.webp">
+  <link rel="icon" href="/img/icon.webp">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xuan Yang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="剑指offer（专项突破版）5.2 哈希表的设计设计哈希表的前提是待存入的元素需要一个能计算自己哈希值的函数。在Java中所有类型都继承了类型Object，每个Object的实例都可以通过定义函数hashCode来计算哈希值。哈希表根据每个元素的哈希值把它存储到合适的位置。 哈希表最重要的特点就是高效，只需要O（1）的时间就可以把一个元素存入或读出。在常用的基础数据结构中，数组满足这个要求。只要知">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCR030-LCR031哈希表的设计">
+<meta property="og:url" content="http://example.com/2024/04/25/posts/LCR030/index.html">
+<meta property="og:site_name" content="任我行">
+<meta property="og:description" content="剑指offer（专项突破版）5.2 哈希表的设计设计哈希表的前提是待存入的元素需要一个能计算自己哈希值的函数。在Java中所有类型都继承了类型Object，每个Object的实例都可以通过定义函数hashCode来计算哈希值。哈希表根据每个元素的哈希值把它存储到合适的位置。 哈希表最重要的特点就是高效，只需要O（1）的时间就可以把一个元素存入或读出。在常用的基础数据结构中，数组满足这个要求。只要知">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/04/25/posts/LCR030/image.png">
+<meta property="article:published_time" content="2024-04-25T07:47:15.000Z">
+<meta property="article:modified_time" content="2024-04-25T11:41:46.578Z">
+<meta property="article:author" content="Xuan Yang">
+<meta property="article:tag" content="剑指Offer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/04/25/posts/LCR030/image.png">
+  
+  
+  
+  <title>LCR030-LCR031哈希表的设计 - 任我行</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","app_key":"ZYfWA3PVOj4XQS3vAPi7u4IA","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>任我行</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/wallpapers/">
+                <i class="iconfont icon-images"></i>
+                <span>壁纸</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/messi04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LCR030-LCR031哈希表的设计"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-25 15:47" pubdate>
+          2024年4月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LCR030-LCR031哈希表的设计</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="剑指offer（专项突破版）5-2-哈希表的设计"><a href="#剑指offer（专项突破版）5-2-哈希表的设计" class="headerlink" title="剑指offer（专项突破版）5.2 哈希表的设计"></a>剑指offer（专项突破版）5.2 哈希表的设计</h1><p>设计哈希表的前提是待存入的元素需要一个能计算自己哈希值的函数。在Java中所有类型都继承了类型Object，每个Object的实例都可以通过定义函数hashCode来计算哈希值。哈希表根据每个元素的哈希值把它存储到合适的位置。</p>
+<p>哈希表最重要的特点就是高效，只需要O（1）的时间就可以把一个元素存入或读出。在常用的基础数据结构中，数组满足这个要求。只要知道数组中的下标，就可以用O（1）的时间存入或读出一个元素。因此，可以考虑基于数组实现哈希表。</p>
+<p>设计哈希表有3个要点。为了快速确定一个元素在哈希表中的位置，可以使用一个数组，元素的位置为它的哈希值除以数组长度的余数。由于多个哈希值不同的元素可能会被存入同一位置，数组的每个位置都对应一个链表，因此存入同一位置的多个元素都被添加到同一链表中。为了确保链表不会太长，就需要计算哈希表中元素的数目与数组长度的比值。当这个比值超过某个阈值时，就对数组进行扩容并把哈希表中的所有元素重新分配位置。</p>
+<h2 id="LCR030-插入、删除和随机访问都是O（1）的容器"><a href="#LCR030-插入、删除和随机访问都是O（1）的容器" class="headerlink" title="LCR030.插入、删除和随机访问都是O（1）的容器"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/FortPu/description/">LCR030.插入、删除和随机访问都是O（1）的容器</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>插入</li>
+</ol>
+<p>每次添加新数值时，先使用哈希表判断该数值是否存在，存在则直接返回false。不存在则进行插入操作，只要将该数值添加到数组尾部即可，并将该数值和其下标的映射存入哈希表。</p>
+<ol start="2">
+<li><p>删除<br>删除同样需使用哈希表判断是否存在，若不存在则返回false。存在则进行删除操作，在哈希表中删除时间复杂度为 O(1)，但是在数值中删除比较麻烦。若只是直接删除，则为了保证数组内存连续性需将删除数值后面的数值均前移一位，时间复杂度为 O(n)。比较好的处理方式是，用数组的最后一个数值去填充需要删除的数值的内存，其他数值在数组中的位置保持不变，并将这个拿来填充的数值的下标更新即可，最后只要删除数组最后一个数值，同样可以保证时间复杂度为 O(1)。</p>
+</li>
+<li><p>随机返回<br>只要随机生成数组下标范围内一个随机下标值，返回该数组下标内的数值即可。</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">RandomizedSet</span> &#123;<br><span class="hljs-keyword">private</span>:<br>    unordered_map&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; numToLocation;<br>    vector&lt;<span class="hljs-type">int</span>&gt; nums;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">/** Initialize your data structure here. */</span><br>    <span class="hljs-built_in">RandomizedSet</span>() &#123;<br><br>    &#125;<br>    <br>    <span class="hljs-comment">/** Inserts a value to the set. Returns true if the set did not already contain the specified element. */</span><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span> </span>&#123;<br>        <span class="hljs-comment">// 已存在，返回false</span><br>        <span class="hljs-keyword">if</span>(numToLocation.<span class="hljs-built_in">count</span>(val))&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        numToLocation[val] = nums.<span class="hljs-built_in">size</span>();<br>        nums.<span class="hljs-built_in">push_back</span>(val);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <br>    <span class="hljs-comment">/** Removes a value from the set. Returns true if the set contained the specified element. */</span><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span> </span>&#123;<br>        <span class="hljs-comment">// 删除一个不存在的元素，返回false</span><br>        <span class="hljs-keyword">if</span>(!numToLocation.<span class="hljs-built_in">count</span>(val))&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-comment">// 相当于把最后一个元素放到要删除的位置，然后删除最后一个元素</span><br>        <span class="hljs-type">int</span> location = numToLocation[val];  <span class="hljs-comment">// 记录要删除元素的位置</span><br>        numToLocation[nums.<span class="hljs-built_in">back</span>()] = location;  <span class="hljs-comment">// 把最后一个元素的位置标记为要删除元素的位置</span><br>        numToLocation.<span class="hljs-built_in">erase</span>(val);   <span class="hljs-comment">// 删除val</span><br>        nums[location] = nums.<span class="hljs-built_in">back</span>();<br>        nums.<span class="hljs-built_in">pop_back</span>();<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <br>    <span class="hljs-comment">/** Get a random element from the set. */</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getRandom</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> nums[<span class="hljs-built_in">rand</span>() % nums.<span class="hljs-built_in">size</span>()];<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your RandomizedSet object will be instantiated and called as such:</span><br><span class="hljs-comment"> * RandomizedSet* obj = new RandomizedSet();</span><br><span class="hljs-comment"> * bool param_1 = obj-&gt;insert(val);</span><br><span class="hljs-comment"> * bool param_2 = obj-&gt;remove(val);</span><br><span class="hljs-comment"> * int param_3 = obj-&gt;getRandom();</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/2024/04/25/posts/LCR030/image.png" srcset="/img/loading.gif" lazyload alt="LCR030结果"></p>
+<h2 id="LCR031-LRU缓存"><a href="#LCR031-LRU缓存" class="headerlink" title="LCR031.LRU缓存"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/OrIXps/description/">LCR031.LRU缓存</a></h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>定义一个双向链表。</li>
+<li>定义一个哈希表，键是put进的键，值是链表中的结点。</li>
+<li>get：不存在返回-1；存在，返回值，然后将结点移到最后（哈希表获取这个值在链表中的结点）。</li>
+<li>put：不存在，插入，并插到最后；存在判断容量是否已满，满了删除头结点，不满直接插入到最后。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 定义链表</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">LinkNode</span>&#123;<br>    <span class="hljs-type">int</span> key;<br>    <span class="hljs-type">int</span> value;<br>    LinkNode* prev;<br>    LinkNode* next;<br>    <span class="hljs-built_in">LinkNode</span>():<span class="hljs-built_in">key</span>(<span class="hljs-number">0</span>),<span class="hljs-built_in">value</span>(<span class="hljs-number">0</span>),<span class="hljs-built_in">prev</span>(<span class="hljs-literal">NULL</span>),<span class="hljs-built_in">next</span>(<span class="hljs-literal">NULL</span>)&#123;&#125;<br>    <span class="hljs-built_in">LinkNode</span>(<span class="hljs-type">int</span> _key, <span class="hljs-type">int</span> _value): <span class="hljs-built_in">key</span>(_key),<span class="hljs-built_in">value</span>(_value),<span class="hljs-built_in">prev</span>(<span class="hljs-literal">NULL</span>),<span class="hljs-built_in">next</span>(<span class="hljs-literal">NULL</span>)&#123;&#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">LRUCache</span> &#123;<br><span class="hljs-keyword">private</span>:<br>    LinkNode* head;<br>    LinkNode* tail;<br>    unordered_map&lt;<span class="hljs-type">int</span>, LinkNode*&gt; cache;<br>    <span class="hljs-type">int</span> cap;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">LRUCache</span>(<span class="hljs-type">int</span> capacity) &#123;<br>        <span class="hljs-comment">// 使用伪头结点和伪尾结点</span><br>        head = <span class="hljs-keyword">new</span> <span class="hljs-built_in">LinkNode</span>();<br>        tail = <span class="hljs-keyword">new</span> <span class="hljs-built_in">LinkNode</span>();<br>        head-&gt;next = tail;<br>        tail-&gt;prev = head;<br>        <span class="hljs-comment">// 初始化容量大小</span><br>        cap = capacity;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> </span>&#123;<br>        <span class="hljs-comment">// 如果不存在，返回-1</span><br>        <span class="hljs-keyword">if</span>(!cache.<span class="hljs-built_in">count</span>(key))&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-comment">// 移到链表末尾</span><br>            <span class="hljs-built_in">moveToEnd</span>(cache[key]);<br>            <span class="hljs-comment">// 返回值</span><br>            <span class="hljs-keyword">return</span> cache[key]-&gt;value;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">put</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value)</span> </span>&#123;<br>        <span class="hljs-comment">// 如果存在</span><br>        <span class="hljs-keyword">if</span>(cache.<span class="hljs-built_in">count</span>(key))&#123;<br>            <span class="hljs-comment">// 更新值</span><br>            cache[key]-&gt;value = value;<br>            <span class="hljs-comment">// 移到末尾</span><br>            <span class="hljs-built_in">moveToEnd</span>(cache[key]);<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-comment">// 判断是否满，满了就删除头</span><br>            <span class="hljs-keyword">if</span>(cache.<span class="hljs-built_in">size</span>() == cap)&#123;<br>                <span class="hljs-type">int</span> delKey = <span class="hljs-built_in">deleteHead</span>();<br>                cache.<span class="hljs-built_in">erase</span>(delKey);<br>            &#125;<br>            <span class="hljs-comment">// 插到末尾</span><br>            LinkNode* node = <span class="hljs-keyword">new</span> <span class="hljs-built_in">LinkNode</span>(key,value);<br>            cache[key] = node;<br>            <span class="hljs-built_in">moveToEnd</span>(node);<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-comment">// 移到表尾</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">moveToEnd</span><span class="hljs-params">(LinkNode* node)</span></span>&#123;<br>        tail-&gt;prev-&gt;next = node;<br>        node-&gt;prev = tail-&gt;prev;<br>        node-&gt;next = tail;<br>        tail-&gt;prev = node;<br>    &#125;<br><br>    <span class="hljs-comment">// 删除表头</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">deleteHead</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-type">int</span> val = head-&gt;next-&gt;key;<br>        head-&gt;next = head-&gt;next-&gt;next;<br>        head-&gt;next-&gt;prev = head;<br>        <span class="hljs-keyword">return</span> val;<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your LRUCache object will be instantiated and called as such:</span><br><span class="hljs-comment"> * LRUCache* obj = new LRUCache(capacity);</span><br><span class="hljs-comment"> * int param_1 = obj-&gt;get(key);</span><br><span class="hljs-comment"> * obj-&gt;put(key,value);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<p>先这样吧，看了好久还是不知道哪里出了问题。以后再看。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%93%88%E5%B8%8C%E8%A1%A8/" class="category-chain-item">哈希表</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%91%E6%8C%87Offer/" class="print-no-link">#剑指Offer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LCR030-LCR031哈希表的设计</div>
+      <div>http://example.com/2024/04/25/posts/LCR030/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xuan Yang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/26/posts/LCR032/" title="LCR032-LCR035哈希表的应用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LCR032-LCR035哈希表的应用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/24/posts/LCR028/" title="LCR028-LCRO29双向链表和循环链表">
+                        <span class="hidden-mobile">LCR028-LCRO29双向链表和循环链表</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","appKey":"ZYfWA3PVOj4XQS3vAPi7u4IA","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.webp">
+  <link rel="icon" href="/img/icon.webp">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xuan Yang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="剑指offer（专项突破版）2.3 累加数组数字求子数组之和题目链接：LCR010-和为K的子数组蛮力法： 123456789101112131415161718class Solution &#123;public:    int subarraySum(vector&lt;int&gt;&amp; nums, int k) &#123;        int cnt &#x3D; 0;        f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCR010-LCR013累加数组数字求子数组之和">
+<meta property="og:url" content="http://example.com/2024/04/01/posts/LCR010/index.html">
+<meta property="og:site_name" content="任我行">
+<meta property="og:description" content="剑指offer（专项突破版）2.3 累加数组数字求子数组之和题目链接：LCR010-和为K的子数组蛮力法： 123456789101112131415161718class Solution &#123;public:    int subarraySum(vector&lt;int&gt;&amp; nums, int k) &#123;        int cnt &#x3D; 0;        f">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/04/01/posts/LCR010/image.png">
+<meta property="og:image" content="http://example.com/2024/04/01/posts/LCR010/image-1.png">
+<meta property="og:image" content="http://example.com/2024/04/01/posts/LCR010/image-2.png">
+<meta property="og:image" content="http://example.com/2024/04/01/posts/LCR010/image-3.png">
+<meta property="og:image" content="http://example.com/2024/04/01/posts/LCR010/image-4.png">
+<meta property="og:image" content="http://example.com/2024/04/01/posts/LCR010/image-5.png">
+<meta property="article:published_time" content="2024-04-01T10:19:49.000Z">
+<meta property="article:modified_time" content="2024-04-05T05:33:51.748Z">
+<meta property="article:author" content="Xuan Yang">
+<meta property="article:tag" content="剑指Offer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/04/01/posts/LCR010/image.png">
+  
+  
+  
+  <title>LCR010-LCR013累加数组数字求子数组之和 - 任我行</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","app_key":"ZYfWA3PVOj4XQS3vAPi7u4IA","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>任我行</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/wallpapers/">
+                <i class="iconfont icon-images"></i>
+                <span>壁纸</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/messi04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LCR010-LCR013累加数组数字求子数组之和"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-01 18:19" pubdate>
+          2024年4月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LCR010-LCR013累加数组数字求子数组之和</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="剑指offer（专项突破版）2-3-累加数组数字求子数组之和"><a href="#剑指offer（专项突破版）2-3-累加数组数字求子数组之和" class="headerlink" title="剑指offer（专项突破版）2.3 累加数组数字求子数组之和"></a>剑指offer（专项突破版）2.3 累加数组数字求子数组之和</h2><h3 id="题目链接：LCR010-和为K的子数组"><a href="#题目链接：LCR010-和为K的子数组" class="headerlink" title="题目链接：LCR010-和为K的子数组"></a>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/QTMn0o/">LCR010-和为K的子数组</a></h3><p><strong>蛮力法</strong>：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs fortran"><span class="hljs-keyword">class</span> Solution &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> subarraySum(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; nums, <span class="hljs-built_in">int</span> k) &#123;<br>        <span class="hljs-built_in">int</span> cnt = <span class="hljs-number">0</span>;<br>        for(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.<span class="hljs-built_in">size</span>();i++)&#123;<br>            <span class="hljs-built_in">int</span> <span class="hljs-built_in">sum</span> = nums[i];<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">sum</span> == k)<br>                cnt++;<br>            for(<span class="hljs-built_in">int</span> j = i+<span class="hljs-number">1</span>;j &lt; nums.<span class="hljs-built_in">size</span>();j++)&#123;<br>                <span class="hljs-built_in">sum</span> += nums[j];<br>                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">sum</span> == k)&#123;<br>                    cnt++;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> cnt;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度分析：</strong> $O(n^2)$</p>
+<p><strong>结果：</strong></p>
+<p><img src="/2024/04/01/posts/LCR010/image.png" srcset="/img/loading.gif" lazyload alt="LCR010蛮力法结果"></p>
+<p><strong>前缀和+哈希表：</strong> 在从头到尾逐个扫描数组中的数字时求出前i个数字之和，并且将和保存下来。数组的前i个数字之和记为x。如果存在一个j（j＜i），数组的前j个数字之和为x-k，那么数组中从第i+1个数字开始到第j个数字结束的子数组之和为k。这个题目需要计算和为k的子数组的个数。当扫描到数组的第i个数字并求得前i个数字之和是x时，需要知道在i之前存在多少个j并且前j个数字之和等于x-k。所以，对每个i，不但要保存前i个数字之和，还要保存每个和出现的次数。分析到这里就会知道我们需要一个哈希表，哈希表的键是前i个数字之和，值为每个和出现的次数。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> subarraySum(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; nums, <span class="hljs-built_in">int</span> k) &#123;<br>        <span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span> = <span class="hljs-number">0</span>;    <span class="hljs-comment">// 记录和</span><br>        <span class="hljs-built_in">int</span> cnt = <span class="hljs-number">0</span>;    <span class="hljs-comment">// 记录结果</span><br>        unordered_map&lt;<span class="hljs-built_in">int</span>,<span class="hljs-built_in">int</span>&gt; sumCnt;  <span class="hljs-comment">// 记录某个和出现的次数</span><br>        sumCnt[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.size();i++)&#123;<br>            <span class="hljs-keyword">sum</span> += nums[i];<br>            cnt += sumCnt[<span class="hljs-keyword">sum</span>-k];<br>            sumCnt[<span class="hljs-keyword">sum</span>]++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> cnt;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><strong>易错点：</strong></p>
+<ol>
+<li>遗漏<code>sumCnt[0] = 1</code>：当k就等于当前计算的sum时，如果没有初始化<code>sumCnt[0] = 1</code>，则当前子数组不会被计数上，因为<code>sumCnt[0] = 0</code>。</li>
+<li><code>cnt += sumCnt[sum-k];</code>与<code>sumCnt[sum]++;</code>代码顺序颠倒：如果先进行<code>sumCnt[sum]++;</code>当$k&#x3D;0$时，计数会出现错误。</li>
+</ol>
+<p><strong>时间复杂度分析：</strong> O(n)</p>
+<p><strong>结果：</strong></p>
+<p><img src="/2024/04/01/posts/LCR010/image-1.png" srcset="/img/loading.gif" lazyload alt="LCR010前缀和方法结果"></p>
+<h3 id="题目链接：LCR011-连续数组"><a href="#题目链接：LCR011-连续数组" class="headerlink" title="题目链接：LCR011-连续数组"></a>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/A1NYOS/description/">LCR011-连续数组</a></h3><p><strong>蛮力法：</strong></p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> findMaxLength(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-comment">// 根据题意，找到子数组和为数组长度/2的子数组</span><br>        <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 蛮力法</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.size();i++)&#123;<br>            <span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span> = nums[i];<br>            <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> j = i+<span class="hljs-number">1</span>;j &lt; nums.size();j++)&#123;<br>                <span class="hljs-keyword">sum</span> += nums[j];<br>                <span class="hljs-keyword">if</span>(((j-i) % <span class="hljs-number">2</span>) &amp;&amp; (<span class="hljs-keyword">sum</span> == (j-i+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>) &amp;&amp; (j-i+<span class="hljs-number">1</span>) &gt; res)&#123;  <span class="hljs-comment">//只有子数组长度为偶数时，0和1的个数才可能相等</span><br>                    res = j - i + <span class="hljs-number">1</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度分析：</strong> $O(n^2)$</p>
+<p><strong>结果：</strong></p>
+<p>执行超时</p>
+<p><img src="/2024/04/01/posts/LCR010/image-2.png" srcset="/img/loading.gif" lazyload alt="LCR011蛮力法超时"></p>
+<p><strong>前缀和+哈希表：</strong></p>
+<p>把数组当中的0变成-1，当扫描到下标为j的数字时，和为m,假设前i个数字的和也是m，则从i+1到j的子数组和为0。用一个哈希表存储前i个数字的和及其下标。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> findMaxLength(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-comment">// 前缀和+哈希表</span><br>        <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>        unordered_map &lt;<span class="hljs-built_in">int</span>,<span class="hljs-built_in">int</span>&gt; hash;   <span class="hljs-comment">// 键为前i个数字和，值为i</span><br>        <span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span> = <span class="hljs-number">0</span>;    <span class="hljs-comment">//记录前缀和</span><br>        hash[<span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.size();i++)&#123;<br>            <span class="hljs-keyword">sum</span> += nums[i] == <span class="hljs-number">0</span> ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>;<br>            <span class="hljs-comment">// 如果存在这样的下标</span><br>            <span class="hljs-keyword">if</span>(hash.find(<span class="hljs-keyword">sum</span>) != hash.end())&#123;<br>                <span class="hljs-built_in">int</span> len = i-hash[<span class="hljs-keyword">sum</span>];       <br>                <span class="hljs-keyword">if</span>(len &gt; res)<br>                    res = len;<br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123;<br>                hash[<span class="hljs-keyword">sum</span>] = i;<br>            &#125;<br>        &#125; <br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><strong>时间复杂度分析：</strong> O(n)</p>
+<p><strong>结果：</strong></p>
+<p><img src="/2024/04/01/posts/LCR010/image-3.png" srcset="/img/loading.gif" lazyload alt="LCR011前缀和结果"></p>
+<h3 id="题目链接：LCR012-寻找数组的中心下标"><a href="#题目链接：LCR012-寻找数组的中心下标" class="headerlink" title="题目链接：LCR012-寻找数组的中心下标"></a>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/tvdfij/description/">LCR012-寻找数组的中心下标</a></h3><p><strong>分析：</strong> 假设i为要寻找的下标，则前i-1个数字的和就等于所有数字的和-前i个数字的和。</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> pivotIndex(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-comment">// 两个循环</span><br>        <span class="hljs-comment">// 求出所有数字的和</span><br>        <span class="hljs-built_in">int</span> total = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.size();i++)&#123;<br>            total += nums[i];<br>        &#125;<br>        <span class="hljs-comment">// 寻找中间下标</span><br>        <span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span> = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.size();i++)&#123;<br>            <span class="hljs-keyword">sum</span> += nums[i];<br>            <span class="hljs-keyword">if</span>((<span class="hljs-keyword">sum</span>-nums[i]) == (total-<span class="hljs-keyword">sum</span>))&#123;<br>                <span class="hljs-keyword">return</span> i;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度分析：</strong> 上述代码有两个时间复杂度为O（n）的循环，因此总的时间复杂度为O（n）。函数pivotIndex中只用到了若干临时变量，并没有使用数组、哈希表之类的辅助数据容器，因此空间复杂度是O（1）。</p>
+<p><strong>结果：</strong></p>
+<p><img src="/2024/04/01/posts/LCR010/image-4.png" srcset="/img/loading.gif" lazyload alt="LCR012结果"></p>
+<h3 id="题目链接：LCR013-二维区域和检索-矩阵不可变"><a href="#题目链接：LCR013-二维区域和检索-矩阵不可变" class="headerlink" title="题目链接：LCR013-二维区域和检索 - 矩阵不可变"></a>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/O4NDxx/">LCR013-二维区域和检索 - 矩阵不可变</a></h3><p><strong>分析：</strong> </p>
+<ul>
+<li>假设sums[i][j]表示左上角为（0,0）到右下角（i,j）的子矩阵和，那么从左上角（row1,col1）到右下角（row2,col2）的和为：<code>res = sums[rol2][col2] - sums[row1-1][col2] - sums[rol2][col1-1] + sums[row1-1][col1-1]</code>。</li>
+<li>如何求sums[i][j]？可以拆分成两部分，即matrix[i][j]上面的元素<code>sums[i-1][j]</code>以及左边的元素+它本身（每一行按列求和即可）<code>rowSum = matrix[i][0] + ... + matrix[i][j]</code>。</li>
+<li>如果输入矩阵的行数和列数分别是m和n，那么辅助数组sums的行数和列数分别为m+1和n+1，这样只是为了简化代码逻辑。如果用公式sums[r2][c2]+sums[r1-1][c2]-sums[r2][c1-1]+sums[r1-1][c1-1]求解左上角坐标为（r1，c1）、右下角坐标为（r2，c2）的子矩阵的数字之和，由于坐标值r1或c1有可能等于0，因此r1-1或c1-1可能是负数，不再是有效的数组下标。如果在矩阵的最上面增加一行，最左面增加一列，这样就不必担心出现数组下标为-1的情形。</li>
+</ul>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs mel">class NumMatrix &#123;<br>public:<br>    <span class="hljs-keyword">vector</span>&lt;<span class="hljs-keyword">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; sums;   <span class="hljs-comment">// 记录前缀和的数组</span><br><br>    NumMatrix(<span class="hljs-keyword">vector</span>&lt;<span class="hljs-keyword">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; <span class="hljs-keyword">matrix</span>) &#123;<br>        <span class="hljs-keyword">int</span> m = <span class="hljs-keyword">matrix</span>.<span class="hljs-keyword">size</span>();  <span class="hljs-comment">// m为矩阵行数</span><br>        <span class="hljs-keyword">if</span>(m &gt; <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">int</span> n = <span class="hljs-keyword">matrix</span>[<span class="hljs-number">0</span>].<span class="hljs-keyword">size</span>();   <span class="hljs-comment">// n为矩阵列数</span><br>            sums.resize(m+<span class="hljs-number">1</span>,<span class="hljs-keyword">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;(n+<span class="hljs-number">1</span>));<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; m;i++)&#123;<br>                <span class="hljs-keyword">int</span> rowSum = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; n;j++)&#123;<br>                    rowSum += <span class="hljs-keyword">matrix</span>[i][j];<br>                    sums[i+<span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>] = sums[i][j+<span class="hljs-number">1</span>] + rowSum;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">int</span> sumRegion(<span class="hljs-keyword">int</span> row1, <span class="hljs-keyword">int</span> col1, <span class="hljs-keyword">int</span> row2, <span class="hljs-keyword">int</span> col2) &#123;<br>        <span class="hljs-keyword">return</span> sums[row2+<span class="hljs-number">1</span>][col2+<span class="hljs-number">1</span>] - sums[row1][col2+<span class="hljs-number">1</span>] - sums[row2+<span class="hljs-number">1</span>][col1] + sums[row1][col1];<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your NumMatrix object will be instantiated and called as such:</span><br><span class="hljs-comment"> * NumMatrix* obj = new NumMatrix(matrix);</span><br><span class="hljs-comment"> * int param_1 = obj-&gt;sumRegion(row1,col1,row2,col2);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>时间复杂度分析：</strong> 函数sumRegion用来求子矩阵的数字之和，该函数只是从数组sums中读取几个数字做加法和减法，因此每次调用的时间复杂度都是O（1）。类型NumMatrix的构造函数用来做预处理，根据输入矩阵生成辅助矩阵sums。该构造函数使用两个嵌套的循环计算辅助函数sums中的每个数字，因此时间复杂度是O（mn）。同时，数组sums需要的辅助空间为O（mn）。</p>
+<p><strong>结果：</strong></p>
+<p><img src="/2024/04/01/posts/LCR010/image-5.png" srcset="/img/loading.gif" lazyload alt="LCR013结果"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>计算前缀和：首先，需要计算数组中每个位置的前缀和，即从数组开头到当前位置的累加和。这可以通过一个循环来完成，将当前位置的值加上前一个位置的前缀和即可得到当前位置的前缀和。</li>
+<li>利用前缀和求解子数组之和：在需要求解子数组之和的问题中，利用前缀和可以在常数时间内求得任意子数组的和。通过记录每个前缀和出现的次数，可以在O(1)的时间复杂度内得到某个子数组的和，从而解决了以往使用蛮力法会导致高时间复杂度的问题。</li>
+<li>利用哈希表存储前缀和出现的次数：在求解子数组之和的问题中，为了方便查找某个前缀和出现的次数，可以使用哈希表来存储前缀和及其出现的次数。这样，在遍历数组的过程中，可以实时更新哈希表，以便在O(1)时间内获取所需的前缀和信息。</li>
+<li>注意边界条件和特殊情况：在使用前缀和方法解题时，需要注意处理边界条件和特殊情况，例如数组为空、特定值等情况，以避免出现错误的结果。</li>
+<li>时间复杂度分析：使用前缀和方法解题通常能够将时间复杂度降低至O(n)级别，相比蛮力法的O(n^2)更高效。因此，在面对求解子数组之和、子矩阵之和等问题时，前缀和方法是一种常用且高效的解决方案。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E6%95%B0%E7%BB%84/" class="category-chain-item">数组</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%91%E6%8C%87Offer/" class="print-no-link">#剑指Offer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LCR010-LCR013累加数组数字求子数组之和</div>
+      <div>http://example.com/2024/04/01/posts/LCR010/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xuan Yang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/08/posts/LCR014/" title="LCR014-LCR017双指针">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LCR014-LCR017双指针</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/09/posts/LCR006/" title="LCR006-LCR009双指针问题">
+                        <span class="hidden-mobile">LCR006-LCR009双指针问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","appKey":"ZYfWA3PVOj4XQS3vAPi7u4IA","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

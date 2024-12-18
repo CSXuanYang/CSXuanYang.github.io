@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.webp">
+  <link rel="icon" href="/img/icon.webp">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xuan Yang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="剑指offer（专项突破版）12 排序LCR074.合并区间分析如果先将所有区间按照起始位置排序，那么只需要比较相邻两个区间的结束位置就能知道它们是否重叠。如果区间1的结束位置大于区间2的起始位置，说明存在重叠，取较大的结束位置。如果它们重叠就将它们合并，然后判断合并的区间是否和下一个区间重叠。重复这个过程，直到所有重叠的区间都合并为止。 12345678910111213141516171819">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCR074-LCR078排序">
+<meta property="og:url" content="http://example.com/2024/06/01/posts/LCR074/index.html">
+<meta property="og:site_name" content="任我行">
+<meta property="og:description" content="剑指offer（专项突破版）12 排序LCR074.合并区间分析如果先将所有区间按照起始位置排序，那么只需要比较相邻两个区间的结束位置就能知道它们是否重叠。如果区间1的结束位置大于区间2的起始位置，说明存在重叠，取较大的结束位置。如果它们重叠就将它们合并，然后判断合并的区间是否和下一个区间重叠。重复这个过程，直到所有重叠的区间都合并为止。 12345678910111213141516171819">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/06/01/posts/LCR074/image.png">
+<meta property="og:image" content="http://example.com/2024/06/01/posts/LCR074/image-1.png">
+<meta property="og:image" content="http://example.com/2024/06/01/posts/LCR074/image-2.png">
+<meta property="og:image" content="http://example.com/2024/06/01/posts/LCR074/image-3.png">
+<meta property="og:image" content="http://example.com/2024/06/01/posts/LCR074/image-4.png">
+<meta property="og:image" content="http://example.com/2024/06/01/posts/LCR074/image-5.png">
+<meta property="og:image" content="http://example.com/2024/06/01/posts/LCR074/image-6.png">
+<meta property="article:published_time" content="2024-06-01T03:16:19.000Z">
+<meta property="article:modified_time" content="2024-06-06T01:53:51.555Z">
+<meta property="article:author" content="Xuan Yang">
+<meta property="article:tag" content="剑指Offer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/06/01/posts/LCR074/image.png">
+  
+  
+  
+  <title>LCR074-LCR078排序 - 任我行</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","app_key":"ZYfWA3PVOj4XQS3vAPi7u4IA","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>任我行</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/wallpapers/">
+                <i class="iconfont icon-images"></i>
+                <span>壁纸</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/messi04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LCR074-LCR078排序"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-01 11:16" pubdate>
+          2024年6月1日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          80 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LCR074-LCR078排序</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="剑指offer（专项突破版）12-排序"><a href="#剑指offer（专项突破版）12-排序" class="headerlink" title="剑指offer（专项突破版）12 排序"></a>剑指offer（专项突破版）12 排序</h1><h2 id="LCR074-合并区间"><a href="#LCR074-合并区间" class="headerlink" title="LCR074.合并区间"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/SsGoHC/description/">LCR074.合并区间</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>如果先将所有区间按照起始位置排序，那么只需要比较相邻两个区间的结束位置就能知道它们是否重叠。如果区间1的结束位置大于区间2的起始位置，说明存在重叠，取较大的结束位置。如果它们重叠就将它们合并，然后判断合并的区间是否和下一个区间重叠。重复这个过程，直到所有重叠的区间都合并为止。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-built_in">int</span>&gt;&gt; merge(vector&lt;vector&lt;<span class="hljs-built_in">int</span>&gt;&gt;&amp; <span class="hljs-built_in">int</span>ervals) &#123;<br>        <span class="hljs-comment">// 边界条件处理</span><br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">int</span>ervals.size() == <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">return</span> &#123;&#125;;<br>        &#125;<br>        <span class="hljs-comment">// 将数组按照起始时间排序</span><br>        sort(<span class="hljs-built_in">int</span>ervals.begin(), <span class="hljs-built_in">int</span>ervals.end());<br>        <span class="hljs-comment">// 对每个区间合并</span><br>        vector&lt;vector&lt;<span class="hljs-built_in">int</span>&gt;&gt; res&#123;<span class="hljs-built_in">int</span>ervals[<span class="hljs-number">0</span>]&#125;;  <span class="hljs-comment">// 初始时将第一个区间放入</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-built_in">int</span>ervals.size(); i++)&#123;<br>            <span class="hljs-comment">// 当前起始时间小于前面的结束时间，说明可以合并</span><br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">int</span>ervals[i][<span class="hljs-number">0</span>] &lt;= res.back()[<span class="hljs-number">1</span>])&#123;<br>                <span class="hljs-comment">// 修改结果中的结束时间</span><br>                res.back()[<span class="hljs-number">1</span>] = max(res.back()[<span class="hljs-number">1</span>], <span class="hljs-built_in">int</span>ervals[i][<span class="hljs-number">1</span>]);<br>            &#125;<br>            <span class="hljs-comment">// 否则不能合并，将该区间加入结果集</span><br>            <span class="hljs-keyword">else</span>&#123;<br>                res.push_back(<span class="hljs-built_in">int</span>ervals[i]);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：如果输入数组中有n个区间，那么将它排序的时间复杂度是O（nlogn），接着逐一扫描排序的区间数组并将相邻的区间合并。逐一扫描每个区间，时间复杂度为O(n)。总的时间复杂度为O(nlogn)。</li>
+<li>空间复杂度：最多需要O(n)存储结果。</li>
+</ul>
+<p><img src="/2024/06/01/posts/LCR074/image.png" srcset="/img/loading.gif" lazyload alt="LCR074结果"></p>
+<h2 id="LCR075-数组的相对排序"><a href="#LCR075-数组的相对排序" class="headerlink" title="LCR075.数组的相对排序"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/0H97ZC/description/">LCR075.数组的相对排序</a></h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>计数排序是一种线性时间的整数排序算法。如果数组的长度为n，整数范围（数组中最大整数与最小整数的差值）为k，对于k远小于n的场景（如对某公司所有员工的年龄排序），那么计数排序的时间复杂度优于其他基于比较的排序算法（如归并排序、快速排序等）。</p>
+<p>计数排序的基本思想是先统计数组中每个整数在数组中出现的次数，然后按照从小到大的顺序将每个整数按照它出现的次数填到数组中。</p>
+<p>如果数组的长度为n，整数的范围为k，那么计数排序的时间复杂度就是O（n+k）。由于需要创建一个长度为O（k）的辅助数组counts，因此空间复杂度为O（k）。当k较小时，无论从时间复杂度还是空间复杂度来看计数排序都是非常高效的算法。当k很大时，计数排序可能就不如其他排序算法（如快速排序、归并排序）高效。</p>
+<p>题目明确提出数组中的数字都在0到1000的范围内。这是一个很明显的提示，据此可以考虑采用计数排序。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">relativeSortArray</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; arr1, vector&lt;<span class="hljs-type">int</span>&gt;&amp; arr2)</span> </span>&#123;<br>        <span class="hljs-comment">// 统计arr1中的次数</span><br>        <span class="hljs-type">int</span> counts[<span class="hljs-number">1001</span>];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; arr1.<span class="hljs-built_in">size</span>(); i++)&#123;<br>            counts[arr1[i]]++;<br>        &#125;<br>        <span class="hljs-comment">// 按照arr2中的排序</span><br>        <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num : arr2)&#123;<br>            <span class="hljs-keyword">while</span>(counts[num] &gt; <span class="hljs-number">0</span>)&#123;<br>                arr1[i++] = num;<br>                counts[num]--;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 剩余元素</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt; <span class="hljs-number">1001</span>; k++)&#123;<br>            <span class="hljs-keyword">while</span>(counts[k] &gt; <span class="hljs-number">0</span>)&#123;<br>                arr1[i++] = k;<br>                counts[k]--;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> arr1;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：如果数组arr1的长度为m，数组arr2的长度为n，那么时间复杂度是O（m+n）。</li>
+<li>空间复杂度：由于这个题目中的数字在0到1000的范围内，上述代码用来统计每个数字出现次数的辅助数组counts的长度为1001，是一个常数，因此空间复杂度可以认为是O（1）。</li>
+</ul>
+<p><img src="/2024/06/01/posts/LCR074/image-1.png" srcset="/img/loading.gif" lazyload alt="LCR075结果"></p>
+<h2 id="LCR076-数组中的第K个最大的元素"><a href="#LCR076-数组中的第K个最大的元素" class="headerlink" title="LCR076.数组中的第K个最大的元素"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/xx4gT2/description/">LCR076.数组中的第K个最大的元素</a></h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序的基本思想是分治法，排序过程如下：在输入数组中随机选取一个元素作为中间值（pivot），然后对数组进行分区（partition），使所有比中间值小的数据移到数组的左边，所有比中间值大的数据移到数组的右边。接下来对中间值左右两侧的子数组用相同的步骤排序，直到子数组中只有一个数字为止。</p>
+<p>如果partition返回的值为n-k，则找到了第K大元素，如果返回的索引大于n-k，则在start,index-1继续找；如果小于n-k，则在index+1,end区间继续找。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;<br>        <span class="hljs-comment">// 随机选取一个值作为pivot</span><br>        <span class="hljs-type">int</span> r = <span class="hljs-built_in">rand</span>() % (end - start + <span class="hljs-number">1</span>) + start;<br>        <span class="hljs-comment">// 将其换到数组最后</span><br>        <span class="hljs-built_in">swap</span>(nums[r], nums[end]);<br>        <span class="hljs-comment">// 初始化指针</span><br>        <span class="hljs-type">int</span> small = start - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = start; i &lt; end; i++)&#123;<br>            <span class="hljs-keyword">if</span>(nums[i] &lt; nums[end])&#123;<br>                small++;<br>                <span class="hljs-built_in">swap</span>(nums[i], nums[small]);<br>            &#125;<br>        &#125;<br>        small++;<br>        <span class="hljs-built_in">swap</span>(nums[small], nums[end]);<br>        <span class="hljs-keyword">return</span> small;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>        <span class="hljs-type">int</span> start = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> end = nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> index = <span class="hljs-built_in">partition</span>(nums, start, end);<br>        <span class="hljs-type">int</span> target = nums.<span class="hljs-built_in">size</span>() - k;<br>        <span class="hljs-keyword">while</span>(index != target)&#123;<br>            <span class="hljs-keyword">if</span>(index &gt; target)&#123;<br>                end = index - <span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123;<br>                start = index + <span class="hljs-number">1</span>;<br>            &#125;<br>            index = <span class="hljs-built_in">partition</span>(nums, start, end);<br>        &#125;<br>        <span class="hljs-keyword">return</span> nums[nums.<span class="hljs-built_in">size</span>()-k];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：由于函数partition随机选择中间值，因此它的返回值也具有随机性，计算这种算法的时间复杂度需要运用概率相关的知识。此处仅计算一种特定场合下的时间复杂度。假设函数partition每次选择的中间值都位于分区后的数组的中间位置，那么第1次函数partition需要扫描长度为n的数组，第2次需要扫描长度为n&#x2F;2的子数组，第3次需要扫描长度为n&#x2F;4的数组，重复这个过程，直到子数组的长度为1。由于n+n&#x2F;2+n&#x2F;4+…+1&#x3D;2n，因此总的时间复杂度是O（n）。</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<p><img src="/2024/06/01/posts/LCR074/image-2.png" srcset="/img/loading.gif" lazyload alt="LCR076快速排序方法"></p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>建立大小为k的小根堆，堆顶元素就是第k大的数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 小根堆操作：将以节点 i 为根的子树进行小根堆调整</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">minHeapify</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> heapSize)</span></span>&#123;<br>        <span class="hljs-comment">// 获取左右子节点索引和当前节点索引</span><br>        <span class="hljs-type">int</span> left = i * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> right = i * <span class="hljs-number">2</span> + <span class="hljs-number">2</span>;<br>        <span class="hljs-type">int</span> smallest = i;<br>        <span class="hljs-comment">// 如果左子节点存在且小于当前节点，则更新最小节点索引</span><br>        <span class="hljs-keyword">if</span>(left &lt; heapSize &amp;&amp; nums[left] &lt; nums[smallest])&#123;<br>            smallest = left;<br>        &#125;<br>        <span class="hljs-comment">// 如果右子节点存在且小于当前节点或左子节点，则更新最小节点索引</span><br>        <span class="hljs-keyword">if</span>(right &lt; heapSize &amp;&amp; nums[right] &lt; nums[smallest])&#123;<br>            smallest = right;<br>        &#125;<br>        <span class="hljs-comment">// 如果最小节点索引不等于当前节点索引，则交换当前节点和最小节点，并继续调整最小堆</span><br>        <span class="hljs-keyword">if</span>(smallest != i)&#123;<br>            <span class="hljs-built_in">swap</span>(nums[i], nums[smallest]);<br>            <span class="hljs-built_in">minHeapify</span>(nums, smallest, heapSize);<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 建立小根堆</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">buildMinHeap</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> heapSize)</span></span>&#123;<br>        <span class="hljs-comment">// 从最后一个非叶子节点开始，依次向前调整节点，保证以每个节点为根的子树都是小根堆</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = heapSize / <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--)&#123;<br>            <span class="hljs-built_in">minHeapify</span>(nums, i ,heapSize);<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-comment">// 构建一个大小为K的最小堆</span><br>        <span class="hljs-built_in">buildMinHeap</span>(nums, k);<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = k; i &lt; n; i++)&#123;<br>            <span class="hljs-keyword">if</span>(nums[i] &gt; nums[<span class="hljs-number">0</span>])&#123;<br>                <span class="hljs-built_in">swap</span>(nums[i], nums[<span class="hljs-number">0</span>]);<br>                <span class="hljs-built_in">minHeapify</span>(nums, <span class="hljs-number">0</span>, k);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：建堆的复杂度为O(n)，调整堆的复杂度为O(logk)，故时间复杂度为O(nlogk)。</li>
+<li>空间复杂度：递归调用的最大深度为 logk。所以空间复杂度为 O(logk)。</li>
+</ul>
+<p><img src="/2024/06/01/posts/LCR074/image-3.png" srcset="/img/loading.gif" lazyload alt="LCR076堆排序结果"></p>
+<h2 id="LCR077-链表排序"><a href="#LCR077-链表排序" class="headerlink" title="LCR077.链表排序"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/7WHec2/description/">LCR077.链表排序</a></h2><h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>由于题目没有限定数字的范围，因此计数排序就不太适合。但可以考虑使用插入排序、冒泡排序等算法对链表进行排序，这些算法比较直观，实现起来也比较简单。只是这些算法的时间复杂度是O（n2），未必是最高效的算法。</p>
+<p>接下来考虑对数组进行排序的时间复杂度为O（nlogn）的排序算法，常用的有堆排序、快速排序和归并排序。</p>
+<p>如果输入的是一个数组，那么堆排序用数组实现最大堆，该排序算法每次取出其中的最大值，再调整剩余的最大堆，直到所有数字都被取出。</p>
+<p>在数组中只需要O（1）的时间就能根据下标找到一个数字，但在链表中需要O（n）的时间才能根据节点的编号找到对应的节点。因此，不可能直接利用链表实现堆排序，但是如果链表的长度为n就可以创建一个长度为n的数组来实现堆，也就是说，通过O（n）的空间代价来实现堆排序。</p>
+<p>接下来考虑快速排序。通常，快速排序算法首先随机生成一个下标，并以该下标对应的值作为中间值进行分区。如果输入的是数组，那么只需要O（1）的时间就能根据下标找到一个数字。但如果输入的是链表，那么需要O（n）的时间才能根据节点的编号找到对应的节点。快速排序也可以考虑不用随机的中间值，而是始终以某个固定位置的值作为中间值（如链表的头节点或尾节点），这样可能会出现每次分区时两个子链表的大小都不均衡，从而使时间复杂度退化为O（n2）。因此，虽然可以用快速排序算法对链表进行排序，但不如对数组排序高效。</p>
+<p>那么归并排序是否适合链表？归并排序的主要思想是将链表分成两个子链表，在对两个子链表排序后再将它们合并成一个排序的链表。这看起来没有什么问题，所以可以尝试基于归并排序算法对链表进行排序。使用递归可以实现链表的归并排序，首先使用 split 函数将链表分为前后两半并返回后半部分的头节点。再将链表分成的两半使用递归实现排序，之后调用 merge 函数将两个已排序链表进行合并。其中 split 函数可以使用快慢指针法，而 merge 函数可以使用双指针法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * struct ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode *next;</span><br><span class="hljs-comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 将链表分成两部分</span><br>    <span class="hljs-function">ListNode* <span class="hljs-title">split</span><span class="hljs-params">(ListNode* head)</span></span>&#123;<br>        ListNode* slow = head;<br>        ListNode* fast = head-&gt;next;<br>        <span class="hljs-keyword">while</span>(fast &amp;&amp; fast-&gt;next)&#123;<br>            slow = slow-&gt;next;<br>            fast = fast-&gt;next-&gt;next;<br>        &#125;<br>        <span class="hljs-comment">// 前半部分列表的最后一个结点的next指针指向空</span><br>        ListNode* second = slow-&gt;next;<br>        slow-&gt;next = <span class="hljs-literal">NULL</span>;<br>        <span class="hljs-keyword">return</span> second;<br>    &#125;<br>    <span class="hljs-function">ListNode* <span class="hljs-title">merge</span><span class="hljs-params">(ListNode* head1, ListNode* head2)</span></span>&#123;<br>        ListNode* dummy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        ListNode* cur = dummy;<br>        <span class="hljs-keyword">while</span>(head1 &amp;&amp; head2)&#123;<br>            <span class="hljs-keyword">if</span>(head1-&gt;val &lt; head2-&gt;val)&#123;<br>                cur-&gt;next = head1;<br>                head1 = head1-&gt;next;<br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123;<br>                cur-&gt;next = head2;<br>                head2 = head2-&gt;next;<br>            &#125;<br>            cur = cur-&gt;next;<br>        &#125;<br>        cur-&gt;next = (head1 == <span class="hljs-literal">NULL</span>) ? head2 : head1;<br>        <span class="hljs-keyword">return</span> dummy-&gt;next;<br>    &#125;<br>    <span class="hljs-function">ListNode* <span class="hljs-title">sortList</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        <span class="hljs-comment">// 递归结束</span><br>        <span class="hljs-keyword">if</span>(!head || !head-&gt;next)&#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br>        <span class="hljs-comment">// 将链表分成两部分</span><br>        ListNode* head1 = head;<br>        ListNode* head2 = <span class="hljs-built_in">split</span>(head);<br>        <span class="hljs-comment">// 将两个链表排序</span><br>        head1 = <span class="hljs-built_in">sortList</span>(head1);<br>        head2 = <span class="hljs-built_in">sortList</span>(head2);<br>        <span class="hljs-comment">// 将两个链表合并</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">merge</span>(head1, head2);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>突然发现力扣可以自己分析算法复杂度了！</p>
+<ul>
+<li>时间复杂度：O（nlogn）。</li>
+<li>空间复杂度：由于对链表进行归并排序不需要创建另外一个相同大小的链表来保存合并之后的节点，因此对链表进行归并排序的空间效率更高。由于代码存在递归调用，递归调用栈的深度为O（logn），因此空间复杂度为O（logn）。如果改用迭代的代码实现上述归并排序的过程，那么可以将空间复杂度优化到O（1）。</li>
+</ul>
+<p><img src="/2024/06/01/posts/LCR074/image-4.png" srcset="/img/loading.gif" lazyload alt="LCR077结果"></p>
+<h2 id="LCR078-合并K个升序链表"><a href="#LCR078-合并K个升序链表" class="headerlink" title="LCR078.合并K个升序链表"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/vvXgSW/description/">LCR078.合并K个升序链表</a></h2><h3 id="利用最小堆选取值最小的节点"><a href="#利用最小堆选取值最小的节点" class="headerlink" title="利用最小堆选取值最小的节点"></a>利用最小堆选取值最小的节点</h3><p>这道题有个很朴素的想法，使用 k 个指针分别指向链表的头节点，每次都从这 k 个节点中选取值最小的节点确定为合并后的链表的第一个节点。然后将指向最小值节点的指针向后移动一步，再比较这 k 个节点中选取值最小的节点确定为下一个节点。重复以上过程，所有链表就会被合并。</p>
+<p>这个思路需要反复比较 k 个节点的值，因为只关心值最小的节点，所以可以使用最小堆优化。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * struct ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode *next;</span><br><span class="hljs-comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">mergeKLists</span><span class="hljs-params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>&#123;<br>        <span class="hljs-comment">// 最小堆</span><br>        <span class="hljs-keyword">auto</span> cmp = [&amp;](<span class="hljs-type">const</span> ListNode* lhs, <span class="hljs-type">const</span> ListNode* rhs)&#123;<br>            <span class="hljs-keyword">return</span> lhs-&gt;val &gt; rhs-&gt;val;<br>        &#125;;<br>        priority_queue&lt;ListNode*, vector&lt;ListNode*&gt;, <span class="hljs-keyword">decltype</span>(cmp)&gt; <span class="hljs-built_in">heap</span>(cmp);<br><br>        ListNode* dummy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        ListNode* cur = dummy;<br>        <span class="hljs-comment">// 将每个链表的头结点加入最小堆</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; node : lists)&#123;<br>            <span class="hljs-keyword">if</span>(node)&#123;<br>                heap.<span class="hljs-built_in">push</span>(node);<br>            &#125; <br>        &#125;<br>        <span class="hljs-comment">// 不断取堆顶元素加到结果链表中</span><br>        <span class="hljs-keyword">while</span>(!heap.<span class="hljs-built_in">empty</span>())&#123;<br>            ListNode* node = heap.<span class="hljs-built_in">top</span>();<br>            heap.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-keyword">if</span>(node-&gt;next)&#123;<br>                heap.<span class="hljs-built_in">push</span>(node-&gt;next);<br>            &#125;<br>            cur-&gt;next = node;<br>            cur = cur-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> dummy-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：假设k个排序链表总共有n个节点。如果堆的大小为k，那么空间复杂度就是O（k）。每次用最小堆处理一个节点需要O（logk）的时间，因此这种解法的时间复杂度是O（nlogk）。</li>
+<li>空间复杂度：最小堆最多存储k个元素，即空间复杂度为O(k)。</li>
+</ul>
+<p><img src="/2024/06/01/posts/LCR074/image-5.png" srcset="/img/loading.gif" lazyload alt="LCR078最小堆结果"></p>
+<h3 id="按照归并排序的思路合并链表"><a href="#按照归并排序的思路合并链表" class="headerlink" title="按照归并排序的思路合并链表"></a>按照归并排序的思路合并链表</h3><p>输入的k个排序链表可以分成两部分，前k&#x2F;2个链表和后k&#x2F;2个链表。如果将前k&#x2F;2个链表和后k&#x2F;2个链表分别合并成两个排序的链表，再将两个排序的链表合并，那么所有链表都合并了。合并k&#x2F;2个链表与合并k个链表是同一个问题，可以调用递归函数解决。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * struct ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode *next;</span><br><span class="hljs-comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 合并多个链表</span><br>    <span class="hljs-function">ListNode* <span class="hljs-title">mergeLists</span><span class="hljs-params">(vector&lt;ListNode*&gt;&amp; lists, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(start == end)&#123;<br>            <span class="hljs-keyword">return</span> lists[start];<br>        &#125;<br>        <span class="hljs-type">int</span> mid = (start + end) / <span class="hljs-number">2</span>;<br>        ListNode* head1 = <span class="hljs-built_in">mergeLists</span>(lists, start, mid);<br>        ListNode* head2 = <span class="hljs-built_in">mergeLists</span>(lists, mid+<span class="hljs-number">1</span>, end);<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">merge</span>(head1, head2);<br>    &#125;<br>    <span class="hljs-comment">// 合并两个链表</span><br>    <span class="hljs-function">ListNode* <span class="hljs-title">merge</span><span class="hljs-params">(ListNode*head1, ListNode* head2)</span></span>&#123;<br>        ListNode* dummy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        ListNode* cur = dummy;<br>        <span class="hljs-keyword">while</span>(head1 &amp;&amp; head2)&#123;<br>            <span class="hljs-keyword">if</span>(head1-&gt;val &lt; head2-&gt;val)&#123;<br>                cur-&gt;next = head1;<br>                head1 = head1-&gt;next;<br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123;<br>                cur-&gt;next = head2;<br>                head2 = head2-&gt;next;<br>            &#125;<br>            cur = cur-&gt;next;<br>        &#125;<br>        cur-&gt;next = (head1 == <span class="hljs-literal">NULL</span>) ? head2 : head1;<br>        <span class="hljs-keyword">return</span> dummy-&gt;next;<br>    &#125;<br>    <span class="hljs-function">ListNode* <span class="hljs-title">mergeKLists</span><span class="hljs-params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(lists.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">mergeLists</span>(lists, <span class="hljs-number">0</span>, lists.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：递归调用的深度是O（logk），每次需要合并n个节点，因此时间复杂度是O（nlogk）。</li>
+<li>空间复杂度：O（logk），用来维护递归调用栈。</li>
+</ul>
+<p><img src="/2024/06/01/posts/LCR074/image-6.png" srcset="/img/loading.gif" lazyload alt="LCR078归并排序结果"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果整数在一个有限的范围内，那么可以先统计每个整数出现的次数，然后按照从小到大的顺序根据每个整数出现的次数写入输出数组中。如果n个整数的范围是k，那么计数排序的时间复杂度是O（n+k）。当k较小时，计数排序是非常高效的排序算法。</p>
+<p>快速排序随机地从数组中选取一个中间值，然后对数组分区，使比中间值小的数值都位于左边，比中间值大的数值都位于右边，接下来将左右两边的子数组分别排序即可。快速排序的平均时间复杂度是O（nlogn）。</p>
+<p>快速排序的函数partition可以用来选取第k大的数值。</p>
+<p>归并排序将输入数组分成两半，在分别将左右两个子数组排序之后再将它们合并成一个排序的数组。归并排序的时间复杂度是O（nlogn），空间复杂度是O（n）。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E6%8E%92%E5%BA%8F/" class="category-chain-item">排序</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%91%E6%8C%87Offer/" class="print-no-link">#剑指Offer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LCR074-LCR078排序</div>
+      <div>http://example.com/2024/06/01/posts/LCR074/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xuan Yang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/06/posts/LCR079/" title="LCR079-LCR084集合的组合、排列">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LCR079-LCR084集合的组合、排列</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/27/posts/LCR068/" title="LCR068-LCR073二分查找">
+                        <span class="hidden-mobile">LCR068-LCR073二分查找</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","appKey":"ZYfWA3PVOj4XQS3vAPi7u4IA","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

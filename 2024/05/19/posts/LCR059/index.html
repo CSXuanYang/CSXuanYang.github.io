@@ -1,0 +1,797 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.webp">
+  <link rel="icon" href="/img/icon.webp">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xuan Yang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="剑指offer（专项突破版）9.2 堆的应用LCR059.数据流中的第K大元素分析如果能够找出k个最大的数字，那么第k大的数字就是这k个最大数字中最小的一个。由于每次都需要找出k个数字中的最小值，因此可以把这k个数字保存到最小堆中。每当从数据流中读出一个数字，就先判断这个新的数字是不是有必要添加到最小堆中。如果最小堆中元素的数目还小于k，那么直接将它添加到最小堆中。如果最小堆中已经有k个元素，那么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCR059-LCR061堆的应用">
+<meta property="og:url" content="http://example.com/2024/05/19/posts/LCR059/index.html">
+<meta property="og:site_name" content="任我行">
+<meta property="og:description" content="剑指offer（专项突破版）9.2 堆的应用LCR059.数据流中的第K大元素分析如果能够找出k个最大的数字，那么第k大的数字就是这k个最大数字中最小的一个。由于每次都需要找出k个数字中的最小值，因此可以把这k个数字保存到最小堆中。每当从数据流中读出一个数字，就先判断这个新的数字是不是有必要添加到最小堆中。如果最小堆中元素的数目还小于k，那么直接将它添加到最小堆中。如果最小堆中已经有k个元素，那么">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/05/19/posts/LCR059/image.png">
+<meta property="og:image" content="http://example.com/2024/05/19/posts/LCR059/image-1.png">
+<meta property="og:image" content="http://example.com/2024/05/19/posts/LCR059/image-2.png">
+<meta property="og:image" content="http://example.com/2024/05/19/posts/LCR059/image-3.png">
+<meta property="article:published_time" content="2024-05-19T03:29:24.000Z">
+<meta property="article:modified_time" content="2024-05-21T03:00:25.232Z">
+<meta property="article:author" content="Xuan Yang">
+<meta property="article:tag" content="剑指Offer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/05/19/posts/LCR059/image.png">
+  
+  
+  
+  <title>LCR059-LCR061堆的应用 - 任我行</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","app_key":"ZYfWA3PVOj4XQS3vAPi7u4IA","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>任我行</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/wallpapers/">
+                <i class="iconfont icon-images"></i>
+                <span>壁纸</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/messi04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LCR059-LCR061堆的应用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-19 11:29" pubdate>
+          2024年5月19日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          47 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LCR059-LCR061堆的应用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="剑指offer（专项突破版）9-2-堆的应用"><a href="#剑指offer（专项突破版）9-2-堆的应用" class="headerlink" title="剑指offer（专项突破版）9.2 堆的应用"></a>剑指offer（专项突破版）9.2 堆的应用</h1><h2 id="LCR059-数据流中的第K大元素"><a href="#LCR059-数据流中的第K大元素" class="headerlink" title="LCR059.数据流中的第K大元素"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jBjn9C/description/">LCR059.数据流中的第K大元素</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>如果能够找出k个最大的数字，那么第k大的数字就是这k个最大数字中最小的一个。由于每次都需要找出k个数字中的最小值，因此可以把这k个数字保存到最小堆中。每当从数据流中读出一个数字，就先判断这个新的数字是不是有必要添加到最小堆中。如果最小堆中元素的数目还小于k，那么直接将它添加到最小堆中。如果最小堆中已经有k个元素，那么将其和位于堆顶的最小值进行比较。如果新读出的数字小于或等于堆中的最小值，那么堆中的k个数字都比它大，因此它不可能是k个最大的数字中的一个。由于只需要保存最大的k个数字，因此新读出的数字可以忽略。如果新的数字大于堆顶的数字，那么堆顶的数字就是第k+1大的数字，可以将它从堆中删除，并将新的数字添加到堆中，这样堆中保存的仍然是到目前为止从数据流中读出的最大的k个数字，此时第k大的数字正好位于最小堆的堆顶。</p>
+<p>使用STL自带的priority_queue：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">KthLargest</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    priority_queue&lt;<span class="hljs-type">int</span>, vector&lt;<span class="hljs-type">int</span>&gt;, greater&lt;<span class="hljs-type">int</span>&gt;&gt; heap;<br>    <span class="hljs-type">int</span> size;<br>    <span class="hljs-built_in">KthLargest</span>(<span class="hljs-type">int</span> k, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        size = k;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++)&#123;<br>            <span class="hljs-built_in">add</span>(nums[i]);<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span> </span>&#123;<br>        <span class="hljs-comment">// 如果堆大小小于k，直接插入</span><br>        <span class="hljs-keyword">if</span>(heap.<span class="hljs-built_in">size</span>() &lt; size)&#123;<br>            heap.<span class="hljs-built_in">push</span>(val);<br>        &#125;<br>        <span class="hljs-comment">// 否则如果大于堆顶，就把堆顶删除</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(val &gt; heap.<span class="hljs-built_in">top</span>())&#123;<br>            heap.<span class="hljs-built_in">pop</span>();<br>            heap.<span class="hljs-built_in">push</span>(val);<br>        &#125;<br>        <span class="hljs-keyword">return</span> heap.<span class="hljs-built_in">top</span>();<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your KthLargest object will be instantiated and called as such:</span><br><span class="hljs-comment"> * KthLargest* obj = new KthLargest(k, nums);</span><br><span class="hljs-comment"> * int param_1 = obj-&gt;add(val);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(logk)</li>
+<li>空间复杂度：O(k)</li>
+</ul>
+<p><img src="/2024/05/19/posts/LCR059/image.png" srcset="/img/loading.gif" lazyload alt="LCR059结果"></p>
+<h2 id="LCR060-前K个高频元素"><a href="#LCR060-前K个高频元素" class="headerlink" title="LCR060.前K个高频元素"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/g5c51o/description/">LCR060.前K个高频元素</a></h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>首先使用哈希表存储元素及其出现的次数，然后遍历每一个频次，建立最小堆。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">cmp</span>&#123;<br>        <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span> <span class="hljs-params">(<span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&amp; a, <span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&amp; b)</span></span>&#123;<br>            <span class="hljs-keyword">return</span> a.second &gt; b.second;<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">topKFrequent</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>        <span class="hljs-comment">// 存储至哈希表</span><br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; hash;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++)&#123;<br>            hash[nums[i]]++;<br>        &#125;<br>        <span class="hljs-comment">// 根据哈希表建立大小为k的最小堆</span><br>        priority_queue&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;, vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt;, cmp&gt; minHeap;<br>        <span class="hljs-keyword">for</span>( <span class="hljs-keyword">auto</span> it = hash.<span class="hljs-built_in">begin</span>(); it != hash.<span class="hljs-built_in">end</span>(); it++)&#123;<br>            <span class="hljs-keyword">if</span>(minHeap.<span class="hljs-built_in">size</span>() &lt; k)&#123;<br>                minHeap.<span class="hljs-built_in">push</span>(*it);<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(it-&gt;second &gt; minHeap.<span class="hljs-built_in">top</span>().second)&#123;<br>                minHeap.<span class="hljs-built_in">pop</span>();<br>                minHeap.<span class="hljs-built_in">push</span>(*it);<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 返回结果</span><br>        vector&lt;<span class="hljs-type">int</span>&gt; res;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++)&#123;<br>            <span class="hljs-type">int</span> cur = minHeap.<span class="hljs-built_in">top</span>().first;<br>            res.<span class="hljs-built_in">push_back</span>(cur);<br>            minHeap.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>        <br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：假设输入数组的长度为n。在大小为k的堆中进行添加或删除操作的时间复杂度是O（logk），因此上述代码的时间复杂度是O（nlogk）。</li>
+<li>空间复杂度：上述代码需要一个大小为O（n）的哈希表，以及一个大小为O（k）的最小堆，因此总的空间复杂度是O（n）。</li>
+</ul>
+<p><img src="/2024/05/19/posts/LCR059/image-1.png" srcset="/img/loading.gif" lazyload alt="LCR060结果"></p>
+<h2 id="LCR061-查找和最小的k对数字"><a href="#LCR061-查找和最小的k对数字" class="headerlink" title="LCR061.查找和最小的k对数字"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/qn8gGX/description/">LCR061.查找和最小的k对数字</a></h2><h3 id="最大堆"><a href="#最大堆" class="headerlink" title="最大堆"></a>最大堆</h3><p>这个题目要求找出和最小的k个数对。可以用最大堆来存储这k个和最小的数对。逐一将m×n个数对添加到最大堆中。当堆中的数对的数目小于k时，直接将数对添加到堆中。如果堆中已经有k个数对，那么先要比较待添加的数对之和及堆顶的数对之和（也是堆中最大的数对之和）。如果待添加的数对之和大于或等于堆顶的数对之和，那么堆中的k个数对之和都小于或等于待添加的数对之和，因此待添加的数对可以忽略。如果待添加的数对之和小于堆顶的数对之和，那么删除堆顶的数对，并将待添加的数对添加到堆中，这样可以确保堆中存储的是和最小的k个数对。每次都是将待添加的数对与堆中和最大的数对进行比较，而这也是用最大堆的原因。</p>
+<p>接下来考虑如何优化。题目给出的条件是输入的两个数组都是递增排序的，这个特性我们还没有用到。如果从第1个数组中选出第k+1个数字和第2个数组中的某个数字组成数对p，那么该数对之和一定不是和最小的k个数对中的一个，这是因为第1个数组中的前k个数字和第2个数组中的同一个数字组成的k个数对之和都要小于数对p之和。因此，不管输入的数组nums1有多长，最多只需要考虑前k个数字。同理，不管输入的数组nums2有多长，最多也只需要考虑前k个数字。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">cmp</span>&#123;<br>        <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span> <span class="hljs-params">(<span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&amp; a, <span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&amp; b)</span></span>&#123;<br>            <span class="hljs-keyword">return</span> (<span class="hljs-type">long</span>)(a.first + a.second) &lt; (<span class="hljs-type">long</span>)(b.first + b.second);<br>        &#125;<br>    &#125;;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">kSmallestPairs</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums1, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums2, <span class="hljs-type">int</span> k) &#123;<br>        priority_queue&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;, vector&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&gt;, cmp&gt; heap;  <span class="hljs-comment">// 最大堆</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k &amp;&amp; i &lt; nums1.<span class="hljs-built_in">size</span>(); i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; k &amp;&amp; j &lt; nums2.<span class="hljs-built_in">size</span>(); j++)&#123;<br>                <span class="hljs-keyword">if</span>(heap.<span class="hljs-built_in">size</span>() &lt; k)&#123;<br>                    heap.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pair</span>&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;(nums1[i],nums2[j]));<br>                &#125;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums1[i] + nums2[j] &lt; heap.<span class="hljs-built_in">top</span>().first + heap.<span class="hljs-built_in">top</span>().second)&#123;<br>                    heap.<span class="hljs-built_in">pop</span>();<br>                    heap.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pair</span>&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;(nums1[i],nums2[j]));<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 输出结果</span><br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; res;<br>        <span class="hljs-keyword">while</span>(!heap.<span class="hljs-built_in">empty</span>())&#123;<br>            <span class="hljs-keyword">auto</span> it = heap.<span class="hljs-built_in">top</span>();<br>            vector&lt;<span class="hljs-type">int</span>&gt; cur;<br>            cur.<span class="hljs-built_in">push_back</span>(it.first);<br>            cur.<span class="hljs-built_in">push_back</span>(it.second);<br>            res.<span class="hljs-built_in">push_back</span>(cur);<br>            heap.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>时间复杂度：上述代码有两个相互嵌套的for循环，每个循环最多执行k次。在循环体内可能在最大堆中进行添加或删除操作，由于最大堆中最多包含k个元素，因此添加、删除操作的时间复杂都是$O(logk)$。这两个for循环的时间复杂度是$O(k^2logk)$。另外，上述代码还有一个while循环，它逐一从最大堆中删除元素并将对应的数对添加到链表中，这个while循环的时间复杂度是O(klogk)。因此，上述代码总的时间复杂度是$O(k^2logk)$。</li>
+<li>空间复杂度：$O(k)$</li>
+</ul>
+<p><img src="/2024/05/19/posts/LCR059/image-2.png" srcset="/img/loading.gif" lazyload alt="LCR061最大堆结果"></p>
+<h3 id="最小堆"><a href="#最小堆" class="headerlink" title="最小堆"></a>最小堆</h3><p>首先将nums1中的前k个元素与nums2的第一个元素组成的数对依次加入到堆中。这样做是为了初始化堆，确保堆中包含了每个nums1元素与nums2第一个元素组成的数对。然后进行循环处理，每次取出堆顶元素（当前和最小的数对），将其加入结果数组中，并将堆顶元素的索引往后移动一位，如果不超过nums2的范围，则将其加入堆中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// 找到两个已排序数组中的 k 个最小对</span><br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">kSmallestPairs</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums1, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums2, <span class="hljs-type">int</span> k) &#123;<br>        <span class="hljs-comment">// 处理特殊情况：数组为空或 k 非正数</span><br>        <span class="hljs-keyword">if</span> (nums1.<span class="hljs-built_in">empty</span>() || nums2.<span class="hljs-built_in">empty</span>() || k &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> &#123;&#125;;<br>        &#125;<br><br>        <span class="hljs-comment">// Lambda 函数，根据对的和进行比较</span><br>        <span class="hljs-keyword">auto</span> compare = [&amp;](<span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&amp; a, <span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&amp; b) &#123;<br>            <span class="hljs-built_in">return</span> (nums1[a.first] + nums2[a.second]) &gt; (nums1[b.first] + nums2[b.second]);<br>        &#125;;<br><br>        <span class="hljs-comment">// 优先队列用于维护 k 个最小对，使用自定义比较函数进行初始化</span><br>        priority_queue&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;, vector&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&gt;, <span class="hljs-keyword">decltype</span>(compare)&gt; <span class="hljs-built_in">heap</span>(compare);<br><br>        <span class="hljs-comment">// 初始化优先队列，将 nums1 和 nums2 的开始元素组成的对加入队列</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums1.<span class="hljs-built_in">size</span>() &amp;&amp; i &lt; k; i++)&#123;<br>            heap.<span class="hljs-built_in">push</span>(&#123;i, <span class="hljs-number">0</span>&#125;);<br>        &#125;<br><br>        <span class="hljs-comment">// 从队列中提取对，直到找到 k 个最小对为止</span><br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; res;<br>        <span class="hljs-keyword">while</span>(!heap.<span class="hljs-built_in">empty</span>() &amp;&amp; res.<span class="hljs-built_in">size</span>() &lt; k)&#123;<br>            <span class="hljs-keyword">auto</span> ids = heap.<span class="hljs-built_in">top</span>();<br>            heap.<span class="hljs-built_in">pop</span>();<br>            res.<span class="hljs-built_in">push_back</span>(&#123;nums1[ids.first], nums2[ids.second]&#125;);<br><br>            <span class="hljs-comment">// 如果仍有 nums2 中的下一个元素，将下一个对加入优先队列</span><br>            <span class="hljs-keyword">if</span>(ids.second &lt; nums2.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>)&#123;<br>                heap.<span class="hljs-built_in">push</span>(&#123;ids.first, ids.second + <span class="hljs-number">1</span>&#125;);<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>decltype 是一个 C++ 关键字，用于获取某个表达式的类型。在这里，decltype(compare) 取得的类型就是 compare 这个 lambda 函数的类型。所以 decltype(compare)&gt; 实际上是告诉编译器我们要使用 compare 这个类型的比较函数来对优先队列中的元素进行比较。</p>
+<ul>
+<li>时间复杂度：上述代码先用一个for循环构建一个大小为k的最小堆，该循环的时间复杂度是O（klogk）。接下来是一个执行k次的while循环，每次对大小为k的最小堆进行添加或删除操作，因此这个while循环的时间复杂度也是O（klogk）。上述代码总的时间复杂度为O（klogk）。</li>
+<li>空间复杂度：O(k)</li>
+</ul>
+<p><img src="/2024/05/19/posts/LCR059/image-3.png" srcset="/img/loading.gif" lazyload alt="LCR061最小堆结果"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本章介绍了堆这种数据结构。堆又可以分成最大堆和最小堆。在最大堆中最大值总是位于堆顶，在最小堆中最小值总是位于堆顶。因此，在堆中只需要O（1）的时间就能得到堆中的最大值或最小值。</p>
+<p>堆经常用来解决在数据集合中找出k个最大值或最小值相关的问题。通常用最大堆找出数据集合中的k个最小值，用最小堆找出数据集合中的k个最大值。</p>
+<blockquote>
+<p>[!WARNING]</p>
+<p>题目都是用priority_queue来做的，以后要补一下最大堆最小堆的具体实现。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%A0%86/" class="category-chain-item">堆</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%91%E6%8C%87Offer/" class="print-no-link">#剑指Offer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LCR059-LCR061堆的应用</div>
+      <div>http://example.com/2024/05/19/posts/LCR059/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xuan Yang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/22/posts/LCR062/" title="LCR062-LCR067前缀树">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LCR062-LCR067前缀树</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/17/posts/LCR057/" title="LCR057-LCR058TreeSet和TreeMap的应用">
+                        <span class="hidden-mobile">LCR057-LCR058TreeSet和TreeMap的应用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","appKey":"ZYfWA3PVOj4XQS3vAPi7u4IA","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

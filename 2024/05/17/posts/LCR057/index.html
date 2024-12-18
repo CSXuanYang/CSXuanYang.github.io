@@ -1,0 +1,795 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.webp">
+  <link rel="icon" href="/img/icon.webp">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xuan Yang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="剑指offer（专项突破版）8.4 TreeSet和TreeMap的应用LCR057.存在重复元素暴力解法可以逐一扫描数组中的每个数字。对于每个数字nums[i]，需要逐一检查在它前面的k个数字是否存在从nums[i]-t到nums[i]+t的范围内的数字。如果存在，则返回true。这种思路很容易用两个嵌套的循环实现。 12345678910111213141516class Solution &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCR057-LCR058TreeSet和TreeMap的应用">
+<meta property="og:url" content="http://example.com/2024/05/17/posts/LCR057/index.html">
+<meta property="og:site_name" content="任我行">
+<meta property="og:description" content="剑指offer（专项突破版）8.4 TreeSet和TreeMap的应用LCR057.存在重复元素暴力解法可以逐一扫描数组中的每个数字。对于每个数字nums[i]，需要逐一检查在它前面的k个数字是否存在从nums[i]-t到nums[i]+t的范围内的数字。如果存在，则返回true。这种思路很容易用两个嵌套的循环实现。 12345678910111213141516class Solution &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/05/17/posts/LCR057/image.png">
+<meta property="og:image" content="http://example.com/2024/05/17/posts/LCR057/image-1.png">
+<meta property="og:image" content="http://example.com/2024/05/17/posts/LCR057/image-2.png">
+<meta property="article:published_time" content="2024-05-17T01:38:59.000Z">
+<meta property="article:modified_time" content="2024-05-18T11:58:30.240Z">
+<meta property="article:author" content="Xuan Yang">
+<meta property="article:tag" content="剑指Offer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/05/17/posts/LCR057/image.png">
+  
+  
+  
+  <title>LCR057-LCR058TreeSet和TreeMap的应用 - 任我行</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","app_key":"ZYfWA3PVOj4XQS3vAPi7u4IA","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>任我行</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/wallpapers/">
+                <i class="iconfont icon-images"></i>
+                <span>壁纸</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/messi04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LCR057-LCR058TreeSet和TreeMap的应用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-17 09:38" pubdate>
+          2024年5月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LCR057-LCR058TreeSet和TreeMap的应用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="剑指offer（专项突破版）8-4-TreeSet和TreeMap的应用"><a href="#剑指offer（专项突破版）8-4-TreeSet和TreeMap的应用" class="headerlink" title="剑指offer（专项突破版）8.4 TreeSet和TreeMap的应用"></a>剑指offer（专项突破版）8.4 TreeSet和TreeMap的应用</h1><h2 id="LCR057-存在重复元素"><a href="#LCR057-存在重复元素" class="headerlink" title="LCR057.存在重复元素"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/7WqeDu/description/">LCR057.存在重复元素</a></h2><h3 id="暴力解法"><a href="#暴力解法" class="headerlink" title="暴力解法"></a>暴力解法</h3><p>可以逐一扫描数组中的每个数字。对于每个数字nums[i]，需要逐一检查在它前面的k个数字是否存在从nums[i]-t到nums[i]+t的范围内的数字。如果存在，则返回true。这种思路很容易用两个嵌套的循环实现。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">containsNearbyAlmostDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k, <span class="hljs-type">int</span> t)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-comment">// 暴力解法，双重循环</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            <span class="hljs-type">int</span> j = i-k &gt;= <span class="hljs-number">0</span> ? i-k : <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(; j &lt; i; j++)&#123;<br>                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>((<span class="hljs-type">long</span>)nums[i] - (<span class="hljs-type">long</span>)nums[j]) &lt;= t)&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>上面的代码在计算<code>abs((long)nums[i] - (long)nums[j]</code>时要把<code>int</code>转为<code>long</code>，在输入为<code>[-2147483648,2147483647]</code>时会发生溢出。</p>
+<ul>
+<li>时间复杂度：由于数组中的每个数字都要和k个数字进行比较，如果数组的长度为n，那么这种解法的时间复杂度是O（nk）。这种解法会超出时间限制。</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h3 id="set解法"><a href="#set解法" class="headerlink" title="set解法"></a>set解法</h3><p>在暴力解法中其实一直在寻找是否存在落在 [nums[i] - t, nyms[i] + t] 的数，这个过程可以用平衡的二叉搜索树来加速，平衡的二叉树的搜索时间复杂度为 O(logk)。在 C+++ STL 中 set 和 map 属于关联容器，其内部由红黑树实现，红黑树是平衡二叉树的一种优化实现，其搜索时间复杂度也为 O(logk)。逐次扫码数组，对于每个数字 nums[i]，当前的 set 应该由其前 k 个数字组成，可以 lower_bound 函数可以从 set 中找到符合大于等于 nums[i] - t 的最小的数，若该数存在且小于等于 nums[i] + t，则找到了符合要求的一对数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">containsNearbyAlmostDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k, <span class="hljs-type">int</span> t)</span> </span>&#123;<br>        set&lt;<span class="hljs-type">int</span>&gt; treeSet;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;nums.<span class="hljs-built_in">size</span>(); i++)&#123;<br>            <span class="hljs-comment">// 防止溢出</span><br>            <span class="hljs-type">int</span> lowerLimit = <span class="hljs-built_in">max</span>(nums[i], INT_MIN + t) - t;<br>            <span class="hljs-type">int</span> upperLimit = <span class="hljs-built_in">min</span>(nums[i], INT_MAX - t) + t;<br>            <span class="hljs-comment">// 找到其中大于等于nums[i]-t的最小的数</span><br>            <span class="hljs-keyword">auto</span> it = treeSet.<span class="hljs-built_in">lower_bound</span>(lowerLimit);<br>            <span class="hljs-keyword">if</span>(it != treeSet.<span class="hljs-built_in">end</span>() &amp;&amp; *it &lt;= upperLimit)&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>            <span class="hljs-comment">// 否则把当前元素放入set中</span><br>            treeSet.<span class="hljs-built_in">insert</span>(nums[i]);<br>            <span class="hljs-comment">// 删除索引差大于k的元素</span><br>            <span class="hljs-keyword">if</span>(i &gt;= k)&#123;<br>                treeSet.<span class="hljs-built_in">erase</span>(nums[i-k]);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：做查找、添加和删除操作的时间复杂度都是O（logk），因此对于一个长度为n的数组而言，它的时间复杂度是O（nlogk）。</li>
+<li>空间复杂度：treeSet，它的大小是k，因此空间复杂度是O（k）。</li>
+</ul>
+<p><img src="/2024/05/17/posts/LCR057/image.png" srcset="/img/loading.gif" lazyload alt="LCR057set解法结果"></p>
+<h3 id="桶解法"><a href="#桶解法" class="headerlink" title="桶解法"></a>桶解法</h3><p>换一种思路考虑该问题，因为题目只关心的是差的绝对值小于等于 t 的数字，这时候容易联想到桶，可以把数字放进若干个大小为 t + 1 的桶内，这样的好处是一个桶内的数字绝对值差肯定小于等于 t。对于桶的标号进行说明，例如 [0, t] 放进编号为 0 的桶内，[t + 1, 2t + 1] 放进编号为 1 的桶内，对于负数，则 [-t - 1, -1] 放进编号为 -1 的桶内，[-2t - 2, -t - 2] 编号为 -2 的桶内，可以发现桶</p>
+<p>n &gt;&#x3D; 0 : ID &#x3D; n &#x2F; (t + 1);<br>n &lt; 0 : ID &#x3D; (n + 1) &#x2F; (t + 1) - 1;<br>另外需要一个哈希表保存扫描到数字的前 k 个数字的桶的编号，key → val 为 ID → num。在算法中依次扫描数组，扫描到 nums[i]，首先得到 nums[i] 的桶ID，先查询前 k 个数字中是否也有在 ID 桶内的数字，如果存在则该数字与 nums[i] 的差的绝对值肯定小于等于 t。另外若不存在，则需要查询 ID - 1 和 ID + 1 内的桶，因为也有可能存在与 nums[i] 的差绝对值差小于等于 t 的数字，但是这两个桶内的数字若存在还需要验证是否与 nums[i] 的差的绝对值小于等于 t。只要依次检查这三个桶即可，因为其他桶内的数字肯定不符合要求。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">containsNearbyAlmostDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k, <span class="hljs-type">int</span> t)</span> </span>&#123;<br>        <span class="hljs-comment">// 哈希表记录桶的编号和数字值</span><br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; hash;<br>        <span class="hljs-comment">// 初始化桶大小为t+1</span><br>        <span class="hljs-type">long</span> bucketSize = (<span class="hljs-type">long</span>)t + <span class="hljs-number">1</span>;<br>        <span class="hljs-comment">// 遍历每一个数字</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++)&#123;<br>            <span class="hljs-comment">// 计算桶序号</span><br>            <span class="hljs-type">int</span> ID = <span class="hljs-built_in">getBucketID</span>(nums[i], bucketSize);<br>            <span class="hljs-comment">// 在当前桶、相邻桶中查找是否有元素，有就直接返回true</span><br>            <span class="hljs-keyword">if</span>(hash.<span class="hljs-built_in">count</span>(ID) <br>            || (hash.<span class="hljs-built_in">count</span>(ID<span class="hljs-number">-1</span>) &amp;&amp; <span class="hljs-built_in">min</span>(INT_MAX-t, hash[ID<span class="hljs-number">-1</span>])+t &gt;= nums[i]) <br>            || (hash.<span class="hljs-built_in">count</span>(ID+<span class="hljs-number">1</span>) &amp;&amp; <span class="hljs-built_in">max</span>(INT_MIN+t, hash[ID+<span class="hljs-number">1</span>])-t &lt;= nums[i]))&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>            <span class="hljs-comment">// 否则把数字放到桶中</span><br>            hash[ID] = nums[i];<br>            <span class="hljs-comment">// 如果当前索引大于k需要删除索引差大于k的桶</span><br>            <span class="hljs-keyword">if</span>(i &gt;= k)&#123;<br>                hash.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">getBucketID</span>(nums[i-k], bucketSize));<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-comment">// 获取桶编号</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getBucketID</span><span class="hljs-params">(<span class="hljs-type">int</span> num, <span class="hljs-type">long</span> size)</span></span>&#123;<br>        <span class="hljs-keyword">return</span> (num &gt;=<span class="hljs-number">0</span> ) ? num / size : (num+<span class="hljs-number">1</span>) / size - <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：哈希表中的查找、添加和删除操作的时间复杂度都是O（1），因此，对于一个长度为n的数组而言，它的时间复杂度是O（n）。</li>
+<li>空间复杂度：哈希表的大小是k，因此，空间复杂度是O（k）。</li>
+</ul>
+<p><img src="/2024/05/17/posts/LCR057/image-1.png" srcset="/img/loading.gif" lazyload alt="LCR057桶解法结果"></p>
+<h2 id="LCR058-日程表"><a href="#LCR058-日程表" class="headerlink" title="LCR058.日程表"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fi9suh/description/">LCR058.日程表</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>如果需要添加的时间区间是<code>[m, n)</code>，就需要找出开始时间小于 m 的所有事项中开始最晚的一个（即图中时间段 2），以及开始时间大于 m 的所有事项中开始最早的一个（即图中的时间段 3）。如果待添加的时间段与这两个时间段无冲突，则可以添加入日程表中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyCalendar</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; table;<br>    <span class="hljs-built_in">MyCalendar</span>() &#123;<br><br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span> </span>&#123;<br>        <span class="hljs-comment">// 找到第一个不小于 start 的元素</span><br>        <span class="hljs-keyword">auto</span> low = table.<span class="hljs-built_in">lower_bound</span>(start);<br>        <br>        <span class="hljs-comment">// 检查与上一个事件是否重叠</span><br>        <span class="hljs-keyword">if</span> (low != table.<span class="hljs-built_in">begin</span>() &amp;&amp; (--low)-&gt;second &gt; start) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <br>        <span class="hljs-comment">// 检查与下一个事件是否重叠</span><br>        low = table.<span class="hljs-built_in">lower_bound</span>(start);<br>        <span class="hljs-keyword">if</span> (low != table.<span class="hljs-built_in">end</span>() &amp;&amp; low-&gt;first &lt; end) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 如果不重叠，则添加到日历</span><br>        table[start] = end;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your MyCalendar object will be instantiated and called as such:</span><br><span class="hljs-comment"> * MyCalendar* obj = new MyCalendar();</span><br><span class="hljs-comment"> * bool param_1 = obj-&gt;book(start,end);</span><br><span class="hljs-comment"> */</span><br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(logn)</li>
+<li>空间复杂度：O(n)</li>
+</ul>
+<p><img src="/2024/05/17/posts/LCR057/image-2.png" srcset="/img/loading.gif" lazyload alt="LCR058结果"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本章介绍了树这种数据结构，尤其着重介绍了二叉树。与二叉树相关的面试题大多与遍历相关，本章通过大量的面试题全面介绍了二叉树的中序遍历、前序遍历和后序遍历这3种深度优先搜索算法。笔者强烈建议读者对这3种遍历的循环和递归代码烂熟于心，这样在解决与二叉树相关的面试题时才能得心应手。</p>
+<p>二叉搜索树是一种特殊的二叉树，在二叉搜索树中进行搜索、添加和删除操作的平均时间复杂度都是O（logn）。如果按照中序遍历的顺序遍历一棵二叉搜索树，那么按照从小到大的顺序依次遍历每个节点。由于这个特性，与二叉搜索树相关的很多面试题都适合使用中序遍历解决。</p>
+<p>Java中提供的TreeSet和TreeMap（C++中为<code>set</code>和<code>map</code>）这两种数据结构实现了平衡二叉搜索树。如果需要动态地在一个排序的数据集合中添加元素，或者需要根据数据的大小查找，那么可以使用TreeSet或TreeMap解决。</p>
+<blockquote>
+<p>[!WARNING]<br>题目都是用STL自带的数据结构实现的，对于二叉搜索树、二叉平衡树、红黑树等等还不熟悉，待日后补充。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E6%A0%91/" class="category-chain-item">树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%91%E6%8C%87Offer/" class="print-no-link">#剑指Offer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LCR057-LCR058TreeSet和TreeMap的应用</div>
+      <div>http://example.com/2024/05/17/posts/LCR057/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xuan Yang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/19/posts/LCR059/" title="LCR059-LCR061堆的应用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LCR059-LCR061堆的应用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/14/posts/LCR052/" title="LCR052-LCR056二叉搜索树">
+                        <span class="hidden-mobile">LCR052-LCR056二叉搜索树</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","appKey":"ZYfWA3PVOj4XQS3vAPi7u4IA","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

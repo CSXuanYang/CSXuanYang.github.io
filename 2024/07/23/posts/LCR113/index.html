@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.webp">
+  <link rel="icon" href="/img/icon.webp">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Xuan Yang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="剑指offer（专项突破版）15.3 拓扑排序LCR113.课程排序分析将课程看成图中的节点，如果两门课程存在先修顺序那么它们在图中对应的节点之间存在一条从先修课程到后修课程的边，因此这是一个有向图。 对有向图进行拓扑排序的算法是每次找出一个入度为0的节点添加到序列中，然后删除该节点及所有以该节点为起点的边。重复这个过程，直到图为空或图中不存在入度为0的节点。 123456789101112131">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCR113-LCR115拓扑排序">
+<meta property="og:url" content="http://example.com/2024/07/23/posts/LCR113/index.html">
+<meta property="og:site_name" content="任我行">
+<meta property="og:description" content="剑指offer（专项突破版）15.3 拓扑排序LCR113.课程排序分析将课程看成图中的节点，如果两门课程存在先修顺序那么它们在图中对应的节点之间存在一条从先修课程到后修课程的边，因此这是一个有向图。 对有向图进行拓扑排序的算法是每次找出一个入度为0的节点添加到序列中，然后删除该节点及所有以该节点为起点的边。重复这个过程，直到图为空或图中不存在入度为0的节点。 123456789101112131">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-23T01:25:22.000Z">
+<meta property="article:modified_time" content="2024-07-23T07:04:27.250Z">
+<meta property="article:author" content="Xuan Yang">
+<meta property="article:tag" content="剑指Offer">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>LCR113-LCR115拓扑排序 - 任我行</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","app_key":"ZYfWA3PVOj4XQS3vAPi7u4IA","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>任我行</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/wallpapers/">
+                <i class="iconfont icon-images"></i>
+                <span>壁纸</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/messi04.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LCR113-LCR115拓扑排序"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-23 09:25" pubdate>
+          2024年7月23日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LCR113-LCR115拓扑排序</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="剑指offer（专项突破版）15-3-拓扑排序"><a href="#剑指offer（专项突破版）15-3-拓扑排序" class="headerlink" title="剑指offer（专项突破版）15.3 拓扑排序"></a>剑指offer（专项突破版）15.3 拓扑排序</h1><h2 id="LCR113-课程排序"><a href="#LCR113-课程排序" class="headerlink" title="LCR113.课程排序"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/QA2IGt/">LCR113.课程排序</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>将课程看成图中的节点，如果两门课程存在先修顺序那么它们在图中对应的节点之间存在一条从先修课程到后修课程的边，因此这是一个有向图。</p>
+<p>对有向图进行拓扑排序的算法是每次找出一个入度为0的节点添加到序列中，然后删除该节点及所有以该节点为起点的边。重复这个过程，直到图为空或图中不存在入度为0的节点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">findOrder</span><span class="hljs-params">(<span class="hljs-type">int</span> numCourses, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;<br>        <span class="hljs-comment">// 构建有向图，键是先修课程，它的值是必须在键对应的课程之后学习的所有课程</span><br>        unordered_map&lt;<span class="hljs-type">int</span>, vector&lt;<span class="hljs-type">int</span>&gt;&gt; hashmap;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; numCourses; i++)&#123;<br>            vector&lt;<span class="hljs-type">int</span>&gt; temp;<br>            hashmap[i] = temp;<br>        &#125;<br>        <span class="hljs-comment">// 初始化图和入度数组</span><br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">inDegree</span><span class="hljs-params">(numCourses, <span class="hljs-number">0</span>)</span></span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; preq : prerequisites)&#123;<br>            hashmap[preq[<span class="hljs-number">1</span>]].<span class="hljs-built_in">push_back</span>(preq[<span class="hljs-number">0</span>]);<br>            inDegree[preq[<span class="hljs-number">0</span>]]++;<br>        &#125;<br>        <span class="hljs-comment">// 定义队列，并把入度为0的加入到队列中</span><br>        queue&lt;<span class="hljs-type">int</span>&gt; que;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; numCourses; i++)&#123;<br>            <span class="hljs-keyword">if</span>(inDegree[i] == <span class="hljs-number">0</span>)&#123;<br>                que.<span class="hljs-built_in">push</span>(i);<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 定义数组，不断加入删除的节点</span><br>        vector&lt;<span class="hljs-type">int</span>&gt; order;<br>        <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>())&#123;<br>            <span class="hljs-type">int</span> course = que.<span class="hljs-built_in">front</span>();<br>            que.<span class="hljs-built_in">pop</span>();<br>            order.<span class="hljs-built_in">push_back</span>(course);<br>            <span class="hljs-comment">// 删除course，即对于course出发的节点，入度-1</span><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> next : hashmap[course])&#123;<br>                inDegree[next]--;<br>                <span class="hljs-keyword">if</span>(inDegree[next] == <span class="hljs-number">0</span>)&#123;<br>                    que.<span class="hljs-built_in">push</span>(next);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 判断最后的图是否为空</span><br>        <span class="hljs-keyword">return</span> order.<span class="hljs-built_in">size</span>() == numCourses ? order : <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;();<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(v+e)</li>
+<li>空间复杂度：O(v+e)</li>
+</ul>
+<h2 id="LCR114-火星词典"><a href="#LCR114-火星词典" class="headerlink" title="LCR114.火星词典"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/Jf1JuT/description/">LCR114.火星词典</a></h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>如果已知两个字母的大小关系，那么图中就有一条从较小的字母指向较大的字母的边。如果能够得出该有向图的拓扑排序序列，那么任意一条边的起始节点（较小的字母）在拓扑排序序列中一定出现在终止节点（较大的字母）的前面。因此，这个问题实质上一个关于拓扑排序的问题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">string <span class="hljs-title">alienOrder</span><span class="hljs-params">(vector&lt;string&gt;&amp; words)</span> </span>&#123;<br>        <span class="hljs-comment">// 定义图，键是字符，值是所有大于它的字符</span><br>        unordered_map&lt;<span class="hljs-type">char</span>, unordered_set&lt;<span class="hljs-type">char</span>&gt;&gt; graph;<br>        <span class="hljs-comment">// 定义入度哈希表，键是字符，值是入度值</span><br>        unordered_map&lt;<span class="hljs-type">char</span>, <span class="hljs-type">int</span>&gt; inDegree;<br>        <span class="hljs-comment">// 初始化</span><br>        <span class="hljs-keyword">for</span>(string word : words)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">char</span> ch : word)&#123;<br>                unordered_set&lt;<span class="hljs-type">char</span>&gt; temp;<br>                graph[ch] = temp;<br>                inDegree[ch] = <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 对于每个单词</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; words.<span class="hljs-built_in">size</span>(); i++)&#123;<br>            string word1 = words[i<span class="hljs-number">-1</span>];<br>            string word2 = words[i];<br>            <span class="hljs-comment">// 如果w1&lt;w2，但word2是word1的前缀，说明没有符合的顺序</span><br>            <span class="hljs-keyword">if</span>(word1.<span class="hljs-built_in">size</span>() &gt; word2.<span class="hljs-built_in">size</span>() &amp;&amp; word1.<span class="hljs-built_in">substr</span>(<span class="hljs-number">0</span>, word2.<span class="hljs-built_in">size</span>()) == word2)&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>            &#125;<br>            <span class="hljs-comment">// 否则对于两个单词的每个字符</span><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; word1.<span class="hljs-built_in">size</span>() &amp;&amp; j &lt; word2.<span class="hljs-built_in">size</span>(); j++)&#123;<br>                <span class="hljs-type">char</span> ch1 = word1[j];<br>                <span class="hljs-type">char</span> ch2 = word2[j];<br>                <span class="hljs-comment">// 两个字符不相等，存在有向边</span><br>                <span class="hljs-keyword">if</span>(ch1 != ch2)&#123;<br>                    <span class="hljs-keyword">if</span>(!graph[ch1].<span class="hljs-built_in">count</span>(ch2))&#123;<br>                        <span class="hljs-comment">// 更新图和入度</span><br>                        graph[ch1].<span class="hljs-built_in">insert</span>(ch2);<br>                        inDegree[ch2]++;<br>                    &#125;<br>                    <span class="hljs-comment">// 后续字符不再需要比较</span><br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 定义队列，存放入度为0的字符</span><br>        queue&lt;<span class="hljs-type">char</span>&gt; que;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; kv : inDegree)&#123;<br>            <span class="hljs-keyword">if</span>(kv.second == <span class="hljs-number">0</span>)&#123;<br>                que.<span class="hljs-built_in">push</span>(kv.first);<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 拓扑排序</span><br>        string res = <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>())&#123;<br>            <span class="hljs-type">char</span> ch = que.<span class="hljs-built_in">front</span>();<br>            que.<span class="hljs-built_in">pop</span>();<br>            res += ch;<br>            <span class="hljs-comment">// 删除ch，从它出发的节点入度减一</span><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">char</span> next : graph[ch])&#123;<br>                inDegree[next]--;<br>                <span class="hljs-keyword">if</span>(inDegree[next] == <span class="hljs-number">0</span>)&#123;<br>                    que.<span class="hljs-built_in">push</span>(next);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res.<span class="hljs-built_in">size</span>() == graph.<span class="hljs-built_in">size</span>() ? res : <span class="hljs-string">&quot;&quot;</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：如果单词列表的长度为m，平均每个单词的长度为n，由于上述代码在构建有向图时需要扫描并比较每个字母，因此构建有向图的时间复杂度是O（mn）。该外星文的所有字母为英文字母。有向图中的节点为外星文的字母，最多只有26个，可以将其看成常数。最多根据单词列表words相邻的两个单词在图中添加一条边，所以边的数目是O（n）。于是，采用广度优先搜索的拓扑排序的时间复杂度是O（n）。综合来看，上述算法的总的时间复杂度是O（mn）。</li>
+<li>空间复杂度：O(mn)</li>
+</ul>
+<h2 id="LCR115-序列重建"><a href="#LCR115-序列重建" class="headerlink" title="LCR115.序列重建"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ur2n8P/description/">LCR115.序列重建</a></h2><h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>如果得到的是有向图的拓扑排序序列，那么任意一条边的起始节点在拓扑排序序列中一定位于终止节点的前面。因此，由seqs重建的序列就是由seqs构建的有向图的拓扑排序的序列。这个问题就转变成判断一个有向图的拓扑排序序列是否唯一。</p>
+<p>由于目标是判断图的拓扑排序序列是否唯一，而当某个时刻队列中的节点数目大于1时，就知道此时有多个入度为0的节点，那么按任意顺序排列这个入度为0的节点都能生成有效的拓扑排序序列，因此拓扑排序的序列不是唯一的。由此可知，只在队列的大小为1的时候重复添加入度为0的节点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">sequenceReconstruction</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; sequences)</span> </span>&#123;<br>        <span class="hljs-comment">// 定义图和入度</span><br>        unordered_map&lt;<span class="hljs-type">int</span>, unordered_set&lt;<span class="hljs-type">int</span>&gt;&gt; graph;<br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; inDegree;<br>        <br>        <span class="hljs-comment">// 初始化</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; seq : sequences)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num : seq)&#123;<br>                graph[num]; <span class="hljs-comment">// 确保每个数都有一个图节点</span><br>                inDegree[num] = <span class="hljs-number">0</span>; <span class="hljs-comment">// 初始化入度为0</span><br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-comment">// 对于每个数字，建立图关系</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; seq : sequences)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; seq.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i++)&#123;<br>                <span class="hljs-type">int</span> num1 = seq[i];<br>                <span class="hljs-type">int</span> num2 = seq[i+<span class="hljs-number">1</span>];<br>                <span class="hljs-keyword">if</span>(!graph[num1].<span class="hljs-built_in">count</span>(num2))&#123;<br>                    graph[num1].<span class="hljs-built_in">insert</span>(num2);<br>                    inDegree[num2]++;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-comment">// 定义队列并初始化</span><br>        queue&lt;<span class="hljs-type">int</span>&gt; que;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; kv : inDegree)&#123;<br>            <span class="hljs-keyword">if</span>(kv.second == <span class="hljs-number">0</span>)&#123;<br>                que.<span class="hljs-built_in">push</span>(kv.first);<br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-comment">// 拓扑排序</span><br>        vector&lt;<span class="hljs-type">int</span>&gt; res;<br>        <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>())&#123;<br>            <span class="hljs-keyword">if</span>(que.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// 如果队列中有多个元素，说明不是唯一的</span><br>            <span class="hljs-type">int</span> num = que.<span class="hljs-built_in">front</span>();<br>            que.<span class="hljs-built_in">pop</span>();<br>            res.<span class="hljs-built_in">push_back</span>(num);<br>            <span class="hljs-comment">// 对所有邻接节点</span><br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> next : graph[num])&#123;<br>                inDegree[next]--;<br>                <span class="hljs-keyword">if</span>(inDegree[next] == <span class="hljs-number">0</span>)&#123;<br>                    que.<span class="hljs-built_in">push</span>(next);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">vectorsAreEqual</span>(nums, res);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">vectorsAreEqual</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; v1, vector&lt;<span class="hljs-type">int</span>&gt;&amp; v2)</span> </span>&#123;<br>        <span class="hljs-comment">// 检查大小是否相同</span><br>        <span class="hljs-keyword">if</span> (v1.<span class="hljs-built_in">size</span>() != v2.<span class="hljs-built_in">size</span>()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-comment">// 利用 std::equal 比较元素</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">equal</span>(v1.<span class="hljs-built_in">begin</span>(), v1.<span class="hljs-built_in">end</span>(), v2.<span class="hljs-built_in">begin</span>());<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(v+e)</li>
+<li>空间复杂度：O(v+e)</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>拓扑排序是指对一个有向无环图的节点进行排序之后得到的序列。如果存在一条从节点A指向节点B的边，那么在拓扑排序的序列中节点A出现在节点B的前面。一个有向无环图可以有一个或多个拓扑排序序列，但无向图或有环的有向图都不存在拓扑排序。节点v的入度指的是以节点v为终点的边的数目，而节点v的出度是指以节点v为起点的边的数目。</p>
+<p>一种常用的拓扑排序算法是每次从有向无环图中取出一个入度为0的节点添加到拓扑排序序列之中，然后删除该节点及所有以它为起点的边。重复这个步骤，直到图为空或图中不存在入度为0的节点。如果最终图为空，那么图是有向无环图，此时就找到了该图的一个拓扑排序序列。如果最终图不为空并且已经不存在入度为0的节点，那么图中一定有环。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%9B%BE/" class="category-chain-item">图</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%91%E6%8C%87Offer/" class="print-no-link">#剑指Offer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LCR113-LCR115拓扑排序</div>
+      <div>http://example.com/2024/07/23/posts/LCR113/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xuan Yang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/25/posts/LCR116/" title="LCR116-LCR119并查集">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LCR116-LCR119并查集</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/08/posts/LCR105/" title="LCR105-LCR112图的搜索">
+                        <span class="hidden-mobile">LCR105-LCR112图的搜索</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"9I0dkcMbRtA2E3TDkI3ckjPh-MdYXbMMI","appKey":"ZYfWA3PVOj4XQS3vAPi7u4IA","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
