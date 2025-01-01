@@ -16,23 +16,24 @@
   <meta name="author" content="Xuan Yang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="致已经过去的2024和将要到来的20252024年又要过去了，一年又一年，去年的今天，和朋友一起去了沈阳跨年，今年是一个人咯，来回忆一下过去这一年吧。 元旦三天假去了沈阳，去了沈阳故宫、大帅府，还去滑雪。回来之后开始为自己争取一些权利，但是没有成功，并且度过了一段非常痛苦的日子。这里，我不想再过多地回忆这些，因为我能回忆到的，也只是无力、绝望。月底放假回家过年了，算是能够休整一段时间。 二月初，在">
+    <meta name="description" content="LeetCode 面试经典 150 题-双指针验证回文串双指针定义双指针指向首尾，left向右移动，right向左移动，如果遇到非字母数字字符，可以直接将其忽略，继续判断下一个字符，如果两指针所指字符都是字母数字字符且不相等，直接返回false，否则待两指针相遇，返回true。 12345678910111213141516171819202122232425class Solution &amp;#12">
 <meta property="og:type" content="article">
-<meta property="og:title" content="致已经过去的2024和将要到来的2025">
-<meta property="og:url" content="http://example.com/2024/12/31/diaries/20241231/index.html">
+<meta property="og:title" content="面试经典 150 题-双指针">
+<meta property="og:url" content="http://example.com/2025/01/01/posts/hot150-2/index.html">
 <meta property="og:site_name" content="任我行">
-<meta property="og:description" content="致已经过去的2024和将要到来的20252024年又要过去了，一年又一年，去年的今天，和朋友一起去了沈阳跨年，今年是一个人咯，来回忆一下过去这一年吧。 元旦三天假去了沈阳，去了沈阳故宫、大帅府，还去滑雪。回来之后开始为自己争取一些权利，但是没有成功，并且度过了一段非常痛苦的日子。这里，我不想再过多地回忆这些，因为我能回忆到的，也只是无力、绝望。月底放假回家过年了，算是能够休整一段时间。 二月初，在">
+<meta property="og:description" content="LeetCode 面试经典 150 题-双指针验证回文串双指针定义双指针指向首尾，left向右移动，right向左移动，如果遇到非字母数字字符，可以直接将其忽略，继续判断下一个字符，如果两指针所指字符都是字母数字字符且不相等，直接返回false，否则待两指针相遇，返回true。 12345678910111213141516171819202122232425class Solution &amp;#12">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-12-31T12:42:50.000Z">
-<meta property="article:modified_time" content="2024-12-31T15:04:09.090Z">
+<meta property="article:published_time" content="2025-01-01T01:35:46.000Z">
+<meta property="article:modified_time" content="2025-01-01T02:42:13.534Z">
 <meta property="article:author" content="Xuan Yang">
+<meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>致已经过去的2024和将要到来的2025 - 任我行</title>
+  <title>面试经典 150 题-双指针 - 任我行</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -237,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="致已经过去的2024和将要到来的2025"></span>
+            <span id="subtitle" data-typed-text="面试经典 150 题-双指针"></span>
           
         </div>
 
@@ -248,8 +249,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-31 20:42" pubdate>
-          2024年12月31日 晚上
+        <time datetime="2025-01-01 09:35" pubdate>
+          2025年1月1日 上午
         </time>
       </span>
     
@@ -260,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          2.6k 字
         
       </span>
     
@@ -271,7 +272,7 @@
         
         
         
-          11 分钟
+          22 分钟
         
       </span>
     
@@ -316,19 +317,46 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">致已经过去的2024和将要到来的2025</h1>
+            <h1 id="seo-header">面试经典 150 题-双指针</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="致已经过去的2024和将要到来的2025"><a href="#致已经过去的2024和将要到来的2025" class="headerlink" title="致已经过去的2024和将要到来的2025"></a>致已经过去的2024和将要到来的2025</h1><p>2024年又要过去了，一年又一年，去年的今天，和朋友一起去了沈阳跨年，今年是一个人咯，来回忆一下过去这一年吧。</p>
-<p>元旦三天假去了沈阳，去了沈阳故宫、大帅府，还去滑雪。回来之后开始为自己争取一些权利，但是没有成功，并且度过了一段非常痛苦的日子。这里，我不想再过多地回忆这些，因为我能回忆到的，也只是无力、绝望。月底放假回家过年了，算是能够休整一段时间。</p>
-<p>二月初，在过年的前夕，发生了梅西香港行事件，虽然它本应该称为“迈阿密香港行”。在此之前，我几乎从没在互联网上发表过评论，但这一次让我切切实实感受到自媒体是如何影响社会舆论，影响个体思考的。原来爱国已经变成这些人手中的赚钱工具，他们可以为了流量罔顾事实，可以给一个什么都没做的人扣上一顶帽子，然后用所谓的“证据”去证明自己的“观点”。这也让我反思，在过去那些社会事件中，我是否也有过不经思考而直接听信自媒体言论的时刻。</p>
-<p>三月、四月、五月、六月、七月、八月，我记不起自己具体做过什么，反正就是在学校，在实验室，一天又一天，重复的、枯燥的生活。哦对了，三月份和好朋友一起去现场看了世预赛，现场看比赛真的很不一样。7月15日，阿根廷又拿下了一次美洲杯冠军！八月中旬回家了两周，带妈妈和弟弟去安阳玩了两天，去看了曹操陵、岳飞庙、殷墟……然后这两周就这样飞快地过去了，我又回到了学校，开始了研二生活。八月底九月初去了大连，终于看了陈奕迅的演唱会！</p>
-<p>九月到现在，我终于能感受到自己做了点什么，而不是每天虚度光阴，陷入在痛苦又无意义的内耗中。我开始真正去做，而不是停留在想，当然还是有很多时候都在想。我看了《白日梦想家》，把《Stay Alive》设成了起床铃声，告诉自己不要想太多，专注当下去做就好。是的，只有每天都做了，在不断地做，才能缓解焦虑，同时也会慢慢感受到自己的进步。这个学期又要结束了，时间过得真的很快，我不想再去责怪自己过去的一年做错了多少事，养成了多少坏习惯，浪费了多少时间，因为在那个时候，我能挺过来，继续保持乐观向上的心态，已经很不容易了，不是吗？而且，也并不是一无所获的，我还写了几篇技术文章，拿到了稿费，这也是行动，不是吗？</p>
-<p>还有就是，我越来越发现，在经过孤独的本科四年后，我已经进入到享受孤独的状态。在和别人一起玩的时候，我根本感受不到快乐，我能感受到的就是空虚。我最快乐的时候就是没有ddl，自己一个人学东西也好，躺在床上也好，只要是按照自己的心情、自己的计划来，就能感受到快乐。和别人在一起，即使是很熟悉的朋友，我也会不知道该说什么，不知道该玩什么，感觉什么都没意思。</p>
-<p>好了，就不再对自己剖析太多了。那些社恐、讨好型人格、回避型依恋等等等等的心理疾病，或者说标签，我都希望自己能在行动中慢慢丢掉。我喜欢说，祝自己未来一切顺利，但是我知道，它不会一帆风顺的。但好在，只要我在行动，我就一定会成为比昨天更好的自己。就像14年的梅西不知道他会在21年拿到美洲杯、22年拿到世界杯那样，我能做的只有坚持，坚持学习，坚持张开嘴表达自己，坚持相信。</p>
-<p>加油，找到自己的25号底片！</p>
+                <h1 id="LeetCode-面试经典-150-题-双指针"><a href="#LeetCode-面试经典-150-题-双指针" class="headerlink" title="LeetCode 面试经典 150 题-双指针"></a>LeetCode 面试经典 150 题-双指针</h1><h2 id="验证回文串"><a href="#验证回文串" class="headerlink" title="验证回文串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-palindrome/submissions/?envType=study-plan-v2&envId=top-interview-150">验证回文串</a></h2><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p>定义双指针指向首尾，left向右移动，right向左移动，如果遇到非字母数字字符，可以直接将其忽略，继续判断下一个字符，如果两指针所指字符都是字母数字字符且不相等，直接返回false，否则待两指针相遇，返回true。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isPalindrome</span><span class="hljs-params">(String s)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> s.length();<br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-comment">// 跳过不合法字符</span><br>            <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; !Character.isLetterOrDigit(s.charAt(left))) &#123;<br>                left++;<br>            &#125;<br>            <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; !Character.isLetterOrDigit(s.charAt(right))) &#123;<br>                right--;<br>            &#125;<br>            <span class="hljs-comment">// 提前退出判断</span><br>            <span class="hljs-keyword">if</span> (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>            <span class="hljs-comment">// 移动指针</span><br>            left++;<br>            right--;<br>        &#125;<br>        <br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h2 id="判断子序列"><a href="#判断子序列" class="headerlink" title="判断子序列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/is-subsequence/?envType=study-plan-v2&envId=top-interview-150">判断子序列</a></h2><h3 id="双指针-1"><a href="#双指针-1" class="headerlink" title="双指针"></a>双指针</h3><p>定义分别指向s和t的枚举指针，如果当前两指针所指字符相等，则两指针可以右移，否则指向t的指针右移，直到相等或走到末尾，最后判断p1是否走到末尾。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isSubsequence</span><span class="hljs-params">(String s, String t)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> s.length();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> t.length();<br>        <span class="hljs-keyword">if</span> (m &gt; n) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">p1</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, p2 = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (p1 &lt; m &amp;&amp; p2 &lt; n) &#123;<br>            <span class="hljs-keyword">if</span> (s.charAt(p1) == t.charAt(p2)) &#123;<br>                p1++;<br>            &#125;<br>            p2++;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> p1 == m;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<p>进阶：</p>
+<p>如果有大量输入的 S，称作 S1, S2, … , Sk 其中 k &gt;&#x3D; 10亿，你需要依次检查它们是否为 T 的子序列。在这种情况下，你会怎样改变代码？</p>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><ol>
+<li>定义状态：构建一个长度为 n（t 的长度）的数组 dp[i][j]，该数组记录每个字符的下一个位置。</li>
+<li>状态转移：如果 t 中位置 i 的字符就是 j，那么 dp[i][j]&#x3D;i，否则 j 出现在位置 i+1 开始往后，即 dp[i][j]&#x3D;dp[i+1][j]，因此我们要倒过来进行动态规划，从后往前枚举 i。</li>
+<li>初始条件：dp[n][i] &#x3D; n，表示找不到字符。</li>
+<li>返回结果：对字符串s进行检索。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isSubsequence</span><span class="hljs-params">(String s, String t)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> s.length();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> t.length();<br>        <span class="hljs-keyword">if</span> (m &gt; n) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// 构建位置索引表，dp[i][c]表示从位置i开始，字符c的下一个位置</span><br>        <span class="hljs-type">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>][<span class="hljs-number">26</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">26</span>; i++) &#123;<br>            dp[n][i] = n;<br>        &#125;<br>        <span class="hljs-comment">// 填充dp数组，dp[i][c]表示从i开始，字符c的下一个出现位置</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">26</span>; j++) &#123;<br>                <span class="hljs-keyword">if</span> (t.charAt(i) == j + <span class="hljs-string">&#x27;a&#x27;</span>) &#123;<br>                    dp[i][j] = i;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    dp[i][j] = dp[i + <span class="hljs-number">1</span>][j];<br>                &#125;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 检索</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; m; i++) &#123;<br>            <span class="hljs-type">char</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> s.charAt(i);<br>            index = dp[index][c - <span class="hljs-string">&#x27;a&#x27;</span>];<br>            <span class="hljs-keyword">if</span> (index == n) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>            index++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：$O(n \cdot |\Sigma| + m)$</li>
+<li>空间复杂度：$O(n \cdot |\Sigma|)$，为动态规划数组的开销。</li>
+</ul>
+<h2 id="两数之和II-输入有序数组"><a href="#两数之和II-输入有序数组" class="headerlink" title="两数之和II-输入有序数组"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/?envType=study-plan-v2&envId=top-interview-150">两数之和II-输入有序数组</a></h2><h3 id="双指针-2"><a href="#双指针-2" class="headerlink" title="双指针"></a>双指针</h3><p>左右指针分别指向首尾，如果当前和大于target，右指针左移，如果小于target则左指针右移，如果相等直接返回。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] twoSum(<span class="hljs-type">int</span>[] numbers, <span class="hljs-type">int</span> target) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> numbers.length;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers[left] + numbers[right];<br>            <span class="hljs-keyword">if</span> (sum &gt; target) &#123;<br>                right--;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &lt; target) &#123;<br>                left++;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] &#123;left + <span class="hljs-number">1</span>, right + <span class="hljs-number">1</span>&#125;;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;-<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>&#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
 
                 
               </div>
@@ -347,8 +375,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%9A%8F%E6%89%8B%E8%AE%B0/" class="category-chain-item">随手记</a>
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="category-chain-item">算法笔记</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/%E5%8F%8C%E6%8C%87%E9%92%88/" class="category-chain-item">双指针</a>
+  
+  
+
   
 
       </span>
@@ -359,6 +394,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" class="print-no-link">#双指针</a>
+      
+    </div>
+  
 </div>
 
 
@@ -367,8 +409,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>致已经过去的2024和将要到来的2025</div>
-      <div>http://example.com/2024/12/31/diaries/20241231/</div>
+      <div>面试经典 150 题-双指针</div>
+      <div>http://example.com/2025/01/01/posts/hot150-2/</div>
     </div>
     <div class="license-meta">
       
@@ -380,7 +422,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月31日</div>
+          <div>2025年1月1日</div>
         </div>
       
       
@@ -412,18 +454,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/01/posts/hot150-2/" title="面试经典 150 题-双指针">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">面试经典 150 题-双指针</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/25/posts/hot150-1/" title="面试经典 150 题-数组/字符串">
-                        <span class="hidden-mobile">面试经典 150 题-数组/字符串</span>
+                      <a href="/2024/12/31/diaries/20241231/" title="致已经过去的2024和将要到来的2025">
+                        <span class="hidden-mobile">致已经过去的2024和将要到来的2025</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
