@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>面试经典 150 题-回溯</title>
+    <link href="/2025/02/15/posts/hot150-11/"/>
+    <url>/2025/02/15/posts/hot150-11/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="LeetCode-面试经典-150-题-回溯"><a href="#LeetCode-面试经典-150-题-回溯" class="headerlink" title="LeetCode 面试经典 150 题-回溯"></a>LeetCode 面试经典 150 题-回溯</h1><p>从今天开始练习ACM模式的题目，从牛客上找力扣对应或相似的题目。</p><h2 id="字符串组合"><a href="#字符串组合" class="headerlink" title="字符串组合"></a><a href="https://www.nowcoder.com/practice/837f4d04f5cb4f26a8215b2b95cc76a5?tpId=182&tqId=34795&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=/exam/oj?questionJobId=10&subTabName=online_coding_page&difficulty=undefined&judgeStatus=undefined&tags=&title=%E7%BB%84%E5%90%88">字符串组合</a></h2><h3 id="穷举"><a href="#穷举" class="headerlink" title="穷举"></a>穷举</h3><ol><li>使用treeset去重，重定义比较函数。</li><li>外层循环枚举字符串长度，内层循环枚举起始位置，加入集合。</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><br><br><span class="hljs-comment">// 注意类名必须为 Main, 不要有任何 package xxx 信息</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> in.nextLine();<br>        <span class="hljs-comment">// 用于存储所有的组合，使用Set来去重</span><br>        Set&lt;String&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>&lt;String&gt;()&#123;<br>            <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(String s1, String s2)</span> &#123;<br>                <span class="hljs-keyword">if</span> (s1.length() == s2.length()) &#123;<br>                    <span class="hljs-keyword">return</span> s1.compareTo(s2);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">return</span> s1.length() - s2.length();<br>                &#125;<br>            &#125;<br>        &#125;);<br>        <br>        <span class="hljs-comment">// 生成所有相邻字符的组合</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> s.length();<br>        <span class="hljs-comment">// 枚举字符串长度</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; len &lt;= n; len++) &#123;<br>            <span class="hljs-comment">// 枚举起始位置</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; start &lt;= n - len; start++) &#123;<br>                set.add(s.substring(start, start + len));<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 输出结果，以空格分隔</span><br>        System.out.println(String.join(<span class="hljs-string">&quot; &quot;</span>, set));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><ul><li>时间复杂度：生成所有字符串$O(n^2)$，排序$O(n^2 \log (n^2))$，因为最多生成$n^2$个字符串。</li><li>空间复杂度：$O(n^2)$</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法笔记</category>
+      
+      <category>回溯</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>回溯</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>面试经典 150 题-图</title>
     <link href="/2025/01/22/posts/hot150-10/"/>
     <url>/2025/01/22/posts/hot150-10/</url>
