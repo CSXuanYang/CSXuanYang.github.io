@@ -24,7 +24,7 @@
 <meta property="og:description" content="LeetCode 面试经典 150 题-位运算二进制求和位运算逐位相加，标记进位。 123456789101112131415161718192021222324252627class Solution &#123;    public String addBinary(String a, String b) &#123;        &#x2F;&#x2F; a是较长字符串        int m &#x3D; a.le">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-05T01:23:58.000Z">
-<meta property="article:modified_time" content="2025-03-05T02:29:36.893Z">
+<meta property="article:modified_time" content="2025-03-06T02:36:32.458Z">
 <meta property="article:author" content="Xuan Yang">
 <meta property="article:tag" content="位运算">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          3.9k 字
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          18 分钟
+          33 分钟
         
       </span>
     
@@ -365,6 +365,43 @@
 <li>时间复杂度：O(m)，m是1的个数。</li>
 <li>空间复杂度：O(1)</li>
 </ul>
+<h2 id="只出现一次的数字"><a href="#只出现一次的数字" class="headerlink" title="只出现一次的数字"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/single-number/description/?envType=study-plan-v2&envId=top-interview-150">只出现一次的数字</a></h2><h3 id="位运算-2"><a href="#位运算-2" class="headerlink" title="位运算"></a>位运算</h3><p>逐个异或，相同的数字异或结果为0，最后的结果就是只出现一次的数字。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">singleNumber</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>            ans ^= nums[i];<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h2 id="只出现一次的数字II"><a href="#只出现一次的数字II" class="headerlink" title="只出现一次的数字II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/single-number-ii/?envType=study-plan-v2&envId=top-interview-150">只出现一次的数字II</a></h2><h3 id="位运算-3"><a href="#位运算-3" class="headerlink" title="位运算"></a>位运算</h3><p>根据(0,0)-&gt;(0,1)-&gt;(1,0)-&gt;(0,0)-&gt;…，可以看出，如果a为1，则b需要变成0，否则就异或1，按照这个原则可以得出b &#x3D; (b ^ 1) &amp; ~a；b改变之后，就变成了(0,1)-&gt;(0,0)-&gt;(1,0)-&gt;(0,1)-&gt;…，可以看出，如果变化之后的b为1，那么a需要变成0，否则就异或1，这样就得出a &#x3D; (a ^ 1) &amp; ~b，a改变之后，就变成了(0,1)-&gt;(1,0)-&gt;(0,0)-&gt;(0,1)-&gt;…，和第一个流水线相比，向前走了一半，完成了一次变化。以上是x为1的情况，如果x为0，则希望a和b都不变，那么可以把a ^ 1和b ^ 1换成a ^ 0和b ^ 0即a和b，那么原式变成b &#x3D; b &amp; ~a和a &#x3D; a &amp; ~b，因为是&amp;操作，所以不存在让a或b从0变成1，所以假设a或b会从1变成0，那么要求a和b都是1才行，但是因为根本不存在(1,1)的情况，所以a和b会保持原来的值，这样就保证了x为0时，a和b不变的条件。综上就是a &#x3D; (a ^ x) &amp; ~b和b &#x3D; (b ^ x) &amp; ~a。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">singleNumber</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, b = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : nums) &#123;<br>            b = ~a &amp; (b ^ num);<br>            a = ~b &amp; (a ^ num);<br>        &#125;<br>        <span class="hljs-keyword">return</span> b;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h2 id="只出现一次的数字III"><a href="#只出现一次的数字III" class="headerlink" title="只出现一次的数字III"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/single-number-iii/">只出现一次的数字III</a></h2><h3 id="位运算-4"><a href="#位运算-4" class="headerlink" title="位运算"></a>位运算</h3><ol>
+<li>求所有数字的异或值：如果数组中有两个数字只出现一次，其余每个元素均出现两次。那么经过全部异或运算。我们可以得到只出现一次的两个数字的异或结果。</li>
+<li>找到最低的不同位，找到最低位为1的位置，即最低位的两个数字不相同的位</li>
+<li>根据最低不同位分组：<ul>
+<li>根据 mask 的位置，将数组中的数字分为两组：一组在 mask 位置上为 0，另一组在 mask 位置上为 1。</li>
+<li>因为相同的数字会被分到同一组且异或为0，最终每组剩下的数字就是 a 和 b。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span>[] singleNumber(<span class="hljs-type">int</span>[] nums) &#123;<br>        <span class="hljs-comment">// 得到只出现一次的两个数字的异或结果</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">all</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>            all ^= nums[i];<br>        &#125;<br>        <span class="hljs-comment">// 找到两数字最低位的不同</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">mask</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> ((all &amp; mask) == <span class="hljs-number">0</span>) &#123;<br>            mask &lt;&lt;= <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-comment">// 分组</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, b = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> ((nums[i] &amp; mask) == <span class="hljs-number">0</span>) &#123;<br>                a ^= nums[i];<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                b ^= nums[i];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;a, b&#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h2 id="数字范围按位与"><a href="#数字范围按位与" class="headerlink" title="数字范围按位与"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/bitwise-and-of-numbers-range/?envType=study-plan-v2&envId=top-interview-150">数字范围按位与</a></h2><h3 id="位运算-5"><a href="#位运算-5" class="headerlink" title="位运算"></a>位运算</h3><p>每次清除最右边的1.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">rangeBitwiseAnd</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span> &#123;<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            right = right &amp; (right - <span class="hljs-number">1</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> right;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(logn)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>位运算的题目代码实现都不难，但是思路不好想，之后还是把以前刷过的题再好好复习一下。</p>
 
                 
               </div>
