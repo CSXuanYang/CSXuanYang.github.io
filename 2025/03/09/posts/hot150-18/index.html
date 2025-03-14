@@ -24,7 +24,7 @@
 <meta property="og:description" content="LeetCode 面试经典 150 题-动态规划打家劫舍动态规划 定义状态：dp[i]表示当前能够偷盗的最大金额。 状态转移：dp[i] &#x3D; max(dp[i-1], dp[i-2] + nums[i])。 初始条件：dp[0] &#x3D; nums[0]。 返回结果：dp[n-1]。 空间优化：可以用两个变量代替dp[i-1]和dp[i-2]。  1234567891011class">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-09T14:50:22.000Z">
-<meta property="article:modified_time" content="2025-03-12T02:23:11.244Z">
+<meta property="article:modified_time" content="2025-03-14T03:31:07.341Z">
 <meta property="article:author" content="Xuan Yang">
 <meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9k 字
+          13k 字
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          76 分钟
+          105 分钟
         
       </span>
     
@@ -477,7 +477,80 @@
 <li>时间复杂度：O(mn)</li>
 <li>空间复杂度：O(n)</li>
 </ul>
-<h2 id><a href="#" class="headerlink" title></a><a href></a></h2>
+<h2 id="编辑距离"><a href="#编辑距离" class="headerlink" title="编辑距离"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/edit-distance/description/?envType=study-plan-v2&envId=top-interview-150">编辑距离</a></h2><h3 id="动态规划-11"><a href="#动态规划-11" class="headerlink" title="动态规划"></a>动态规划</h3><ol>
+<li>定义状态：dp[i][j]表示将word1的前i个字符转换成word2的前j个字符所需要的最少操作数。</li>
+<li>状态转移：如果word1[i-1] ！&#x3D; word2[j-1]：<ul>
+<li>插入：dp[i-1][j] + 1</li>
+<li>删除：dp[i][j-1] + 1</li>
+<li>替换：dp[i-1][j-1] + 1</li>
+<li>三种情况取最小值。</li>
+</ul>
+</li>
+<li>初始条件：dp[0][0]&#x3D;0，dp[0][j] &#x3D; j, dp[i][0] &#x3D; i。</li>
+<li>返回结果：dp[m][n]。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">minDistance</span><span class="hljs-params">(String word1, String word2)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> word1.length();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> word2.length();<br>        <span class="hljs-comment">// 定义状态</span><br>        <span class="hljs-type">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m + <span class="hljs-number">1</span>][n + <span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt;= m; i++) &#123;<br>            dp[i][<span class="hljs-number">0</span>] = i;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt;= n; j++) &#123;<br>            dp[<span class="hljs-number">0</span>][j] = j;<br>        &#125;<br>        <span class="hljs-comment">// 枚举word1</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= m; i++) &#123;<br>            <span class="hljs-comment">// 枚举word2</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;<br>                <span class="hljs-comment">// 状态转移</span><br>                <span class="hljs-keyword">if</span> (word1.charAt(i-<span class="hljs-number">1</span>) != word2.charAt(j-<span class="hljs-number">1</span>)) &#123;<br>                    dp[i][j] = Math.min(Math.min(dp[i-<span class="hljs-number">1</span>][j], dp[i][j-<span class="hljs-number">1</span>]), dp[i-<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>]) + <span class="hljs-number">1</span>;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    dp[i][j] = dp[i-<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>];<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 返回结果</span><br>        <span class="hljs-keyword">return</span> dp[m][n];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(mn)</li>
+<li>空间复杂度：O(mn)</li>
+</ul>
+<h2 id="买卖股票的最佳时机III"><a href="#买卖股票的最佳时机III" class="headerlink" title="买卖股票的最佳时机III"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/?envType=study-plan-v2&envId=top-interview-150">买卖股票的最佳时机III</a></h2><h3 id="动态规划-12"><a href="#动态规划-12" class="headerlink" title="动态规划"></a>动态规划</h3><ol>
+<li>定义状态：buy1、sell1、buy2、sell2，表示每次操作后得到的利润。</li>
+<li>状态转移<ul>
+<li>buy1 &#x3D; max(buy1, -prices[i])；</li>
+<li>sell1 &#x3D; max(sell1, buy1 + prices[i])；</li>
+<li>buy2 &#x3D; max(buy2, sell1 - prices[i]);</li>
+<li>sell2 &#x3D; max(sell2, buy2 + prices[i]);</li>
+</ul>
+</li>
+<li>初始条件：<ul>
+<li>buy1 &#x3D; -prices[0]</li>
+<li>sell1 &#x3D; 0 表示同一天买入又卖出</li>
+<li>buy2 &#x3D; -prices[0] 表示同一天买入又卖出又买入</li>
+<li>sell2 &#x3D; 0 表示同一天买入又卖出又买入又卖出</li>
+</ul>
+</li>
+<li>返回结果：max(0, sell1, sell2)，如果最优的情况对应的是恰好一笔交易，那么它也会因为我们在转移时允许在同一天买入并且卖出这一宽松的条件，从 sell1转移至sell2，因此最终返回sell2即可。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">maxProfit</span><span class="hljs-params">(<span class="hljs-type">int</span>[] prices)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> prices.length;<br>        <span class="hljs-comment">// 定义状态</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">buy1</span> <span class="hljs-operator">=</span> -prices[<span class="hljs-number">0</span>], sell1 = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">buy2</span> <span class="hljs-operator">=</span> -prices[<span class="hljs-number">0</span>], sell2 = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 枚举价格</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-comment">// 状态转移</span><br>            buy1 = Math.max(buy1, -prices[i]);<br>            sell1 = Math.max(sell1, buy1 + prices[i]);<br>            buy2 = Math.max(buy2, sell1 - prices[i]);<br>            sell2 = Math.max(sell2, buy2 + prices[i]);<br>        &#125;<br>        <span class="hljs-comment">// 返回结果</span><br>        <span class="hljs-keyword">return</span> sell2;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h2 id="买卖股票的最佳时机IV"><a href="#买卖股票的最佳时机IV" class="headerlink" title="买卖股票的最佳时机IV"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/?envType=study-plan-v2&envId=top-interview-150">买卖股票的最佳时机IV</a></h2><h3 id="动态规划-13"><a href="#动态规划-13" class="headerlink" title="动态规划"></a>动态规划</h3><ol>
+<li>定义状态：dp[j][0]表示第j次交易后不持有股票的最大利润，dp[j][1]表示第j次交易后持有股票的最大利润。</li>
+<li>状态转移：注意，j从后向前遍历，可以避免覆盖上一轮的状态。<ul>
+<li>dp[j][0] &#x3D; max(dp[j-1][0], dp[j-1][1] + prices[i])</li>
+<li>dp[j][1] &#x3D; max(dp[j-1][1], dp[j-1][0] - prices[i])</li>
+</ul>
+</li>
+<li>初始条件：dp[j][0] &#x3D; 0，dp[j][1] &#x3D;负无穷.</li>
+<li>返回结果：dp[k][0]。</li>
+</ol>
+<p>取k值部分是因为，一共有n个价格，最多交易次数就是n&#x2F;2，因此k&gt;n&#x2F;2没有意义。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">maxProfit</span><span class="hljs-params">(<span class="hljs-type">int</span> k, <span class="hljs-type">int</span>[] prices)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> prices.length;<br>        <br>        <span class="hljs-comment">// dp[j][0] 表示进行 j 次交易后，不持有股票的最大利润</span><br>        <span class="hljs-comment">// dp[j][1] 表示进行 j 次交易后，持有股票的最大利润</span><br>        k = Math.min(k, n / <span class="hljs-number">2</span>);<br>        <span class="hljs-type">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[k + <span class="hljs-number">1</span>][<span class="hljs-number">2</span>];<br>        <br>        <span class="hljs-comment">// 初始化：进行 0 次交易时，不持有股票最大利润为 0，持有股票的最大利润为负无穷</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt;= k; j++) &#123;<br>            dp[j][<span class="hljs-number">1</span>] = Integer.MIN_VALUE; <span class="hljs-comment">// 初始化持有股票的最大利润为负无穷</span><br>        &#125;<br>        <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> k; j &gt; <span class="hljs-number">0</span>; j--) &#123;<br>                dp[j][<span class="hljs-number">0</span>] = Math.max(dp[j][<span class="hljs-number">0</span>], dp[j][<span class="hljs-number">1</span>] + prices[i]); <span class="hljs-comment">// 不持有股票时的最大利润</span><br>                dp[j][<span class="hljs-number">1</span>] = Math.max(dp[j][<span class="hljs-number">1</span>], dp[j - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] - prices[i]); <span class="hljs-comment">// 持有股票时的最大利润</span><br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-keyword">return</span> dp[k][<span class="hljs-number">0</span>]; <span class="hljs-comment">// 返回最大利润，即进行 k 次交易后，不持有股票的最大利润</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：$O(n \cdot min(n,k))$</li>
+<li>空间复杂度：$O(min(n,k))$</li>
+</ul>
+<h2 id="最大正方形"><a href="#最大正方形" class="headerlink" title="最大正方形"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximal-square/?envType=study-plan-v2&envId=top-interview-150">最大正方形</a></h2><h3 id="动态规划-14"><a href="#动态规划-14" class="headerlink" title="动态规划"></a>动态规划</h3><ol>
+<li>划分阶段：按照正方形的右下角坐标进行阶段划分。</li>
+<li>定义状态：dp[i][j]表示以(i,j)为右下角的且值包含1的正方形的最大边长。</li>
+<li>状态转移方程：如果matrix[i][j] &#x3D;&#x3D; 0，则dp[i][j] &#x3D; 0；否则dp[i][j] &#x3D; min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1。</li>
+<li>初始条件：dp[i][j] &#x3D; 0。边界条件：i &#x3D;&#x3D; 0 || j &#x3D;&#x3D; 0。即当matrix[i][j] &#x3D; 0时，无需进行操作，因为初始化为0，如果是1，再根据是否是边界情况来进行不同的操作。</li>
+<li>返回结果：维护一个最大值变量，然后取其平方。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">maximalSquare</span><span class="hljs-params">(<span class="hljs-type">char</span>[][] matrix)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> matrix.length;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> matrix[<span class="hljs-number">0</span>].length;<br>        <span class="hljs-comment">// 定义状态</span><br>        <span class="hljs-type">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m][n];<br>        <span class="hljs-comment">// 枚举行</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; m; i++) &#123;<br>            <span class="hljs-comment">// 枚举列</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; n; j++) &#123;<br>                    <span class="hljs-keyword">if</span> (matrix[i][j] == <span class="hljs-string">&#x27;1&#x27;</span>) &#123;<br>                    <span class="hljs-comment">// 处理边界</span><br>                    <span class="hljs-keyword">if</span> (i == <span class="hljs-number">0</span> || j == <span class="hljs-number">0</span>) &#123;<br>                        dp[i][j] = <span class="hljs-number">1</span>;<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        dp[i][j] = Math.min(Math.min(dp[i-<span class="hljs-number">1</span>][j], dp[i][j-<span class="hljs-number">1</span>]), dp[i-<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>]) + <span class="hljs-number">1</span>;<br>                    &#125;<br>                    ans = Math.max(ans, dp[i][j]);                    <br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 返回结果</span><br>        <span class="hljs-keyword">return</span> ans * ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：O(mn)</li>
+<li>空间复杂度：O(mn)</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>面试150题除了前缀树基本都做完了，和hot100有大量重合的题目。之后就不再刷leetcode了，开始找真题刷，然后每天复习之前做过的这些经典题目。</p>
+
                 
               </div>
             
