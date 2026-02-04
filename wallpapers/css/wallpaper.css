@@ -1,0 +1,97 @@
+.wallpaper-container {
+  padding: 20px;
+  max-width: 1600px; /* 增加容器最大宽度 */
+  margin: 0 auto;
+}
+
+.masonry-grid {
+  columns: 2; /* 改为2列，使每列更宽 */
+  column-gap: 30px; /* 增加列间距 */
+}
+
+.wallpaper-item {
+  break-inside: avoid;
+  margin-bottom: 30px; /* 增加项目间距 */
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.wallpaper-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+  min-height: 300px; /* 设置最小高度 */
+  max-height: 500px;
+  object-fit: cover; /* 确保图片填充容器 */
+}
+
+.wallpaper-item:hover img {
+  transform: scale(1.05);
+}
+
+.wallpaper-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px; /* 增加内边距 */
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wallpaper-item:hover .wallpaper-info {
+  opacity: 1;
+}
+
+.wallpaper-info .title {
+  display: block;
+  font-size: 18px; /* 增大字体 */
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.wallpaper-info .datetime {
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.wallpaper-info .download-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  padding: 8px 20px; /* 增大按钮 */
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none; /* 移除下划线 */
+}
+
+.wallpaper-info .download-btn:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .masonry-grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .masonry-grid {
+    columns: 1;
+  }
+  
+  .wallpaper-item {
+    margin-bottom: 20px;
+  }
+}
